@@ -19,6 +19,15 @@ public class TogetherApplication {
         return "login";
     }
 	
+	@RequestMapping("/all")
+    String all() {        
+        return "all";
+    }
+	@RequestMapping("/my")
+    String my() {        
+        return "my";
+    }
+	
 	public static void main(String[] args) {
 		SpringApplication.run(TogetherApplication.class, args);
 	}
