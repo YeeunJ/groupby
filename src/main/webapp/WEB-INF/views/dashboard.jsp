@@ -16,15 +16,15 @@
 		<div id = "appInfo">
 			<div id = "title">투 게 더</div>
 			<div id = "userInfo">
-			<div id = "profile">
-			프로필!!
-			</div>
-			<div id = "personalInfo">
-			<h3 style = "font-size: 20px; font-weight: 400; height: 400px">Personal Info</h3>
-			<div id = "content">
-				text
-			</div>
-			</div>
+				<div id = "profile">
+				프로필!!
+				</div>
+				<div id = "personalInfo">
+					<h3 style = "font-size: 20px; font-weight: 400; height: 400px">Personal Info</h3>
+					<div id = "content">
+						text
+					</div>
+				</div>
 			</div>
 		</div>
 		<div id = "boardInfo">
@@ -34,7 +34,7 @@
 			</ul>
 			
 			<div class="tab-content">
-			  <div role="tabpanel" class="tab-pane active" id="home">
+			  <div role="tabpanel" class="tab-pane active" id="home" hidden>
 				  <div class = "boardContent">
 				  		<h4 style = "font-weight: 700;">알고리즘 파이팅</h4>
 					  	<img src="/images/back.jpg" width="110px" height = "120px">

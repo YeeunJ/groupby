@@ -39,7 +39,7 @@
             z-index:1;
         }
         div#back:after {
-            background-image:url('./../img/ballooning.jpg');
+            background-image:url('/images/ballooning.jpg');
             top:0;
             left:0;
             position:absolute;
@@ -84,7 +84,13 @@
             height:30px;
         }
         .api{
-            width:60%;background-color: rgb(255, 255, 255);height:45px;  margin: 3px;vertical-align: auto;border:1px solid black;
+            width:60%;
+            background-color: rgb(255, 255, 255);
+            height:45px;  
+            margin: 3px;
+            vertical-align: auto;
+            border:1px solid black;
+            display: inline-block;
         }
         div#word {
             display: inline-block;
@@ -119,11 +125,11 @@
             <br>
             <br>
             <div class="api" onclick="">
-                <img src="./../img/naverlogo.png" style="width:40px; vertical-align:middle;">네이버 아이디로 로그인
+                <img src="/images/naverlogo.png" style="width:40px; vertical-align:middle;">네이버 아이디로 로그인
                 <!-- <input type="button" class="api" name="naver" value=""> -->
             </div >
             <div class="api" onclick="">
-                <img src="./../img/googlelogo.png" style="width:40px; vertical-align:middle; margin-top: 6px; margin-right: 6px;">구글 아이디로 로그인
+                <img src="/images/googlelogo.png" style="width:40px; vertical-align:middle; margin-top: 6px; margin-right: 6px;">구글 아이디로 로그인
             </div>
             <hr>
             <div>
