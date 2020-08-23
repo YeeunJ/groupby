@@ -18,7 +18,7 @@
 
 <body>
   <!-- Modal 창-->
-  <div id="group_join_1" class="modal">
+  <div id="group_join" class="modal">
     <h1>ALGORITHM CAMP</h1>
     <div class="total_info_ex"><span class="bold">모임 개설 날짜:</span> 2020년 5월 4일</div>
     <div class="total_info_ex"><span class="bold">현재 인원:</span> 5명</div>
@@ -102,7 +102,7 @@
   </div>
 
   <!-- Link to open the modal -->
-  <p><a href="#group_join_1" rel="modal:open">Open Modal</a></p>
+  <p><a href="#group_join" rel="modal:open">Open Modal</a></p>
 </body>
 
 </html>
