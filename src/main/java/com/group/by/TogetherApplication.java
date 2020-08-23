@@ -27,6 +27,14 @@ public class TogetherApplication {
     String my() {        
         return "my";
     }
+	@RequestMapping("/heeju")
+    String heeju() {        
+        return "createBoard";
+    }
+	@RequestMapping("/heeju2")
+    String heeju2() {        
+        return "allBoard";
+    }
 	
 	public static void main(String[] args) {
 		SpringApplication.run(TogetherApplication.class, args);
