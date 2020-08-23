@@ -1,0 +1,249 @@
+	body {
+	  background-color: antiquewhite !important;
+	}
+
+	#wrapper {
+	  padding-top: 50px;
+	  text-align: center;
+	}
+
+	#main {
+	  width: 90%;
+	  max-width: 1500px;
+	  min-width: 1100px;
+	  display: inline-block;
+	}
+
+	#appInfo {
+	  float: left;
+	  display: inline-block;
+	  width: 25%;
+	}
+
+	#title {
+	  text-align: left;
+	  font-weight: bold;
+	  font-size: 30px;
+	}
+
+	#userInfo {
+	  padding: 10px;
+	  background-color: rgba(255, 255, 255, 0.3);
+	  min-width: 300px;
+	}
+
+	#profile {
+	  background-color: white;
+	  padding: 10px;
+	  text-align: left;
+	  display: inline-block;
+	  width: 100%;
+	}
+
+	#profileImg {
+	  display: inherit;
+	}
+
+	#myImg {
+	  width: 80px;
+	  height: 80px;
+	  border-radius: 50px;
+	  float: left;
+	}
+
+	#introduce {
+	  display: inline-block;
+	  width: 80%;
+	}
+
+	#joinInfo {
+	  background-color: white;
+	  height: 350px;
+	  width: 100%;
+	  display: inline-block;
+	  margin-top: 10px;
+	}
+
+	#content {
+	  overflow: scroll;
+	}
+
+	.joinYN {
+	  display: inline-block;
+	  width: 90%;
+	  padding: 5px;
+	  height: 75px;
+	  box-shadow: 2px 2px 5px 0.5px rgba(0, 0, 0, 0.4);
+	  background-color: rgba(0, 0, 0, 0.05);
+	  border-radius: 5px;
+	  margin-bottom: 10px;
+	}
+
+	.joinC {
+	  display: inline-block;
+	  float: left;
+	  width: 75%;
+	  text-align: left;
+	}
+
+	.joinB {
+	  display: inline-block;
+	  width: 19%;
+	  float: right;
+	  text-align: right;
+	}
+
+	.jConfirm {
+	  height: 34px;
+	  background-color: white;
+	  border: none;
+	  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	  border-radius: 4px;
+	  padding: 6px 6px;
+	  width: 50px;
+	  float: right;
+	  margin-top: 27px;
+	}
+
+	#boardInfo {
+	  display: inline-block;
+	  width: 70%;
+	  float: right;
+	}
+
+	#myTab {
+	  width: 100%;
+	}
+
+	#tab-content {
+	  background-color: white;
+	  border-bottom: 0.5px solid lightgray;
+	  border-left: 0.5px solid lightgray;
+	  border-right: 0.5px solid lightgray;
+	  height: 600px;
+	  width: 100%;
+	}
+
+	.search {
+	  text-align: left;
+	  width: 95%;
+	  display: inline-block;
+	  margin-top: 20px;
+	}
+
+	.Tsearch {
+	  height: 34px;
+	  background-color: white;
+	  border: 1px solid #ccc;
+	  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	  border-radius: 4px;
+	  padding: 6px 12px;
+	  font-size: 14px;
+	  width: 50%;
+	}
+
+	.sButton {
+	  height: 34px;
+	  background-color: white;
+	  border: 1px solid #ccc;
+	  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	  border-radius: 4px;
+	  margin-left: -8px;
+	  padding: 6px 12px;
+	}
+
+	.category {
+	  height: 34px;
+	  background-color: white;
+	  border: 1px solid #ccc;
+	  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	  border-radius: 4px;
+	  padding: 6px 12px;
+	  font-size: 14px;
+	  margin-left: 2%;
+	}
+
+	#new {
+	  height: 34px;
+	  background-color: lightgray;
+	  border: 1px solid #ccc;
+	  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	  border-radius: 4px;
+	  padding: 6px 12px;
+	  float: right;
+	}
+
+	.boardContent {
+	  box-shadow: 2px 2px 5px 0.5px rgba(0, 0, 0, 0.4);
+	  display: inline-block;
+	  padding: 10px;
+	  width: 95%;
+	  margin-top: 20px;
+	  background-color: white;
+	  height: 110px;
+	}
+
+	.contentLeft {
+	  display: inline-block;
+	  float: left;
+	  text-align: left;
+	  vertical-align: center;
+	  width: 80%;
+	}
+
+	.contentRight {
+	  display: inline-block;
+	  float: right;
+	  width: 13%;
+	  min-width: 95px;
+	  margin-top: 21px;
+	  margin-right: 15px;
+	}
+
+	.contentLeft2 {
+	  display: inline-block;
+	  float: left;
+	  text-align: left;
+	  vertical-align: center;
+	  width: 75%;
+	}
+
+	.contentRight2 {
+	  display: inline-block;
+	  float: right;
+	  width: 20%;
+	  min-width: 90px;
+	  margin-top: 23px;
+	  margin-right: 15px;
+	  text-align: left;
+	}
+
+	.right1 {
+	  float: left;
+	  display: inline-block;
+	  text-align: center;
+	}
+
+	.right2 {
+	  float: right;
+	  display: inline-block;
+	}
+
+	.infoT {
+	  margin-bottom: 3px;
+	}
+
+	.infoC {
+	  border: 1px solid black;
+	  border-radius: 5px;
+	  width: 46px;
+	}
+
+	.progressInfo {
+	  border: 1px solid black;
+	  border-radius: 5px;
+	  width: 48px;
+	  display: inline-block;
+	  text-align: center;
+	  float: right;
+	}
