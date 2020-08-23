@@ -268,7 +268,7 @@
 타인과 함께, 
 타인을 통해서 협력할 때에야 
 비로소 위대한 것이 탄생한다.
-     <b>-Saint-Exupéry-</b>
+     <b>-Saint-Exupéry-</b> 
             </pre>
         </div>
     </div>
