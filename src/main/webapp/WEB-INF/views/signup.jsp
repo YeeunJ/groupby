@@ -57,7 +57,7 @@
             z-index:1;
         }
         div#back:after {
-            background-image:url('./../img/ballooning.jpg');
+            background-image:url('/images/ballooning.jpg');
             top:0;
             left:0;
             position:absolute;
