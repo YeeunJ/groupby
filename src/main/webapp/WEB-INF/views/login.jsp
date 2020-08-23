@@ -117,6 +117,7 @@
             display: inline-block;
             position: relative;
             float: right;
+            margin-right : 50px;
         }
         #modal {
             top:10%;
@@ -262,12 +263,12 @@
             </div>
         </div>
         <div id="word">
-            <h1 style="font-size: xx-large;">체크하세요!</h1>
-            <pre style="font-size: x-large;">
-당신이 해야할 일을 끝냈다면 체크하세요.
-체크된 항목은 아래로 정렬됩니다.
-체크할 항목이 늘어나면 진행률이 상승됩니다. 
-해야할 일을 클릭하여 설명을 읽으세요.
+            <h1 style="font-size: xx-large;"></h1>
+            <pre style="font-size: 25px;font:bold">
+타인과 함께, 
+타인을 통해서 협력할 때에야 
+비로소 위대한 것이 탄생한다.
+     <b>-Saint-Exupéry-</b>
             </pre>
         </div>
     </div>
