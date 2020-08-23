@@ -33,7 +33,7 @@
             overflow: hidden;
         }
         p#subject{
-            color:rgb(218, 218, 49);
+            color:rgb(218, 218, 48);
             font-size: 20px;
             padding-left:60px;
             margin-top: -3px;
