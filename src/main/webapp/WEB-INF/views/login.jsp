@@ -8,6 +8,27 @@
     <title>CSS</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
+        .cont {
+            float:left;
+        }
+        .label {
+            display: inline-block;
+            margin-bottom: 5px;
+            width: 40%;
+        }
+        input {
+            margin-bottom: 5px;
+        }
+        div {
+            margin-bottom: 5px;
+        }
+        .wrap {
+            overflow:hidden;
+        }
+        .red {
+            color: #e30f00;
+            font-weight: bold;
+        }
         p#subject{
             color:rgb(218, 218, 49);
             font-size: 20px;
@@ -96,7 +117,37 @@
             display: inline-block;
             position: relative;
             float: right;
+            margin-right : 50px;
         }
+        #modal {
+            top:10%;
+            display: none;
+            position:fixed;
+            width:100%;
+            height:100%;
+            z-index:1;
+            text-align: center;
+        }
+        #modal h2 {
+            float:left;
+            margin:0;   
+        }
+        #modal .modal_content {
+            width:400px;
+            margin:100px auto;
+            padding:20px 10px;
+            background:#fff;
+            border:2px solid #666;
+        }
+        #modal .modal_layer {
+            position:relative;
+            top:50%;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0, 0, 0, 0.5);
+            z-index:-1;
+        } 
     </style>
   </head>
   <body>
@@ -135,16 +186,89 @@
             <div>
                 <input type="button" value="아이디 찾기" class="underbuttons">
                 <input type="button" value="비밀번호 찾기" class="underbuttons">
-                <input type="button" value="회원가입" class="underbuttons">
+                <button type="button" id="modal_opne_btn" class="underbuttons">회원가입</button>
+                <div id="modal">
+   
+                    <div class="modal_content" style="text-align: left;">
+                        <h2>회원가입</h2>
+                        <br>
+                        <p>*는 필수 입력 사항입니다.</p>
+
+
+                        <fieldset style="width:380px; overflow:hidden">
+                            <form name="form1" action="form_ok.php" method="post" onsubmit="">
+                              <div>
+                                <span class="label"><span class="red">* </span>아이디 </span>
+                                <input type="text" name="id" placeholder="아이디 필수(입력)">
+                                <button style="background-color: rgb(30, 95, 216); color: white;display:inline-block;float:right;height:10%;" value="중복확인"></button>
+                              </div>
+                              <div>
+                                <span class="label"><span class="red">* </span>비밀번호 </span>
+                                <input type="text" name="pw" placeholder="비밀번호를 입력하세요">
+                              </div>
+                              <div>
+                                <span class="label"><span class="red">* </span>비밀번호 확인 </span>
+                                <input type="text" name="pw_confirm" placeholder="비밀번호를 입력하세요">
+                              </div>
+                              <div>
+                                <span class="label"><span class="red">* </span>이름 </span>
+                                <input type="text" name="name" placeholder="이름을 입력하세요">
+                              </div>
+                              <div>
+                                <span class="label"><span class="red">* </span>이메일 </span>
+                                <input type="text" name="em" placeholder="이메일을 입력하세요">
+                              </div>
+                              <div>
+                                <span class="label"><span class="red">* </span>자기소개 </span>
+                                <input type="text" name="introduce" placeholder="자기소개란입니다.">
+                              </div>
+                              <div>
+                                  나이...
+                              </div>
+                              <button type="button" id="modal_close_btn" style="display:inline-block;float:right;">닫기</button>
+                              <button type="button" style="display:inline-block;float:right;background-color: blue;color: white;">가입하기</button>
+                            </form>
+                        </fieldset>
+
+
+
+
+<!--
+                        <form method="POST" action="">
+                            <label>아이디<span class="star">*</span></label>
+                            <input type="text" required>
+                            <button style="margin-right:30px; background-color: rgb(30, 95, 216); color: white;display:inline-block">중복확인</button>
+                            
+                            <label>비밀번호<span class="star">*</span></label>
+                            <input type="text" required>
+                            
+                            <label>비밀번호 확인<span class="star">*</span></label>
+                            <input type="text" required>
+                            <fieldset>
+                                <legend>회원가입</legend>
+                                <label>아이디<span class="star">*</span><input type="text" required></label>
+                                <br>
+                                <label>비밀번호<span class="star">*</span><input type="text" required></label>
+                            </fieldset>
+                            <button type="button" id="modal_close_btn">닫기</button>
+                        </form>    
+-->
+
+                       
+                       
+                    </div>
+                   
+                    <div class="modal_layer"></div>
+                </div>
             </div>
         </div>
         <div id="word">
-            <h1 style="font-size: xx-large;">체크하세요!</h1>
-            <pre style="font-size: x-large;">
-당신이 해야할 일을 끝냈다면 체크하세요.
-체크된 항목은 아래로 정렬됩니다.
-체크할 항목이 늘어나면 진행률이 상승됩니다. 
-해야할 일을 클릭하여 설명을 읽으세요.
+            <h1 style="font-size: xx-large;"></h1>
+            <pre style="font-size: 25px;font:bold">
+타인과 함께, 
+타인을 통해서 협력할 때에야 
+비로소 위대한 것이 탄생한다.
+     <b>-Saint-Exupéry-</b> 
             </pre>
         </div>
     </div>
