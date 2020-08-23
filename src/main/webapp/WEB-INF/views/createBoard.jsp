@@ -27,8 +27,11 @@
         <div class="left">
             <div class="name">모임 이름<span class="essential"> *</span></div>
             <input name="group_name" required/>
-            <div class="name">전체 공개 여부<span class="essential"> *</span>
+            <div class="name">전체 공개 여부
               <input style="margin-left: 5px; width:auto;" type="checkbox" name="public" value="public" checked/>
+            </div>
+            <div class="name" style="margin-top: 0px;">팀원 과제 추가 가능
+              <input style="margin-left: 5px; width:auto;" type="checkbox" name="hw_add" value="hw_add" checked/>
             </div>
             <div class="name">모임 소개<span class="essential"> *</span></div>
             <textarea name="group_intro" required></textarea>
