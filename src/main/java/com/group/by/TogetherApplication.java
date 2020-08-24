@@ -18,15 +18,25 @@ public class TogetherApplication {
     String login() {        
         return "login";
     }
+	@RequestMapping("/login/register")
+    String register() {        
+        return "signup";
+    }
+	@RequestMapping("/login/idCheck")
+    String idCheck() {        
+        return "idCheck";
+    }
+	@RequestMapping("/login/pwCheck")
+    String pwCheck() {        
+        return "pwCheck";
+    }
 	
-	@RequestMapping("/all")
-    String all() {        
-        return "all";
-    }
-	@RequestMapping("/my")
+	//myboard는 나중에 뒤에 링크 넣어서 할거야!! 지금은 일단 이렇게!!
+	@RequestMapping("/myBoard")
     String my() {        
-        return "my";
+        return "myBoard";
     }
+	
 	@RequestMapping("/heeju")
     String heeju() {        
         return "createBoard";
