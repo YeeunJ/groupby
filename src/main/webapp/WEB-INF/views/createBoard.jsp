@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-  <div id="group_make" class="modal">
+<%@ page language="java" pageEncoding="UTF-8"%>
+<div id="group_make" class="modal">
     <div id="head">
     <h1 id="title">모임생성</h1>
     <input type="radio" id="radio_make" name="make_radio" value="make" checked>
