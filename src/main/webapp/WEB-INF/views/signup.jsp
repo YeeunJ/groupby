@@ -58,7 +58,7 @@
                 background-repeat: no-repeat;
                 background-size: cover !important;
                 background-position: center;;
-                background-image:url('./../img/ballooning.jpg');
+                background-image:url('/images/ballooning.jpg');
                 top:0;
                 left:0;
                 position:absolute;
