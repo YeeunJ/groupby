@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<div id="group_make" class="modal">
+<div id="group_make" class="modal createBoard">
     <div id="head">
-    <h1 id="title">모임생성</h1>
+    <h1 id="title_create">모임생성</h1>
     <input type="radio" id="radio_make" name="make_radio" value="make" checked>
     <label for="make">모임생성</label>
     <input type="radio" id="radio_link" name="make_radio" value="link">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="right">
-          <h3 class="title">과제 <button type="button" id="add_hw" style="float:right;">과제추가</button></h3>
+          <h3 class="title">과제 <button type="button" id="add_hw" style="float:right; font-size: 15px;">과제추가</button></h3>
 
             <div id="list">
               <div class="add">
