@@ -251,7 +251,7 @@
 				<div id="information">
 					<!-- MyInfo Start -->
 					<div class="MyInfo">
-						<img style="border-radius:50px;" src="./image/notebook.jpg" alt="profile" width="85px" height="85px">
+						<img style="border-radius:50px;" src="/images/book.jpg" alt="profile" width="85px" height="85px">
 						<p><span>Nickname</span> <i class="fa fa-user"></i></p>
 					</div>
 					<!-- GroupInfo Start -->
