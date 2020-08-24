@@ -25,7 +25,7 @@ $(document).ready(function(){
 	  $("#button_place").show();
 	
 	  $("#link_div").hide();
-	  $("#title").html("모임생성");
+	  $("#title_create").html("모임생성");
 	});
 	$('#radio_link').change(function(){
 	  $("#make_div").hide();
@@ -33,7 +33,7 @@ $(document).ready(function(){
 	  $("#button_place").hide();
 	
 	  $("#link_div").show();
-	  $("#title").html("모임참가");
+	  $("#title_create").html("모임참가");
 	});
 	
 	$(document).on("click", ".delete", function() {

@@ -1,21 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-	<link rel="stylesheet" href="/css/createBoard.css">
-	<script type="text/javascript" src="/js/createBoard.js"></script>
-</head>
-
-<body>
-  <!-- Modal 창-->
-  <div id="group_make" class="modal">
+<%@ page language="java" pageEncoding="UTF-8"%>
+<div id="group_make" class="modal createBoard">
     <div id="head">
-    <h1 id="title">모임생성</h1>
+    <h1 id="title_create">모임생성</h1>
     <input type="radio" id="radio_make" name="make_radio" value="make" checked>
     <label for="make">모임생성</label>
     <input type="radio" id="radio_link" name="make_radio" value="link">
@@ -55,7 +41,7 @@
         </div>
 
         <div class="right">
-          <h3 class="title">과제 <button type="button" id="add_hw" style="float:right;">과제추가</button></h3>
+          <h3 class="title">과제 <button type="button" id="add_hw" style="float:right; font-size: 15px;">과제추가</button></h3>
 
             <div id="list">
               <div class="add">
@@ -85,8 +71,3 @@
       </form>
     </div>
   </div>
-
-  <!-- Link to open the modal -->
-  <p><a href="#group_make" rel="modal:open">Open Modal</a></p>
-</body>
-</html>
