@@ -91,7 +91,7 @@
                 <option value="etc">뭐가</option>
                 <option value="etc2">있을까</option>
               </select>
-              <a href="#group_make" rel="modal:open"><button type="button" name="button" id = "new" data-toggle="modal" data-target="#group_make">new</button></a>
+              <a href="#group_make" rel="modal:open"><button type="button" name="button" id = "new">new</button></a>
             </form>
             <div class = "boardContent">
               <div class="contentLeft2">
@@ -144,7 +144,8 @@
                 <option value="etc2">있을까</option>
               </select>
             </form>
-            <div class = "boardContent" data-toggle="modal" data-target="#group_join">
+            <a href="#group_join" rel="modal:open" class="nostyle"> <div class = "boardContent">
+            <!-- data-toggle="modal" data-target="#group_join" -->
               <div class="contentLeft">
                 <h4 style = "font-weight: 700;">ALGORITHM CAMP <i class="fas fa-book-open"></i></h4>
                 <p>
@@ -156,7 +157,7 @@
                 <div class="right1"><div class = "infoT">회원 수</div><div class = "infoC">5</div></div>
   						  <div class="right2"><div class = "infoT">미션 수</div><div class = "infoC">20</div></div>
              </div>
-           </div>
+           </div></a>
           </div>
   			</div>
   		</div>
