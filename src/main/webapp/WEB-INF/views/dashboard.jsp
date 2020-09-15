@@ -15,6 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/styles.css" rel="stylesheet" />
+        <link href="/css/dashboard.css" rel="stylesheet" />
     </head>
     <body id="page-top">
     	<%@ include file="/WEB-INF/views/createBoard.jsp" %>
@@ -60,7 +61,7 @@
                     <h2 class="mb-5">내 게시판</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">ALGORITHM CAMP</h3>
+                            <h3 class="mb-0">ALGORITHM CAMP <i class="fas fa-book-open" style="color: #bd5d38;font-size: 28px;"></i> <i class="fas fa-user-cog" style="color: #bd5d38;font-size: 28px;"></i></h3>
                             <div class="subheading mb-3">나의 진도율: <progress value="10" max="20" style= "width: 10%; margin-top: 7px">(10/20)</progress></div>
                             <div>오늘 새로운 문제 나왔습니다!! 확인해보세요!!</div>
                             <p>2020/08/20 13:29:37</p>
