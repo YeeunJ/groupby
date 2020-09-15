@@ -16,6 +16,24 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/styles.css" rel="stylesheet" />
         <link href="/css/dashboard.css" rel="stylesheet" />
+        
+        <!-- 모달창 링크 -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	    <script src="https://kit.fontawesome.com/ef6d04f75a.js" crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>	    
+	    <script type="text/javascript" src="/js/allBoard.js"></script>
+	    <script type="text/javascript" src="/js/createBoard.js?d"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	    <link rel="stylesheet" href="/css/createBoard.css">
+	    <link rel="stylesheet" href="/css/allBoard.css?d">
+	    <!-- 여기까지 -->
+	    
     </head>
     <body id="page-top">
     	<%@ include file="/WEB-INF/views/createBoard.jsp" %>
@@ -48,6 +66,8 @@
                         <a href="mailto:name@email.com">name@email.com</a> / 30
                     </div>
                     <p class="lead mb-5">I am ....... 자기소개자기소개자기소개!!!</p>
+                    <p><a href="#group_join" rel="modal:open">모달창 테스트1</a></p>
+                    <p><a href="#group_make" rel="modal:open">모달창 테스트2</a></p>
                     <div class="social-icons">
                         <a class="social-icon" href="#"><i class="fas fa-user-edit"></i></a>
                         <a class="social-icon" href="#"><i class="fas fa-bell"></i></a>

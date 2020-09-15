@@ -1,6 +1,7 @@
 	  #group_join{
 	    width: 700px;
 	    max-width: 700px;
+	    height: 700px;
 	  }
 	  .explan{
 	    font-size:15px;
@@ -45,8 +46,8 @@
 	  .image_check{
 	    margin-left:10px;
 	    margin-top:15px;
-	    width:30px;
-	    height:30px;
+	    width:25px;
+	    height:25px;
 	    display: inline-block;
 	    float: left;
 	  }
@@ -61,8 +62,9 @@
 	  .content_check{
 	    display:inline-block;
 	    float:left;
-	    margin-top:22px;
+	    margin-top: 19px;
 	    margin-left: 5px;
+	    font-size: 13px;
 	  }
 	  .member{
 	    border: solid 1px grey;
@@ -90,13 +92,14 @@
 	  progress{
 	    width:90%;
 	  }
-	  h1{
-	    text-align:center;
+	  #all_title{
+	    text-align:left;
+	    font-size: 55px;
 	  }
-	  h3{
+	  h3.all{
 	    text-align:center;
-	    margin-top:10px;
-	    margin-bottom:0px;
+	    margin: 10px 0px 0px 0px;
+	    font-size: 20px;
 	  }
 	  #total_info_submit{
 	    width:100%;
@@ -124,4 +127,8 @@
 	  textarea{
 	    width: 90%;
 	    height: 50px;
+	  }
+	  button{
+	  	border: none;
+	  	background-color: #65636344;
 	  }
