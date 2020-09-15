@@ -1,177 +1,229 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>dashboard</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    
-    <script src="https://kit.fontawesome.com/ef6d04f75a.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    
-    <script type="text/javascript" src="/js/allBoard.js"></script>
-    <script type="text/javascript" src="/js/createBoard.js?d"></script>
-    
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/createBoard.css">
-    <link rel="stylesheet" href="/css/allBoard.css">
-
-  </head>
-  <body>
-    <div id = 'wrapper'>
-      <div id = "main">
-  		<div id = "appInfo">
-  			<div id = "title">투 게 더</div>
-  				<%@ include file="/WEB-INF/views/createBoard.jsp" %>
-	            <%@ include file="/WEB-INF/views/allBoard.jsp" %>
-  			<div id = "userInfo">
-  				<div id = "profile">
-    				  <div id="profileImg"><img src="/images/back.jpg" id = "myImg"/></div>
-              <div id="profileContent">
-                <h3 id = "name">Harry Edward</h3>
-                <p id = "info">0000000@handong.edu / 30</p>
-                <p id = "introduce">자기소개자기소개자기소개!!!</p>
-                <button id = "edit">edit</button>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>TOGETHER</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Clarence Taylor</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Introduce</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">myBoard</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">allBoard</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
+                </ul>
             </div>
-  				</div>
-  				<div id = "joinInfo">
-  					<h3 style = "font-size: 20px; font-weight: 500;">Join Info</h3>
-  					<div id = "content">
-  						<div class = "joinYN">
-                <div class = 'joinC'>
-                  <h5>패피-패션좀 아는 남자들의 모임</h5>
-                  <p>그룹 참여 요청 <b style="color:red;">거절</b> 당했습니다.</p>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+            <!-- About-->
+            <section class="resume-section" id="about">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        Clarence
+                        <span class="text-primary">Taylor</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
+                        <a href="mailto:name@email.com">name@email.com</a>
+                    </div>
+                    <p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
+                    <div class="social-icons">
+                        <a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="social-icon" href="#"><i class="fab fa-github"></i></a>
+                        <a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
                 </div>
-                <div class = 'joinB'>
-                  <button type="button" class= "jConfirm" name="jConfirm">확인</button>
+            </section>
+            <hr class="m-0" />
+            <!-- Experience-->
+            <section class="resume-section" id="experience">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Experience</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Senior Web Developer</h3>
+                            <div class="subheading mb-3">Intelitec Solutions</div>
+                            <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">March 2013 - Present</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Web Developer</h3>
+                            <div class="subheading mb-3">Intelitec Solutions</div>
+                            <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">December 2011 - March 2013</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Junior Web Designer</h3>
+                            <div class="subheading mb-3">Shout! Media Productions</div>
+                            <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">July 2010 - December 2011</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Web Design Intern</h3>
+                            <div class="subheading mb-3">Shout! Media Productions</div>
+                            <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">September 2008 - June 2010</span></div>
+                    </div>
                 </div>
-              </div>
-              <div class = "joinYN">
-                <div class = 'joinC'>
-                  <h5>팝송으로 영어 공부해요~</h5>
-                  <p>그룹 참여 요청 <b style="color:blue;">수락</b> 당했습니다.</p>
+            </section>
+            <hr class="m-0" />
+            <!-- Education-->
+            <section class="resume-section" id="education">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Education</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">University of Colorado Boulder</h3>
+                            <div class="subheading mb-3">Bachelor of Science</div>
+                            <div>Computer Science - Web Development Track</div>
+                            <p>GPA: 3.23</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">August 2006 - May 2010</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">James Buchanan High School</h3>
+                            <div class="subheading mb-3">Technology Magnet Program</div>
+                            <p>GPA: 3.56</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">August 2002 - May 2006</span></div>
+                    </div>
                 </div>
-                <div class = 'joinB'>
-                  <button type="button" class= "jConfirm" name="jConfirm">확인</button>
+            </section>
+            <hr class="m-0" />
+            <!-- Skills-->
+            <section class="resume-section" id="skills">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Skills</h2>
+                    <div class="subheading mb-3">Programming Languages & Tools</div>
+                    <ul class="list-inline dev-icons">
+                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-angular"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-react"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-sass"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-less"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-wordpress"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-gulp"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-grunt"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-npm"></i></li>
+                    </ul>
+                    <div class="subheading mb-3">Workflow</div>
+                    <ul class="fa-ul mb-0">
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Mobile-First, Responsive Design
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Cross Browser Testing & Debugging
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Cross Functional Teams
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Agile Development & Scrum
+                        </li>
+                    </ul>
                 </div>
-              </div>
-  					</div>
-  				</div>
-  			</div>
-  		</div>
-  		<div id = "boardInfo">
-  			<ul class="nav nav-tabs" role="tablist" id="myTab">
-  			  <li role="presentation" class="active" id="my">
-            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">내 모임</a>
-          </li>
-  			  <li role="presentation" id="all">
-            <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">전체 모임</a>
-          </li>
-  			</ul>
-
-  			<div id="tab-content">
-          <div id="my_content">
-            <form id="mySearch" class = "form-inline search" method="get" >
-              <input type="text" class="Tsearch" name="Tsearch" value="" placeholder="제목, 내용으로 검색하세요..">
-              <button type="button" name="button" class = "sButton"><i class="fas fa-search"></i></button>
-              <select class="category" name="category" class="form-control">
-                <option value="allCategory">all category</option>
-                <option value="study">study</option>
-                <option value="etc">뭐가</option>
-                <option value="etc2">있을까</option>
-              </select>
-              <a href="#group_make" rel="modal:open"><button type="button" name="button" id = "new">new</button></a>
-            </form>
-            <div class = "boardContent">
-              <div class="contentLeft2">
-  				  		<h4 style = "font-weight: 700;">ALGORITHM CAMP <i class="fas fa-book-open"></i> <i class="fas fa-user-cog"></i></h4>
-                <p>
-                  하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!!<br>
-                  같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~
-                </p>
-              </div>
-					  	<div class = "contentRight2">
-						  나의 진도율 <div class = "progressInfo">10/20</div><br>
-              <progress value="10" max="20" style= "width: 100%; margin-top: 7px"></progress>
-					 	 </div>
-				   </div>
-           <div class = "boardContent">
-             <div class="contentLeft2">
-               <h4 style = "font-weight: 700;">ALGORITHM CAMP <i class="fas fa-book-open"></i></h4>
-               <p>
-                 하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!!<br>
-                 같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~
-               </p>
-             </div>
-             <div class = "contentRight2">
-             나의 진도율 <div class = "progressInfo">10/20</div><br>
-             <progress value="10" max="20" style= "width: 100%; margin-top: 7px"></progress>
-            </div>
-          </div>
-          <div class = "boardContent">
-            <div class="contentLeft2">
-              <h4 style = "font-weight: 700;">ALGORITHM CAMP <i class="fas fa-book-open"></i></h4>
-              <p>
-                하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!!<br>
-                같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~
-              </p>
-            </div>
-            <div class = "contentRight2">
-            나의 진도율 <div class = "progressInfo">10/20</div><br>
-            <progress value="10" max="20" style= "width: 100%; margin-top: 7px"></progress>
-           </div>
-         </div>
-          </div>
-          <div id="all_content" hidden>
-            <form id="allSearch" class = "form-inline search" method="get" >
-              <input type="text" class="Tsearch" name="Tsearch" value="" placeholder="제목, 내용으로 검색하세요..">
-              <button type="button" name="button" class = "sButton"><i class="fas fa-search"></i></button>
-              <select class="category" name="category" class="form-control">
-                <option value="allCategory">all category</option>
-                <option value="study">study</option>
-                <option value="etc">뭐가</option>
-                <option value="etc2">있을까</option>
-              </select>
-            </form>
-            <a href="#group_join" rel="modal:open" class="nostyle"> <div class = "boardContent">
-            <!-- data-toggle="modal" data-target="#group_join" -->
-              <div class="contentLeft">
-                <h4 style = "font-weight: 700;">ALGORITHM CAMP <i class="fas fa-book-open"></i></h4>
-                <p>
-                  하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!!<br>
-                  같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~
-                </p>
-              </div>
-              <div class = "contentRight">
-                <div class="right1"><div class = "infoT">회원 수</div><div class = "infoC">5</div></div>
-  						  <div class="right2"><div class = "infoT">미션 수</div><div class = "infoC">20</div></div>
-             </div>
-           </div></a>
-          </div>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-	<script>
-  $('#myTab > li').click(function(){
-    $('#my').attr('class', '');
-    $('#all').attr('class', '');
-    $(this).attr('class', 'active');
-    $('#my_content').hide();
-    $('#all_content').hide();
-    $('#tab-content > #'+$(this).attr('id')+'_content').show();
-  })
-	</script>
-  </body>
+            </section>
+            <hr class="m-0" />
+            <!-- Interests-->
+            <section class="resume-section" id="interests">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Interests</h2>
+                    <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
+                    <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technology advancements in the front-end web development world.</p>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Awards-->
+            <section class="resume-section" id="awards">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Awards & Certifications</h2>
+                    <ul class="fa-ul mb-0">
+                        <li>
+                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                            Google Analytics Certified Developer
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                            Mobile Web Specialist - Google Certification
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                            1
+                            <sup>st</sup>
+                            Place - University of Colorado Boulder - Emerging Tech Competition 2009
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                            1
+                            <sup>st</sup>
+                            Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                            2
+                            <sup>nd</sup>
+                            Place - University of Colorado Boulder - Emerging Tech Competition 2008
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                            1
+                            <sup>st</sup>
+                            Place - James Buchanan High School - Hackathon 2006
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
+                            3
+                            <sup>rd</sup>
+                            Place - James Buchanan High School - Hackathon 2005
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
 </html>
