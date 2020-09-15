@@ -17,6 +17,8 @@
         <link href="/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
+    	<%@ include file="/WEB-INF/views/createBoard.jsp" %>
+		<%@ include file="/WEB-INF/views/allBoard.jsp" %>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
