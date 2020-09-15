@@ -165,7 +165,9 @@
   </div>
 	<script>
   $('#myTab > li').click(function(){
-    console.log($(this).attr('id'));
+    $('#my').attr('class', '');
+    $('#all').attr('class', '');
+    $(this).attr('class', 'active');
     $('#my_content').hide();
     $('#all_content').hide();
     $('#tab-content > #'+$(this).attr('id')+'_content').show();
