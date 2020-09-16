@@ -11,6 +11,10 @@ public class TogetherApplication {
 	
 	@RequestMapping("/")
     String home() {        
+        return "index";
+    }
+	@RequestMapping("/test")
+    String hometest() {        
         return "dashboard";
     }
 	
