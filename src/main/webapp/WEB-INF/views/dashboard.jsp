@@ -86,7 +86,7 @@
                             <div>오늘 새로운 문제 나왔습니다!! 확인해보세요!!</div>
                             <p>2020/08/20 13:29:37</p>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">August 2006 - May 2010</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">May 2020 - August 2020</span></div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
@@ -110,7 +110,7 @@
                             <div class="subheading mb-3">회원 수: 5 / 미션 수: 20</div>
                             <p>하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!! 같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~</p>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">March 2013 - Present</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">May 2020 - August 2020</span></div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
