@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<title>TOGETHER</title>
 		<meta charset="UTF-8">

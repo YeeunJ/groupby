@@ -1,0 +1,218 @@
+
+
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+
+/* checklist */
+#GroupEdit {
+  display:none;
+}
+#GroupEdit input, textarea {
+  border: none;
+  background: rgb(250, 250, 250);
+}
+#ManagePeople{
+  display: none;
+  text-align: left;
+  padding: 15px;
+}
+#EditCheckList {
+  display: none;
+  height: 870px;
+  overflow-y: scroll;
+}
+#AllGroup {
+  text-align: left;
+  padding: 15px;
+}
+#AllGroup hr, #ManagePeople hr {
+  margin: 15px 0;
+}
+#CHECKLIST {
+  height: 870px;
+  overflow-y: scroll;
+}
+
+.check {
+  position: relative;
+  background: rgb(250, 250, 250);
+  margin: 15px 0px;
+  padding: 12px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+  font-size: 16px;
+  line-height: 30px;
+}
+.check button {
+  padding: 3px 8px;
+  border-radius: 15px;
+  border: none;
+}
+.check_detail {
+  width: 100%;
+  display: none;
+  padding: 15px 10px;
+}
+.check_detail p {
+  border-top: 1px solid #bdbdbd;
+  padding-top: 15px;
+  margin: 0;
+}
+.detailbtn {
+  cursor:pointer; font-size: 20px;
+  margin: 0 21px 0 10px;
+}
+.showfinish {
+  cursor: pointer; font-size: 20px;
+  color: #3a4b53 ;
+}
+.check_finish {
+  /* transition: all ease 2s 0s; */
+  display:none;
+  position: absolute;
+  top: 41px; right: 55px;
+  width: 200px;
+  padding: 10px;
+  z-index: 1;
+  background: rgb(250, 250, 250);
+  border: 1px solid #3a4b53 ;
+}
+.check_finish p {
+  margin: 0;
+}
+/* edit_checklist */
+.checkEditlist {
+  position: relative;
+  background: rgb(250, 250, 250);
+  margin: 15px 0px;
+  padding: 12px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+  font-size: 16px;
+  line-height: 30px;
+}
+.checkEditlist button {
+  padding: 3px 8px;
+  border-radius: 15px;
+  border: none;
+}
+.btn {
+  cursor: pointer;
+  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  color: white;
+}
+.check_detail_edit {
+  width: 100%;
+  margin-top: 15px;
+  border-top: 1px solid #bdbdbd;
+  display: block;
+  padding-top: 15px;
+}
+.check_detail_edit p {
+  margin: 0;
+}
+#EditCheckList input, textarea {
+  border: none;
+  /* background:  rgb(250, 250, 250); */
+}
+
+/* group_info */
+.title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #3a4b53;
+  }
+.open {
+  background: rgb(26, 188, 156);
+  padding: 1px 10px;
+  border-radius: 30px;
+  font-size: 13px;
+  color: white;
+}
+.bold {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 4px;
+}
+.group_text {
+  display: block;
+  font-style: italic;
+    width: 80%;
+    text-align: center;
+    margin: 30px auto;
+}
+.edit {
+  border: none;
+  float: right;
+}
+.arrow {
+  float:right;
+  font-size:20px;
+  cursor: pointer;
+  position: absolute;
+    top: -8px;
+    right: 0;
+}
+#progressbar {
+  background-color: rgb(250, 250, 250);
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 11px;
+}
+#progressbar>div {
+  background-color: #3a4b53;
+  /* Adjust with JavaScript */
+  height: 17px;
+  border-radius: 10px;
+}
+.prog_text {
+  margin: 0;
+  line-height: 15px;
+    font-size: 12px;
+    text-align: center;
+    color: rgb(250,250,250);
+}
+#progressbar_tot {
+  margin-top: 5px;
+  background-color: rgb(250, 250, 250);
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 11px;
+  /* width:80%; */
+}
+#progressbar_tot>div {
+  background-color: #3a4b53;
+    border-radius: 10px;
+}
+.prog_text_tot {
+  margin: 0;
+  line-height: 13px;
+    font-size: 10px;
+    text-align: center;
+    color: rgb(250,250,250);
+}
+
+/* All Group */
+
+.eachcontent {
+  font-size: 13px;
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  /* float:left; */
+  /* padding-left: 20px; */
+  /* width: 92%; */
+  /* height: 44px; */
+}
+
+.allpeople {
+  overflow: scroll;
+  height: 350px;
+}
+.exitbtn {
+  background: rgba(244, 67, 54, 0.6);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 1px 7px;
+  margin-right: 5px;
+  float: right;
+  border-radius: 8px;
+  color: white;
+}
