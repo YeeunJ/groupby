@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 public class TogetherApplication {
 	
-	@RequestMapping("/")
+	@RequestMapping("/test")
     String home() {        
         return "index";
     }
-	@RequestMapping("/test")
+	@RequestMapping("/")
     String hometest() {        
         return "dashboard";
     }
