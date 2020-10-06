@@ -19,10 +19,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     
     <!-- heeju -->
-    <script type="text/javascript" src="/js/allBoard.js"></script>
-    <script type="text/javascript" src="/js/createBoard.js?d"></script>
-    <link rel="stylesheet" href="/css/createBoard.css">
-    <link rel="stylesheet" href="/css/allBoard.css">
     <%@ include file="/WEB-INF/views/createBoard.jsp" %>
 	<%@ include file="/WEB-INF/views/allBoard.jsp" %>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -31,6 +27,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script type="text/javascript" src="/js/allBoard.js"></script>
+    <script type="text/javascript" src="/js/createBoard.js?d"></script>
+    <link rel="stylesheet" href="/css/createBoard.css?dd">
+    <link rel="stylesheet" href="/css/allBoard.css?dd">
     
 	<!-- seunga script -->
 	<script type="text/javascript">
@@ -232,6 +232,8 @@
     						<span>- 30일간 90문제</span><br>
     						<span class="group_text">"방학동안 알고리즘 공부를 함께하기 위해 만든 모임입니다. 열정 있으신 분이라면 모두 참여 가능합니다."</span>
     					</div>
+    					  <p><a href="#group_join" rel="modal:open">그룹 참여하기</a></p>
+    					  <p><a href="#group_make" rel="modal:open">그룹 만들기</a></p>
     					<span id="GroupInfobtn" class="btn" style="background:rgba(54, 92, 244, 0.6); float:right; margin-bottom: 15px;">수정</span>
           </div>
 					<!-- Group Info Edit -->

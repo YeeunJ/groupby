@@ -2,9 +2,15 @@
 
   <div id="group_join" class="modal">
     <h1 id="all_title">ALGORITHM CAMP</h1>
-    <div class="total_info_ex"><span class="bold">모임 개설 날짜:</span> 2020년 5월 4일</div>
-    <div class="total_info_ex"><span class="bold">현재 인원:</span> 5명</div>
-    <div class="total_info_ex"><span class="bold">평균 미션 갯수 (1일):</span> 유저 당 5개</div>
+    <hr class="all">
+    <div class="total_info_ex"><span class="bold">참가 인원</span>15명</div>
+    <div class="total_info_ex"><span class="bold">모임 활동 기간</span>2020.08.08 ~ 2020.12.31</div>
+    <div class="total_info_ex"><span class="bold">보상 및 조건</span>보증금 환불 | 30일간 90문제
+      <!--
+      <div id="reward_info">
+        - 보증금 환불<br> - 30일간 90문제
+      </div>-->
+    </div>
     <p class="explan">하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!!<br>같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~<br>전체 게시판을 통한 참여 환영합니다~</p>
     <div class="total_info top">
       <div class="total_info_box left">
@@ -12,15 +18,15 @@
         <div style="text-align:center; font-size: 14px;">(현재 총 20개)</div>
         <div class="content">
           <div class="check">
-            <image class="image_check" src="/images/check.png">
+            <image class="image_check" src="./images/check.png">
             <div class="content_check">array 관련 20~30번 문제 풀기</div>
           </div>
           <div class="check">
-            <image class="image_check" src="/images/check.png">
+            <image class="image_check" src="./images/check.png">
             <div class="content_check">DP 관련 20~30번 문제 풀기</div>
           </div>
           <div class="check">
-            <image class="image_check" src="/images/check.png">
+            <image class="image_check" src="./images/check.png">
             <div class="content_check">피어 리뷰 5개</div>
           </div>
         </div>
@@ -82,4 +88,3 @@
   </form>
     <!--<a href="#" rel="modal:close">Close</a>-->
   </div>
-
