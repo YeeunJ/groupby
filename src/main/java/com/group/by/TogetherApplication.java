@@ -40,6 +40,10 @@ public class TogetherApplication {
     String my() {        
         return "myBoard";
     }
+	@RequestMapping("/heeju")
+    String heeju() {        
+        return "myBoardTest";
+    }
 	
 	public static void main(String[] args) {
 		SpringApplication.run(TogetherApplication.class, args);
