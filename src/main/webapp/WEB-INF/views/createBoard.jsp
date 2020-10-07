@@ -41,7 +41,7 @@
         </div>
 
         <div class="right">
-          <h3 class="title">과제 <button type="button" id="add_hw" style="float:right;">과제추가</button></h3>
+          <h3 class="title">과제 <button type="button" id="add_hw" style="float:right; font-size: 15px;">과제추가</button></h3>
 
             <div id="list">
               <div class="add">

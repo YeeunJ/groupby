@@ -30,7 +30,7 @@
     <script type="text/javascript" src="/js/allBoard.js"></script>
     <script type="text/javascript" src="/js/createBoard.js?d"></script>
     <link rel="stylesheet" href="/css/createBoard.css?dd">
-    <link rel="stylesheet" href="/css/allBoard.css?dd">
+    <link rel="stylesheet" href="/css/allBoard.css?d">
     
 	<!-- seunga script -->
 	<script type="text/javascript">

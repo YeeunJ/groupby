@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 
   <div id="group_join" class="modal">
-    <h1 id="all_title">ALGORITHM CAMP</h1>
+    <h1 class="all" id="all_title">ALGORITHM CAMP</h1>
     <hr class="all">
     <div class="total_info_ex"><span class="bold">참가 인원</span>15명</div>
     <div class="total_info_ex"><span class="bold">모임 활동 기간</span>2020.08.08 ~ 2020.12.31</div>
@@ -17,15 +17,15 @@
         <h3 class="all">공통 미션 예시</h3>
         <div style="text-align:center; font-size: 14px;">(현재 총 20개)</div>
         <div class="content">
-          <div class="check">
+          <div class="check_all">
             <image class="image_check" src="./images/check.png">
             <div class="content_check">array 관련 20~30번 문제 풀기</div>
           </div>
-          <div class="check">
+          <div class="check_all">
             <image class="image_check" src="./images/check.png">
             <div class="content_check">DP 관련 20~30번 문제 풀기</div>
           </div>
-          <div class="check">
+          <div class="check_all">
             <image class="image_check" src="./images/check.png">
             <div class="content_check">피어 리뷰 5개</div>
           </div>
@@ -33,7 +33,7 @@
       </div>
       <div class="total_info_box right">
         <h3 class="all">모임 활성도</h3>
-        <div style="text-align:center; font-size: 13px; margin-bottom: 10px;">최근 일주일 간 미션 수행도</div>
+        <div style="text-align:center; font-size: 13px; margin-bottom: 0px;">최근 일주일 간 미션 수행도</div>
         <div class="content" style="padding-right:10px;">
           <canvas id="myChart"></canvas>
         </div>
