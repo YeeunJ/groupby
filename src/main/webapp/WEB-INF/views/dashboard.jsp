@@ -1,4 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList" %>
+<%@ page import = "com.group.by.dto.progressDTO" %>
 <!DOCTYPE html>
 <html>
 <title>TOGETHER</title>
@@ -40,7 +42,7 @@
 </style>
 
 <body class="w3-theme-l5">
-
+<% ArrayList<progressDTO> list = (ArrayList<progressDTO>)request.getAttribute("progress"); %>
   <!-- Navbar -->
   <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
@@ -136,40 +138,27 @@
                   </select>
                   <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" style="float: right; color: #fff; background: #3a4b53; border: none; border-radius: 4px;">new</button></a>
                 </form>
-                <div class="check" onclick="location.href='./myBoard'">
-                  <div class="contentLeft2">
-                    <h4 style="font-weight: 700;">ALGORITHM CAMP <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
-                    <div id="progressbar_tot">
-        						  <div style="width: 93%;"><p class="prog_text_tot">93% (93/100)</p></div>
-        						</div>
-                  </div>
-                  <div class="contentRight2">
-                    2020/08/20 13:29:37
-                  </div>
-                </div>
-                <div class="check" onclick="location.href='./myBoard'">
-                  <div class="contentLeft2">
-                    <h4 style="font-weight: 700;">ALGORITHM CAMP <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
-                    <div id="progressbar_tot">
-        						  <div style="width: 93%;"><p class="prog_text_tot">93% (93/100)</p></div>
-        						</div>
-                  </div>
-                  <div class="contentRight2">
-                    2020/08/20 13:29:37
-                  </div>
-                </div>
-                <div class="check" onclick="location.href='./myBoard'">
-                  <div class="contentLeft2">
-                    <h4 style="font-weight: 700;">ALGORITHM CAMP <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
-                    <div id="progressbar_tot">
-        						  <div style="width: 93%;"><p class="prog_text_tot">93% (93/100)</p></div>
-        						</div>
-                  </div>
-                  <div class="contentRight2">
-                    2020/08/20 13:29:37
-                  </div>
-                </div>
-              </div>
+                <%
+                if(list != null){
+                	for(int i=0; i<list.size(); i++){
+                		%>
+                		<div class="check" onclick="location.href='./myBoard'">
+		                  <div class="contentLeft2">
+		                    <h4 style="font-weight: 700;"> <%= list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
+		                    <div id="progressbar_tot">
+		                    
+		        						  <div style="width: <%= list.get(i).getCompleteMission() / list.get(i).getAllMission() *100 %>%;"><p class="prog_text_tot"><%= list.get(i).getCompleteMission() / list.get(i).getAllMission() *100 %>% (<%= list.get(i).getCompleteMission() %>/<%= list.get(i).getAllMission() %>)</p></div>
+		        						</div>
+		                  </div>
+		                  <div class="contentRight2">
+		                    2020/08/20 13:29:37
+		                  </div>
+		                </div>
+                		
+                		<%
+                	}
+                }
+                %>
 
               <div id = "allBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px;"><br>
                 <div style="text-align: right; margin-bottom: 30px;">
