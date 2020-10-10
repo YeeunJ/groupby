@@ -13,4 +13,9 @@ public class myBoardController {
 		model.addObject("여기에다가", "정보담아서 전달 가능해!!");
 		return model;
 	}
+	
+	@RequestMapping("/createGroup")
+	public String createGroup() {
+		return "redirect:/";
+	}
 }
