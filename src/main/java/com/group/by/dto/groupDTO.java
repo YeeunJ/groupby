@@ -2,10 +2,9 @@ package com.group.by.dto;
 
 import java.sql.Date;
 
-public class groupinfoDTO implements DTO {
-	int id;
+public class groupDTO implements DTO{
 	String name;
-	String manager;
+	int manager;
 	boolean visible;
 	String link;
 	String reward;
@@ -17,22 +16,16 @@ public class groupinfoDTO implements DTO {
 	Date startDate;
 	Date endDate;
 	int maxNum;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getManager() {
+	public int getManager() {
 		return manager;
 	}
-	public void setManager(String manager) {
+	public void setManager(int manager) {
 		this.manager = manager;
 	}
 	public boolean isVisible() {
