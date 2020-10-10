@@ -9,41 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 public class TogetherApplication {
 	
-	@RequestMapping("/test")
-    String home() {        
-        return "index";
-    }
-	@RequestMapping("/")
-    String hometest() {        
-        return "dashboard";
-    }
-	
-	@RequestMapping("/login")
-    String login() {        
-        return "login";
-    }
-	@RequestMapping("/login/register")
-    String register() {        
-        return "signup";
-    }
-	@RequestMapping("/login/idCheck")
-    String idCheck() {        
-        return "idCheck";
-    }
-	@RequestMapping("/login/pwCheck")
-    String pwCheck() {        
-        return "pwCheck";
-    }
-	
-	//myboard는 나중에 뒤에 링크 넣어서 할거야!! 지금은 일단 이렇게!!
-	@RequestMapping("/myBoard")
-    String my() {        
-        return "myBoard";
-    }
-	@RequestMapping("/heeju")
-    String heeju() {        
-        return "myBoardTest";
-    }
 	
 	public static void main(String[] args) {
 		SpringApplication.run(TogetherApplication.class, args);
