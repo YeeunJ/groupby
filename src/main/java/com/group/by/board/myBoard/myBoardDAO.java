@@ -61,9 +61,12 @@ public class myBoardDAO {
 		if(rs.next()) {
 			
 			list = new ArrayList<missionDTO>();
-			missionDTO Mdto = new missionDTO();
+			
+			
 
 			do {
+				missionDTO Mdto = new missionDTO();
+				
 				Mdto.setId(rs.getInt("id"));
 		    	Mdto.setName(rs.getString("name"));
 		    	Mdto.setGroupID(rs.getInt("groupID"));

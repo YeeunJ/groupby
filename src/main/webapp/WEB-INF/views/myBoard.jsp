@@ -273,6 +273,7 @@
 				</div>
 				<hr>
 
+
 				<%
 					ArrayList<missionDTO> list = dao.MissionList(null);
 					System.out.print("list isze: "+list.size());
