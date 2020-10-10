@@ -21,7 +21,7 @@ public class allBoardController {
 		boardDAO bd = new boardDAO();
 		progressInfo = bd.getmyBoardInfo(userID);
 		for(progressDTO pd: progressInfo) {
-			pd.toString();
+			System.out.println(pd.toString());
 		}
 		model.addObject("progress", progressInfo);
 		return model;
