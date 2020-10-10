@@ -1,5 +1,5 @@
 package com.group.by.dto;
 
-public class groupinfoDTO {
+public class groupinfoDTO implements DTO {
 
 }

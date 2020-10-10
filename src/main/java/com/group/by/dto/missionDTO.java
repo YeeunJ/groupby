@@ -1,5 +1,5 @@
 package com.group.by.dto;
 
-public class missionDTO {
+public class missionDTO implements DTO {
 
 }
