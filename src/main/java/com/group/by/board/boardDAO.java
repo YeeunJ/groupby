@@ -31,13 +31,17 @@ public class boardDAO {
 	    pstmt2.setInt(1, userID);
 	    rs1 = pstmt1.executeQuery();
 	    rs2 = pstmt2.executeQuery();
+	    rs2.next();
 	    while(rs1.next()) {
-	    	rs2.next();
+	    	
 	    	progressDTO data = new progressDTO();
-	    	data.setId(rs1.getInt("allMission"));;
+	    	data.setId(rs1.getInt("allMission"));
 	    	data.setName(rs1.getString("name"));
 	    	data.setAllMission(rs1.getInt("allMission"));
-	    	data.setCompleteMission(rs2.getInt("completeMission"));
+	    	if(rs2.getInt("id") == rs1.getInt("id"))
+	    		data.setCompleteMission(rs2.getInt("completeMission"));
+	    	else
+	    		data.setCompleteMission(0);
 	    	groupData.add(data);
 	    }
 		return groupData;

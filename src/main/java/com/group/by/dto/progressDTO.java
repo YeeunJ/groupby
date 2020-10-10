@@ -31,5 +31,9 @@ public class progressDTO {
 		this.completeMission = completeMission;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "progressDTO [name=" + name + ", id=" + id + ", allMission=" + allMission + ", completeMission="
+				+ completeMission + "]";
+	}
 }
