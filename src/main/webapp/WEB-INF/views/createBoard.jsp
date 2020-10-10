@@ -11,7 +11,7 @@
     <div id="make_div">
       <form name="make_group_form" class="form" role="form">
         <div class="left">
-            <div class="name">모임 이름<span class="essential"> *</span></div>
+            <div class="name" style="display: inline-block;">모임 이름<span class="essential"> *</span></div>
             <input name="group_name" required/>
             <div class="name">전체 공개 여부
               <input style="margin-left: 5px; width:auto;" type="checkbox" name="public" value="public" checked/>
@@ -23,8 +23,8 @@
             <textarea name="group_intro" required></textarea>
             <div class="name">모임 공지<span class="essential"> *</span></div>
             <textarea name="group_notice" required></textarea>
-            <div class="name">참가 링크<span class="essential"> *</span></div>
-            <input name="group_link" required><button type="button" id="duplicate_check">중복확인</button></input>
+            <div class="name" style="display: inline-block; position: relative;">참가 링크<span class="essential"> *</span><button type="button" class="btnB" id="duplicate_check" style="position: absolute; top:-4px; left:310px; font-weight: initial">중복확인</button></div>
+            <input name="group_link" required></input>
 
             <div class="name">모임 기한<span class="essential"> *</span>
               <input style="margin-left: 15px; width:auto;" type="checkbox" id="deadline_check" name="deadline" value="forever" checked/>무제한
@@ -41,18 +41,17 @@
         </div>
 
         <div class="right">
-          <h3 class="title">과제 <button type="button" id="add_hw" style="float:right; font-size: 15px;">과제추가</button></h3>
-
+            <h3 class="title">과제 <button type="button" id="add_hw" class="btnB" style="float:right;">과제추가</button></h3>
             <div id="list">
               <div class="add">
-                <button type="button" class="delete">X</button>
+                <button type="button" class="delete"><i class="fa fa-minus-square"></i></button>
                 <input id="hw_title_add" placeholder="과제 제목"></input><br>
                 <textarea id="hw_content_add" placeholder="과제 설명"></textarea>
               </div>
             </div>
             <div id="element">
               <div class="add">
-                <button type="button" class="delete">X</button>
+                <button type="button" class="delete"><i class="fa fa-minus-square"></i></button>
                 <input id="hw_title_add" placeholder="과제 제목"></input><br>
                 <textarea id="hw_content_add" placeholder="과제 설명"></textarea>
               </div>
@@ -60,14 +59,14 @@
         </div>
       </div>
       <div id="button_place">
-        <a class="nostyle" href="#" rel="modal:close"><button type="button">취소하기</button></a><button type="submit">생성하기</button>
+        <a class="nostyle" href="#" rel="modal:close"><button type="button" class="btnB">취소하기</button></a><button type="submit" class="btnB">생성하기</button>
       </div>
     </form>
 
     <div id="link_div">
       <form name="link_group_form" class="form" role="form">
         <input name="group_link" placeholder="링크를 입력해주세요" required/>
-        <button type="submit">참가하기</button>
+        <button type="submit" class="btnB">참가하기</button>
       </form>
     </div>
   </div>

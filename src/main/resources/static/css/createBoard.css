@@ -7,7 +7,7 @@ h3{
   margin-left: 10px;
 }
 .title{
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 15px;
   margin-left: 0px;
 }
@@ -20,13 +20,14 @@ h3{
   border-radius: 0;
 }
 .blocker{
-  background-color: rgba(68, 85, 93, 0.96)
+  background-color: rgba(68, 85, 93, 0.75
+    )
 }
 .head{
   width:100%;
 }
 #make_div{
-  height: 590px;
+  height: 550px;
   margin-bottom: 30px;
 }
 #link_div{
@@ -49,6 +50,7 @@ h3{
   height: 100%;
   display: inline-block;
   float: left;
+  margin-top: 15px;
   border-right: 1px solid #3a4b53;
 }
 .right{
@@ -64,22 +66,25 @@ h3{
   color: red;
 }
 div.name{
-  margin-top: 10px;
+  margin: 10px 0 5px 0;
+  color: #3a4b53;
+  font-weight: bold;
 }
 .left input{
-  width: 50%;
-  height: 25px;
+  width: 234px;
   margin-right: 10px;
-  border: none;
-  background: #cad7de;
-  border-radius: 0px;
-  padding: 1px 2px;
+  border: 1px solid rgba(68, 85, 93, 0.3);
+  border-radius: 4px;
+  background: #fff;
+  padding: 3px;
 }
 
 .left textarea{
-  width: 50%;
+  width: 93%;
   height: 50px;
-  background: #cad7de;
+  border: 1px solid rgba(68, 85, 93, 0.3);
+  background: #fff !important;
+  border-radius: 4px;
 }
 .add input{
   width: 90%;
@@ -101,7 +106,7 @@ div.name{
   border-radius: 5px;
   border: none;
   padding: 10px;
-  width: 400px;
+  width: 100%;
   margin-bottom: 10px;
   box-shadow: 2px 2px #aba69d;
 
@@ -128,9 +133,9 @@ div.name{
   display:none;
 }
 #list{
-  background: #cad7de;
-  padding: 10px;
-  height: 510px;
+  background: rgba(182, 200, 209, 0.78);
+  padding: 13px;
+  height: 490px;
   overflow:scroll;
 }
 .hw_title{
@@ -159,27 +164,27 @@ input.date{
   display: none;
 }
 .delete{
-  background: black;
-  color: white;
-  width: 20px;
+  color: #4d636f;
   height: 20px;
   border: none;
-  font-size: 10px;
-  text-align: center;
-  vertical-align: center;
-  padding-left: 6px;
-  padding-top: 4px;
-  display: inline-flex;
+  font-size: 18px;
   float: right;
   clear: both;
+  background: none;
   margin-right: 0px;
-  border-radius: 15px;
 }
 .delete:focus{
   outline: none;
 }
 .delete:active{
   background: grey;
+}
+.btnB {
+   font-size: 15px;
+   color: white;
+   background: #3a4b53;
+   border: none;
+   border-radius: 3px;
 }
 a:link.nostyle { color: black; text-decoration: none;}
 a:visited.nostyle { color: black; text-decoration: none;}

@@ -91,7 +91,7 @@
                 <option value="etc">뭐가</option>
                 <option value="etc2">있을까</option>
               </select>
-              <a href="#group_make" rel="modal:open"><button type="button" name="button" id = "new">new</button></a>
+              <a href="#group_make" rel="modal:open"><button type="button" name="button" style="padding:3px;" id = "new">new</button></a>
             </form>
             <div class = "boardContent">
               <div class="contentLeft2">

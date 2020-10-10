@@ -11,21 +11,21 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel='stylesheet' href='/css/index.css'>
+<link rel='stylesheet' href='/css/index.css?d'>
 
-<!-- heeju -->
-<%@ include file="/WEB-INF/views/createBoard.jsp" %>
-<%@ include file="/WEB-INF/views/allBoard.jsp" %>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<script type="text/javascript" src="/js/allBoard.js"></script>
-<script type="text/javascript" src="/js/createBoard.js?d"></script>
-<link rel="stylesheet" href="/css/createBoard.css?dd">
-<link rel="stylesheet" href="/css/allBoard.css?d">
+    <!-- heeju -->
+    <%@ include file="/WEB-INF/views/createBoard.jsp" %>
+	<%@ include file="/WEB-INF/views/allBoard.jsp" %>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script type="text/javascript" src="/js/allBoard.js"></script>
+    <script type="text/javascript" src="/js/createBoard.js?d"></script>
+    <link rel="stylesheet" href="/css/createBoard.css?">
+    <link rel="stylesheet" href="/css/allBoard.css?d">
 
 <style>
   html,
@@ -83,6 +83,7 @@
           </div>
         </div>
         <br>
+
         <!-- Accordion -->
         <div class="w3-card w3-round">
           <div class="w3-white">
@@ -133,7 +134,7 @@
                     <option value="etc">뭐가</option>
                     <option value="etc2">있을까</option>
                   </select>
-                  <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" style="float: right;">new</button></a>
+                  <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" style="float: right; color: #fff; background: #3a4b53; border: none; border-radius: 4px;">new</button></a>
                 </form>
                 <div class="check" onclick="location.href='./myBoard'">
                   <div class="contentLeft2">
@@ -194,8 +195,7 @@
                     2020/08/20 13:29:37
                   </div>
                   <p>하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!! 같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~</p>
-                </div>
-                </a>
+                </div></a>
 
               </div>
             </div>
