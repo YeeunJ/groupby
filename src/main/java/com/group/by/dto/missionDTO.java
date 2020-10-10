@@ -53,5 +53,8 @@ public class missionDTO implements DTO {
 		this.endDate = endDate;
 	}
 	
+	public void CheckPrint() { 
+		System.out.print("missionDTO [id=" + id + ", name=" + name + ", groupID=" + groupID + ", content=" + content + ", regdate=" + regDate + ", startdate=" + startDate + ", enddate=" + endDate + "]");
+	}
 	
 }

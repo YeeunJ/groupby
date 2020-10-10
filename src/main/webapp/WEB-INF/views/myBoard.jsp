@@ -1,4 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.group.by.board.myBoard.*" %>
+<%@ page import="com.group.by.dto.missionDTO" %>
+<%@ page import="com.group.by.dto.groupinfoDTO" %>
+<%@ page import="java.io.*"%>
+<%@ page import="java.util.*"%>
+
+
+<jsp:useBean id="dao" class="com.group.by.board.myBoard.myBoardDAO" scope="page"></jsp:useBean>
+<jsp:useBean id="dto" class="com.group.by.dto.missionDTO" scope="page"></jsp:useBean>
+<jsp:useBean id="dto_group" class="com.group.by.dto.groupinfoDTO" scope="page"></jsp:useBean>
+
 
 <!DOCTYPE html>
 <html>
@@ -187,11 +198,17 @@
       <br>
 
       <!-- Group Info -->
+			<%
+				groupinfoDTO info = dao.GroupInfo(null);
+				dto_group = info;
+
+			%>
+
       <div class="w3-card w3-round w3-white w3-hide-small">
         <div class="w3-container">
           <div id="GroupInfo">
     					<div style="margin: 15px 0;">
-    						<span class="title">알고리즘 화이팅</span>
+    						<span class="title"><%= dto_group.getName() %></span>
     					</div>
     					<hr>
     					<div style="position: relative; margin-bottom: 15px;">
@@ -213,14 +230,15 @@
     						<span class="bold" style="margin-bottom: 5px;">참가 인원&nbsp;&nbsp;</span><span>15명</span><br>
     						<span class="bold" style="margin-bottom: 0px;">모임 활동 기간&nbsp;&nbsp;</span><span style="margin-bottom:20px; display: inline-block">2020.08.08 ~ 2020.12.31</span><br>
     						<span class="bold">보상 및 조건</span><br>
-    						<span>- 보증금 환불</span><br>
-    						<span>- 30일간 90문제</span><br>
-    						<span class="group_text">"방학동안 알고리즘 공부를 함께하기 위해 만든 모임입니다. 열정 있으신 분이라면 모두 참여 가능합니다."</span>
+    						<span>- 보상: <%= dto_group.getReward() %></span><br>
+    						<span>- 조건: <%= dto_group.getRwCondition() %></span><br>
+    						<span class="group_text">"<%= dto_group.getNotice() %>"</span>
     					</div>
     					<span id="GroupInfobtn" class="btn" style="background:rgba(54, 92, 244, 0.6); float:right; margin-bottom: 15px;">수정</span>
           </div>
 					<!-- Group Info Edit -->
 					<div id="GroupEdit" class="w3-row-padding">
+
 						<form class="" action="myBoard" method="post">
 							<div style="margin: 15px 0;">
 								<input type="text" class="title" name="" value="알고리즘 화이팅" style>
@@ -254,9 +272,19 @@
 					<span id="editbtn"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer"></i></span>
 				</div>
 				<hr>
+
+				<%
+					ArrayList<missionDTO> list = dao.MissionList(null);
+					System.out.print("list isze: "+list.size());
+					for(int i=0 ; i<list.size() ; i++) {
+						dto = list.get(i);
+
+						System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
+				%>
+
 				<div class="check">
 					<input type="checkbox" name="" value="">
-					<span style="padding-left: 10px;">백준 170, 180번</span>
+					<span style="padding-left: 10px;"><%= dto.getName() %></span>
 					<div style="float:right;">
 						<span class="showfinish"><i class="fa fa-list-alt"></i></span>
 						<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
@@ -266,69 +294,14 @@
 						<p>박상범 완료</p>
 					</div>
 					<div class="check_detail">
-						<p>다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</p>
+						<p><%= dto.getContent() %></p>
 					</div>
 				</div>
-				<div class="check">
-					<input type="checkbox" name="" value="">
-					<span style="padding-left: 10px;">백준 170, 180번</span>
-					<div style="float:right;">
-						<span class="showfinish"><i class="fa fa-list-alt"></i></span>
-						<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
-					</div>
-					<div class="check_finish">
-						<p>신희주 완료</p>
-						<p>박상범 완료</p>
-						<p>정예은 완료</p>
-					</div>
-					<div class="check_detail">
-						<p>다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</p>
-					</div>
-				</div>
-				<div class="check">
-					<input type="checkbox" name="" value="">
-					<span style="padding-left: 10px;">백준 170, 180번</span>
-					<div style="float:right;">
-						<span class="showfinish"><i class="fa fa-list-alt"></i></span>
-						<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
-					</div>
-					<div class="check_finish">
-						<p>최승아 완료</p>
-					</div>
-					<div class="check_detail">
-						<p>다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</p>
-					</div>
-				</div>
-				<div class="check">
-					<input type="checkbox" name="" value="">
-					<span style="padding-left: 10px;">백준 170, 180번</span>
-					<div style="float:right;">
-						<span class="showfinish"><i class="fa fa-list-alt"></i></span>
-						<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
-					</div>
-					<div class="check_finish">
-						<p>완료자 없음</p>
-					</div>
-					<div class="check_detail">
-						<p>다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</p>
-					</div>
-				</div>
-				<div class="check">
-					<input type="checkbox" name="" value="">
-					<span style="padding-left: 10px;">백준 170, 180번</span>
-					<div style="float:right;">
-						<span class="showfinish"><i class="fa fa-list-alt"></i></span>
-						<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
-					</div>
-					<div class="check_finish">
-						<p>신희주 완료</p>
-						<p>박상범 완료</p>
-						<p>정예은 완료</p>
-						<p>최승아 완료</p>
-					</div>
-					<div class="check_detail">
-						<p>다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</p>
-					</div>
+
+				<%
+					}
+				%>
+
 				</div>
       </div>
 
@@ -390,7 +363,7 @@
 					</div>
 	      </div>
     <!-- End Middle Column -->
-    </div>
+
 
 	<!-- Right Column -->
 	<div class="w3-col m2">
@@ -584,6 +557,8 @@
 		<br>
 	<!-- End Right Column -->
 	</div>
+
+</div>
 
 
 <!-- End Page Container -->
