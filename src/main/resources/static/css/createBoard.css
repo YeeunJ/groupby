@@ -68,11 +68,10 @@ div.name{
 }
 .left input{
   width: 50%;
-  height: 30px;
+  height: 25px;
   margin-right: 10px;
-   border: none;
-  background: rgb(250,250,250);
-  height: 20px;
+  border: none;
+  background: #cad7de;
   border-radius: 0px;
   padding: 1px 2px;
 }
@@ -80,6 +79,7 @@ div.name{
 .left textarea{
   width: 50%;
   height: 50px;
+  background: #cad7de;
 }
 .add input{
   width: 90%;

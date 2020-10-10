@@ -34,7 +34,7 @@
       <div class="total_info_box right">
         <h3 class="all">모임 활성도</h3>
         <div style="text-align:center; font-size: 13px; margin-bottom: 0px;">최근 일주일 간 미션 수행도</div>
-        <div class="content" style="padding-right:10px;">
+        <div class="content" style="padding-right:10px; height: 145px;">
           <canvas id="myChart"></canvas>
         </div>
       </div>

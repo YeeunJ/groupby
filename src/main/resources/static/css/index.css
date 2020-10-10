@@ -67,7 +67,6 @@
   text-align: right;
   padding-top: 20px;
 }
-}
 
 #progressbar_tot {
   margin-top: 5px;
@@ -92,4 +91,13 @@
 
 #allBoard {
   display: none;
+}
+
+.a-no-style, .a-no-style:hover, a-no-style:visited, a-no-style:active{
+	color: inherit;
+ 	text-decoration: inherit;
+}
+
+.w3-block{
+	height: 40px;
 }
