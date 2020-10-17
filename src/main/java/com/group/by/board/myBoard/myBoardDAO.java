@@ -19,6 +19,31 @@ public class myBoardDAO {
 	protected String sql;
 	private StringBuffer query;
 	protected Boolean result = false;
+	
+	
+	public void missonTrue(int userID, int missionID) throws SQLException {
+		
+		sql=("UPDATE mission_info SET check=1 WHERE userID=? AND missionID=?");
+		query = new StringBuffer();
+		query.append(sql);
+		pstmt = conn.prepareStatement(query.toString());
+		pstmt.setInt(1, userID);
+		pstmt.setInt(2, missionID);
+		pstmt.executeUpdate();
+
+	}
+	
+	public void missonFalse(int userID, int missionID) throws SQLException {
+		
+		sql=("UPDATE mission_info SET check=0 WHERE userID=? AND missionID=?");
+		query = new StringBuffer();
+		query.append(sql);
+		pstmt = conn.prepareStatement(query.toString());
+		pstmt.setInt(1, userID);
+		pstmt.setInt(2, missionID);
+		pstmt.executeUpdate();
+
+	}	
 	// 미션 정보 수정
 	
 	public int updateMission(int id, String name, String content) {

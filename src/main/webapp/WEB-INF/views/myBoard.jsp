@@ -44,6 +44,41 @@
 	<!-- seunga script -->
 	<script type="text/javascript">
 		$(document).ready(function(){
+			// checkbox
+			$("input:checkbox[name=mission]").click(function(){
+				if($(this).is(":checked")==true) {
+					var $box = $(this).parent('div.check');
+
+					alert("미션을 완료했습니다.");
+					$(this).parent( 'div.check' ).css( 'background', '#ccc' );
+					// var $box = $(this).parent('div.check').clone();
+					// $(this).parent('div.check').hide();
+					// $(".checkWrapper").append($box);
+					// $(".checkWrapper").append($(this).parent('div.check'));
+					var missionID =  $(this).attr("value");
+					var userID = 2;
+					dao.missionTrue(userID, missionID);
+
+				}
+				else {
+					alert("풀렸음");
+					$(this).parent( 'div.check' ).css( 'background', 'rgb(250, 250, 250)' );
+					// var index = $(this).parent('div.check').attr("value");
+					// console.log(index);
+					var missionID =  $(this).attr("value");
+					var userID = 2;
+					dao.missionTrue(userID, missionID);
+
+					// $('div.check').eq(index).show();
+					// $(this).parent('div.check').remove();
+				}
+			});
+			// function checkedBox() {}
+			// 		if($("input:checkbox[name=mission]").is(":checked")==true) {
+			// 			$(this).parent( 'div.check' ).css( 'background', '#ccccccf' );
+			// 		}
+			// }
+
 			/*
 			수정 버튼을 누르면
 			1. 원래의 문제 이름과 문제 내용을 변수에 저장한다.
@@ -59,10 +94,16 @@
 				$('#CHECKLIST').hide();
 			});
 			// ajax 새로고침
-			// $('#editfin').click(function(){
-			// 	$('#EditCheckList').hide();
-			// 	$('#CHECKLIST').show();
-			// });
+			$('#editfin').click(function(){
+				alert("미션이 수정되었습니다.");
+			});
+			$('#EditGroupInfo').click(function(){
+				alert("그룹 정보가 수정되었습니다.");
+			});
+			$('#missionAddBtn').click(function(){
+				alert("미션이 추가되었습니다.");
+			});
+
 			$('#editcancel').click(function(){
 				$('#EditCheckList').hide();
 				$('#CHECKLIST').show();
@@ -72,6 +113,10 @@
 			$('#GroupInfobtn').click(function(){
 				$('#GroupEdit').show();
 				$('#GroupInfo').hide();
+			});
+			$('#GroupCancelbtn').click(function(){
+				$('#GroupEdit').hide();
+				$('#GroupInfo').show();
 			});
 			// ajax 새로고침
 			$('#GroupInfoOk').click(function(){
@@ -251,7 +296,7 @@
     					<span id="GroupInfobtn" class="btn" style="background:rgba(54, 92, 244, 0.6); float:right; margin-bottom: 15px;">수정</span>
           </div>
 					<!-- Group Info Edit -->
-					<div id="GroupEdit" class="w3-row-padding">
+					<div id="GroupEdit" class="w3-row-padding" style="padding:0">
 
 						<form class="" action="updateGroup" method="post">
 							<div style="margin: 15px 0;">
@@ -266,10 +311,9 @@
 							<textarea name="rewardCD" rows="2" width="100%" class="textarea"><%= dto_group.getRwCondition() %></textarea><br>
 							<span class="bold" style="margin-top: 10px;">모임 소개</span><br>
 							<textarea name="notice" rows="5" style="width:100%;"><%= dto_group.getNotice() %></textarea>
-							<button type="submit" name="button" id="GroupInfoOk" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0; border:none">완료</button>
-							<%-- <span id="GroupInfoOk" class="btn" style=``"background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0;">완료</span> --%>
+							<button type="submit" name="button" class="btn" id="EditGroupInfo" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0; border:none">완료</button>
+							<span id="GroupCancelbtn" class="btn" style="background:#ccc; float:right; margin: 15px 5px 0 0; padding: 5px 10px;">취소</span>
 						</form>
-						<%-- <span id="GroupInfoOk" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0;">완료</span> --%>
 		      </div>
         </div>
       </div>
@@ -288,39 +332,41 @@
 					<span id="editbtn"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer"></i></span>
 				</div>
 				<hr>
+				<div class="checkWrapper">
+					<%
+						ArrayList<missionDTO> list = dao.MissionList(null);
+						ArrayList<String> mlist = dao.MissionComplete(null);
 
+						// System.out.print("list isze: "+mlist.get(1));
+						for(int i=0 ; i<list.size() ; i++) {
+							dto = list.get(i);
+							// System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
+					%>
+					<div class="check" value="<%= i %>">
+						<input type="checkbox" name="mission" value="<%= dto.getId() %>">
 
-
-				<%
-					ArrayList<missionDTO> list = dao.MissionList(null);
-					ArrayList<String> mlist = dao.MissionComplete(null);
-
-					// System.out.print("list isze: "+mlist.get(1));
-					for(int i=0 ; i<list.size() ; i++) {
-						dto = list.get(i);
-						// System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
-				%>
-
-				<div class="check">
-					<input type="checkbox" name="" value="">
-					<span style="padding-left: 10px;"><%= dto.getName() %></span>
-					<div style="float:right;">
-						<span class="showfinish"><i class="fa fa-list-alt"></i></span>
-						<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
+						<span style="padding-left: 10px;"><%= dto.getName() %></span>
+						<div style="float:right;">
+							<span class="showfinish"><i class="fa fa-list-alt"></i></span>
+							<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
+						</div>
+						<div class="check_finish">
+							<%= mlist.get(i) %>완료
+						</div>
+						<div class="check_detail">
+							<p><%= dto.getContent() %></p>
+						</div>
 					</div>
-					<div class="check_finish">
-						<%= mlist.get(i) %>완료
-					</div>
-					<div class="check_detail">
-						<p><%= dto.getContent() %></p>
-					</div>
+
+					<%
+						}
+					%>
 				</div>
 
-				<%
-					}
-				%>
 
 				</div>
+
+
 				<!-- edit checklist -->
 			  <div id="EditCheckList" class="w3-container w3-card w3-white w3-round w3-margin" style="margin-top: 0 !important;"><br>
 				  <div>

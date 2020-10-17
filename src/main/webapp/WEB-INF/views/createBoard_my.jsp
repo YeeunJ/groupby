@@ -21,7 +21,7 @@
         </div>
       </div>
       <div id="button_place">
-        <a class="nostyle" href="#" rel="modal:close"><button type="button" class="btnB" style="margin-right:10px">취소</button></a><button type="submit" class="btnB" style="margin-right: 10px;">추가</button>
+        <a class="nostyle" href="#" rel="modal:close"><button type="button" class="btnB" style="margin-right:10px">취소</button></a><button id="missionAddBtn" type="submit" class="btnB" style="margin-right: 10px;">추가</button>
       </div>
     </form>
 
