@@ -17,6 +17,8 @@
 <link rel='stylesheet' href='/css/index.css?d'>
 
 <!-- heeju -->
+<% int selected = 0;%>
+<% ArrayList<groupinfoDTO> all_list = (ArrayList<groupinfoDTO>)request.getAttribute("allgroup"); %>
 <%@ include file="/WEB-INF/views/createBoard.jsp" %>
 <%@ include file="/WEB-INF/views/allBoard.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -144,13 +146,17 @@
                 if(list != null){
                 	for(int i=0; i<list.size(); i++){
                 		%>
-                <div class="check" onclick="location.href='./myBoard'">
+                <div class="check" onclick="location.href='./myBoard/<%= list.get(i).getId()%>'">
                   <div class="contentLeft2">
                     <h4 style="font-weight: 700;"> <%= list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                     <div id="progressbar_tot">
 
                       <div style="width: <%= list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() *100 %>%;">
+                      <% if(list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() > 0) {%>
                         <p class="prog_text_tot"><%= list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() *100 %>% (<%= list.get(i).getCompleteMission() %>/<%= list.get(i).getAllMission() %>)</p>
+                      <%}else{ %>
+                      <p class="prog_text_tot">0</p>
+                      <%} %>
                       </div>
                     </div>
                   </div>
@@ -164,7 +170,6 @@
                 }
                 %>
               </div>
-				<% ArrayList<groupinfoDTO> all_list = (ArrayList<groupinfoDTO>)request.getAttribute("allgroup"); %>
                 <div id="allBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px;"><br>
                   <div style="text-align: right; margin-bottom: 30px;">
                     <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53;">ALL BOARDS</h2>
@@ -180,14 +185,14 @@
                       <option value="etc2">있을까</option>
                     </select>
                   </form>
-                  <a class="a-no-style" href="#group_join" rel="modal:open">
-                  <%
+                   <%
                   	System.out.println("hello?");
                   	System.out.println(all_list);
                 	if(all_list != null){
                 	for(int i=0; i<all_list.size(); i++){
                 		%>
-                    <div class="check">
+                  <a class="a-no-style" href="#group_join" rel="modal:open">
+                    <div class="check" onlick="change_id(i)">
                       <div class="contentLeft2">
                         <h4 style="font-weight: 700;"><%= all_list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                       </div>
@@ -196,11 +201,11 @@
                       </div>
                       <p><%= all_list.get(i).getIntroduce() %></p>
                     </div>
-                     <%
+                  </a>
+                    <%
                 			}
                 		}
                 	%>
-                  </a>
                 </div>
               </div>
             </div>
@@ -250,6 +255,10 @@
       function allBoard() {
         document.getElementById("myBoard").style.display = "none";
         document.getElementById("allBoard").style.display = "block";
+      }
+      
+      function change_id(int idx){
+    	  selected = idx;
       }
     </script>
 

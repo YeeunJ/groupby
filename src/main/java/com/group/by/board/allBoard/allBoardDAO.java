@@ -27,10 +27,9 @@ public class allBoardDAO {
 		pstmt.setInt(1, (cnt-1)*10);
 		rs = pstmt.executeQuery();
 		
-		if(rs.next()){
+		while(rs.next()){
 			
 			groupinfoDTO allgroupdata = new groupinfoDTO();
-			System.out.println("hey...");
 			
 			allgroupdata.setId(rs.getInt("id"));
 			allgroupdata.setName(rs.getString("name"));
@@ -49,6 +48,7 @@ public class allBoardDAO {
 			allgroupdata.setMaxNum((rs.getInt("maxNum")));
 			
 			allgroupdatas.add(allgroupdata);
+			System.out.println(allgroupdata.toString());
 		}
 		return allgroupdatas;
 	}
