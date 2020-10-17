@@ -45,15 +45,15 @@
             <div id="list">
               <div class="add">
                 <button type="button" class="delete"><i class="fa fa-minus-square"></i></button>
-                <input id="hw_title_add" placeholder="과제 제목"></input><br>
-                <textarea id="hw_content_add" placeholder="과제 설명"></textarea>
+                <input id="hw_title_add" name="title" placeholder="과제 제목"></input><br>
+                <textarea id="hw_content_add" name="description" placeholder="과제 설명"></textarea>
               </div>
             </div>
             <div id="element">
               <div class="add">
                 <button type="button" class="delete"><i class="fa fa-minus-square"></i></button>
-                <input id="hw_title_add" placeholder="과제 제목"></input><br>
-                <textarea id="hw_content_add" placeholder="과제 설명"></textarea>
+                <input id="hw_title_add" name="title" placeholder="과제 제목"></input><br>
+                <textarea id="hw_content_add" name="description" placeholder="과제 설명"></textarea>
               </div>
             </div>
         </div>

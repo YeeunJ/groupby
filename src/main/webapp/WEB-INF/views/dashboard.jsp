@@ -146,7 +146,7 @@
                 if(list != null){
                 	for(int i=0; i<list.size(); i++){
                 		%>
-                <div class="check" onclick="location.href='./myBoard'">
+                <div class="check" onclick="location.href='./myBoard/<%= list.get(i).getId()%>'">
                   <div class="contentLeft2">
                     <h4 style="font-weight: 700;"> <%= list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                     <div id="progressbar_tot">

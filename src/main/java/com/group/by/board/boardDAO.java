@@ -44,7 +44,7 @@ public class boardDAO {
 	    while(rs1.next()) {
 	    	
 	    	progressDTO data = new progressDTO();
-	    	data.setId(rs1.getInt("allMission"));
+	    	data.setId(rs1.getInt("id"));
 	    	data.setName(rs1.getString("name"));
 	    	data.setAllMission(rs1.getInt("allMission"));
 	    	System.out.println(rs2);
