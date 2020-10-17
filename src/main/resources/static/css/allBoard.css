@@ -40,10 +40,10 @@ hr.all{
   border: solid 1px black;
   display: inline-block;
 }
-.left{
+.all_left{
   float:left;
 }
-.right{
+.all_right{
   float: right;
 }
 .join{

@@ -13,7 +13,7 @@
     </div>
     <p class="explan" id="all_explan">"열심히 알고리즘을 풀어봅시다. ㅎㅎ랄라랄ㄹ라"</p>
     <div class="total_info top">
-      <div class="total_info_box left">
+      <div class="total_info_box all_left">
         <h3 class="all">공통 미션 예시</h3>
         <div style="text-align:center; font-size: 14px;">(현재 총 20개)</div>
         <div class="content">
@@ -31,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="total_info_box right">
+      <div class="total_info_box all_right">
         <h3 class="all">모임 활성도</h3>
         <div style="text-align:center; font-size: 13px; margin-bottom: 0px;">최근 일주일 간 미션 수행도</div>
         <div class="content" style="padding-right:10px; height: 145px;">

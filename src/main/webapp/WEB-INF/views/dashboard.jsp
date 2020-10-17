@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/js/allBoard.js"></script>
 <script type="text/javascript" src="/js/createBoard.js?d"></script>
 <link rel="stylesheet" href="/css/createBoard.css?">
-<link rel="stylesheet" href="/css/allBoard.css?d">
+<link rel="stylesheet" href="/css/allBoard.css?dd">
 
 <style>
   html,
@@ -267,15 +267,27 @@
       }
       
       function changeSpecific(obj){
-    	  document.getElementById('all_title').innerHTML=obj.children[3].children[0].innerHTML;
-    	  document.getElementById('all_num').innerHTML=obj.children[3].children[1].innerHTML;
-    	  document.getElementById('all_start').innerHTML=obj.children[3].children[2].innerHTML;
-    	  document.getElementById('all_end').innerHTML=obj.children[3].children[3].innerHTML;
-    	  document.getElementById('all_rwc').innerHTML=obj.children[3].children[4].innerHTML;
-    	  document.getElementById('all_rw').innerHTML=obj.children[3].children[5].innerHTML;
-    	  document.getElementById('all_explan').innerHTML="\" "+obj.children[3].children[6].innerHTML+" \"";
-    	  //null이면 없음으로
-    	  //visibility변
+    	  var title= obj.children[3].children[0].innerHTML;
+    	  var num= obj.children[3].children[1].innerHTML;
+    	  var start=obj.children[3].children[2].innerHTML;	 
+    	  var end =obj.children[3].children[3].innerHTML;
+    	  var rwc = obj.children[3].children[4].innerHTML;
+    	  var rw = obj.children[3].children[5].innerHTML;
+    	  var explan = obj.children[3].children[6].innerHTML;
+    	  if(title == "null") title="없음";
+    	  if(num == "null") num="0";
+    	  if(start == "null") start = "없음";
+    	  if(end == "null") end = "없음";
+    	  if(rwc == "null") rwc = "없음";
+    	  if(rw == "null") rw = "없음";
+    	  if(explan == "null") explan = "없음";
+    	  document.getElementById('all_title').innerHTML= title;
+    	  document.getElementById('all_num').innerHTML= num;
+    	  document.getElementById('all_start').innerHTML= start;
+    	  document.getElementById('all_end').innerHTML= end;
+    	  document.getElementById('all_rwc').innerHTML= rwc;
+    	  document.getElementById('all_rw').innerHTML = rw;
+    	  document.getElementById('all_explan').innerHTML="\" "+explan+" \"";
       }
     </script>
 
