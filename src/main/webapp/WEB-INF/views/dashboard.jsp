@@ -192,7 +192,7 @@
                 	for(int i=0; i<all_list.size(); i++){
                 		%>
                   <a class="a-no-style" href="#group_join" rel="modal:open">
-                    <div class="check">
+                    <div class="check" onlick="change_id(i)">
                       <div class="contentLeft2">
                         <h4 style="font-weight: 700;"><%= all_list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                       </div>
@@ -255,6 +255,10 @@
       function allBoard() {
         document.getElementById("myBoard").style.display = "none";
         document.getElementById("allBoard").style.display = "block";
+      }
+      
+      function change_id(int idx){
+    	  selected = idx;
       }
     </script>
 
