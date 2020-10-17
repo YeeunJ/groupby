@@ -173,7 +173,7 @@ public class myBoardDAO {
 		if(rs.next()) {
 			ex.setId(rs.getInt("id"));
 			ex.setName(rs.getString("name"));
-			ex.setManager(rs.getString("manager"));
+			ex.setManager(rs.getInt("manager"));
 			ex.setVisible(rs.getBoolean("visible"));
 			ex.setLink(rs.getString("link"));
 			ex.setReward(rs.getString("reward"));

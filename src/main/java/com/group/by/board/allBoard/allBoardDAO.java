@@ -30,7 +30,7 @@ public class allBoardDAO {
 			allgroupdata = null;
 			allgroupdata.setId(rs.getInt("id"));
 			allgroupdata.setName(rs.getString("name"));
-			allgroupdata.setManager(rs.getString("manager"));
+			allgroupdata.setManager(rs.getInt("manager"));
 			allgroupdata.setVisible((rs.getBoolean("visible")));
 			allgroupdata.setLink((rs.getString("link")));
 			allgroupdata.setReward((rs.getString("reward")));
