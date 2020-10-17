@@ -20,9 +20,16 @@ public class boardDAO {
 	public ArrayList<progressDTO> getmyBoardInfo(int userID) throws ClassNotFoundException, SQLException {
 		ArrayList<progressDTO> groupData = new ArrayList<progressDTO>();
 		
-		sql1 = "select info.group_info as id, gi.name as name, count(*) as allMission from mission_info as info right join group_info as gi on gi.id = info.group_info where group_info in (select g.id from group_info as g join participation as p on p.groupID = g.id where p.userID = ?) group by group_info order by group_info;";
-		sql2 = "select info.group_info as id, gi.name as name, count(*) as completeMission from mission_info as info right join group_info as gi on gi.id = info.group_info where group_info in (select g.id from group_info as g join participation as p on p.groupID = g.id where p.userID = ?) and info.complete = 1 group by group_info order by group_info;";
-	    query1 = new StringBuffer();
+		sql1 = "select gi.id as id, gi.name as name, count(*) as allMission " + 
+				"from mission_info as info right join group_info as gi on gi.id = info.group_info " + 
+				"group by gi.id" + 
+				"having gi.id in (select g.id from group_info as g join participation as p on p.groupID = g.id where p.userID = ?);";
+		sql2 = "select gi.id as id, gi.name as name, count(*) as completeMission " + 
+				"from mission_info as info right join group_info as gi on gi.id = info.group_info" + 
+				"where info.complete = 1" + 
+				"group by gi.id" + 
+				"having gi.id in (select g.id from group_info as g join participation as p on p.groupID = g.id where p.userID = ?);";
+		query1 = new StringBuffer();
 	    query2 = new StringBuffer();
 	    query1.append(sql1);
 	    query2.append(sql2);
