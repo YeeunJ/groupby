@@ -148,8 +148,8 @@
                     <h4 style="font-weight: 700;"> <%= list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                     <div id="progressbar_tot">
 
-                      <div style="width: <%= list.get(i).getCompleteMission() / list.get(i).getAllMission() *100 %>%;">
-                        <p class="prog_text_tot"><%= list.get(i).getCompleteMission() / list.get(i).getAllMission() *100 %>% (<%= list.get(i).getCompleteMission() %>/<%= list.get(i).getAllMission() %>)</p>
+                      <div style="width: <%= list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() *100 %>%;">
+                        <p class="prog_text_tot"><%= list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() *100 %>% (<%= list.get(i).getCompleteMission() %>/<%= list.get(i).getAllMission() %>)</p>
                       </div>
                     </div>
                   </div>
