@@ -9,35 +9,35 @@
    </div>
 
     <div id="make_div">
-      <form name="make_group_form" class="form" role="form">
+      <form name="make_group_form" action = "/createGroup" class="form" role="form" method="post">
         <div class="left">
             <div class="name" style="display: inline-block;">모임 이름<span class="essential"> *</span></div>
-            <input name="group_name" required/>
+            <input name="name" required/>
             <div class="name">전체 공개 여부
-              <input style="margin-left: 5px; width:auto;" type="checkbox" name="public" value="public" checked/>
+              <input style="margin-left: 5px; width:auto;" type="checkbox" name="visible" checked="checked"/>
             </div>
             <div class="name" style="margin-top: 0px;">팀원 과제 추가 가능
-              <input style="margin-left: 5px; width:auto;" type="checkbox" name="hw_add" value="hw_add" checked/>
+              <input style="margin-left: 5px; width:auto;" type="checkbox" name="createYN" checked="checked"/>
             </div>
             <div class="name">모임 소개<span class="essential"> *</span></div>
-            <textarea name="group_intro" required></textarea>
+            <textarea name="introduce" required></textarea>
             <div class="name">모임 공지<span class="essential"> *</span></div>
-            <textarea name="group_notice" required></textarea>
+            <textarea name="notice" required></textarea>
             <div class="name" style="display: inline-block; position: relative;">참가 링크<span class="essential"> *</span><button type="button" class="btnB" id="duplicate_check" style="position: absolute; top:-4px; left:310px; font-weight: initial">중복확인</button></div>
-            <input name="group_link" required></input>
+            <input name="link" required></input>
 
             <div class="name">모임 기한<span class="essential"> *</span>
-              <input style="margin-left: 15px; width:auto;" type="checkbox" id="deadline_check" name="deadline" value="forever" checked/>무제한
+              <input style="margin-left: 15px; width:auto;" type="checkbox" id="deadline_check" name="deadline" checked="checked" />무제한
               <br>
               <div id="deadline">
-                <input type="date" class="date"></input>~<input type="date" class="date" style="margin-left: 10px;"></input>
+                <input type="date" name="startDate" class="date"></input>~<input type="date" name="endDate" class="date" style="margin-left: 10px;"></input>
               </div>
             </div>
 
             <div class="name">보상(선택사항)</div>
-            <textarea name="group_intro"></textarea>
+            <textarea name="reward"></textarea>
             <div class="name">보상 조건(선택사항)</div>
-            <textarea name="group_intro"></textarea>
+            <textarea name="rwCondition"></textarea>
         </div>
 
         <div class="right">

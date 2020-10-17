@@ -5,7 +5,7 @@ import java.sql.Date;
 public class groupinfoDTO implements DTO {
 	int id;
 	String name;
-	String manager;
+	int manager;
 	boolean visible;
 	String link;
 	String reward;
@@ -14,6 +14,7 @@ public class groupinfoDTO implements DTO {
 	String notice;
 	boolean createYN;
 	Date regDate;
+	boolean forever;
 	Date startDate;
 	Date endDate;
 	int maxNum;
@@ -29,10 +30,10 @@ public class groupinfoDTO implements DTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getManager() {
+	public int getManager() {
 		return manager;
 	}
-	public void setManager(String manager) {
+	public void setManager(int manager) {
 		this.manager = manager;
 	}
 	public boolean isVisible() {
@@ -83,6 +84,12 @@ public class groupinfoDTO implements DTO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	public boolean isForever() {
+		return forever;
+	}
+	public void setForever(boolean forever) {
+		this.forever = forever;
+	}
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -101,6 +108,12 @@ public class groupinfoDTO implements DTO {
 	public void setMaxNum(int maxNum) {
 		this.maxNum = maxNum;
 	}
-	
+	@Override
+	public String toString() {
+		return "groupinfoDTO [id=" + id + ", name=" + name + ", manager=" + manager + ", visible=" + visible + ", link="
+				+ link + ", reward=" + reward + ", rwCondition=" + rwCondition + ", introduce=" + introduce
+				+ ", notice=" + notice + ", createYN=" + createYN + ", regDate=" + regDate + ", forever=" + forever
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", maxNum=" + maxNum + "]";
+	}
 	
 }
