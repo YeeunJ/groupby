@@ -1,5 +1,6 @@
 package com.group.by.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.group.by.board.boardDAO;
+import com.group.by.board.allBoard.allBoardDAO;
+import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.dto.groupDTO;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.progressDTO;
@@ -51,12 +54,32 @@ public class allBoardController {
 	}
 	
 	@RequestMapping(value="/createGroup", method=RequestMethod.POST)
-	public ModelAndView createGroup(groupinfoDTO groupInfo) throws ClassNotFoundException, SQLException {
+	public ModelAndView createGroup(groupinfoDTO groupInfo, HttpServletRequest request) throws ClassNotFoundException, SQLException, UnsupportedEncodingException {
 		int userID = 1;
 		groupInfo.setManager(userID);
 		System.out.println(groupInfo.toString());
 		System.out.println("hello");
-		return new ModelAndView("redirect:/");
+		
+		myBoardDAO dao = new myBoardDAO();
+		allBoardDAO alldao = new allBoardDAO();
+		
+		int result = alldao.createGroup(groupInfo);
+		
+		if(result == 1) {
+			request.setCharacterEncoding("UTF-8");
+		    String [] name = request.getParameterValues("title");
+		    String [] content = request.getParameterValues("description");
 
+		    Date start = null;
+		    Date end = null;
+
+
+		    for(int i=0 ; i<name.length-1; i++) {
+		      dao.missionAdd(name[i], content[i], start, end);
+		      int result2 = dao.shootMission();
+		    }
+		    
+		}
+		return new ModelAndView("redirect:/");
 	}
 }
