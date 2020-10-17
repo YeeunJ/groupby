@@ -1,17 +1,17 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 
   <div id="group_join" class="modal">
-    <h1 class="all" id="all_title">ALGORITHM CAMP</h1>
+    <h1 class="all" id="all_title"><%= all_list.get(selected).getName() %></h1>
     <hr class="all">
     <div class="total_info_ex"><span class="bold">참가 인원</span>15명</div>
-    <div class="total_info_ex"><span class="bold">모임 활동 기간</span>2020.08.08 ~ 2020.12.31</div>
-    <div class="total_info_ex"><span class="bold">보상 및 조건</span>보증금 환불 | 30일간 90문제
+    <div class="total_info_ex"><span class="bold">모임 활동 기간</span><%= all_list.get(selected).getStartDate() %> ~ <%= all_list.get(selected).getEndDate() %></div>
+    <div class="total_info_ex"><span class="bold">보상 및 조건</span><%= all_list.get(selected).getReward() %> | <%= all_list.get(selected).getRwCondition() %>
       <!--
       <div id="reward_info">
         - 보증금 환불<br> - 30일간 90문제
       </div>-->
     </div>
-    <p class="explan">하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!!<br>같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~<br>전체 게시판을 통한 참여 환영합니다~</p>
+    <p class="explan"><%= all_list.get(selected).getIntroduce() %></p>
     <div class="total_info top">
       <div class="total_info_box left">
         <h3 class="all">공통 미션 예시</h3>
