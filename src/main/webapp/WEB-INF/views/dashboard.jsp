@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "com.group.by.dto.progressDTO" %>
+<%@ page import = "com.group.by.dto.groupinfoDTO" %>
 <!DOCTYPE html>
 <html>
 <title>TOGETHER</title>
@@ -163,6 +164,7 @@
                 }
                 %>
               </div>
+				<% ArrayList<groupinfoDTO> all_list = (ArrayList<groupinfoDTO>)request.getAttribute("allgroup"); %>
                 <div id="allBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px;"><br>
                   <div style="text-align: right; margin-bottom: 30px;">
                     <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53;">ALL BOARDS</h2>
@@ -179,15 +181,25 @@
                     </select>
                   </form>
                   <a class="a-no-style" href="#group_join" rel="modal:open">
+                  <%
+                  	System.out.println("hello?");
+                  	System.out.println(all_list);
+                	if(all_list != null){
+                	for(int i=0; i<all_list.size(); i++){
+                		%>
                     <div class="check">
                       <div class="contentLeft2">
-                        <h4 style="font-weight: 700;">ALGORITHM CAMP <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
+                        <h4 style="font-weight: 700;"><%= all_list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                       </div>
                       <div class="contentRight">
-                        2020/08/20 13:29:37
+                        <%= all_list.get(i).getRegDate() %>
                       </div>
-                      <p>하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!! 같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~</p>
+                      <p><%= all_list.get(i).getIntroduce() %></p>
                     </div>
+                     <%
+                			}
+                		}
+                	%>
                   </a>
                 </div>
               </div>

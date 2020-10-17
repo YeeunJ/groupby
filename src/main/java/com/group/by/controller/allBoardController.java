@@ -23,6 +23,7 @@ import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.dto.groupDTO;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.progressDTO;
+import com.group.by.board.allBoard.*;
 
 @RestController
 public class allBoardController {
@@ -35,10 +36,16 @@ public class allBoardController {
 	public ModelAndView home(@ModelAttribute groupDTO groupDTO,
             HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		int userID = 1;
+		int cnt = 1;
 		ArrayList<progressDTO> progressInfo;
 		ModelAndView model = new ModelAndView("dashboard");
 		boardDAO bd = new boardDAO();
 		progressInfo = bd.getmyBoardInfo(userID);
+		
+		allBoardDAO ad = new allBoardDAO();
+		ArrayList<groupinfoDTO> allGroupInfo = ad.getGroupInfo(cnt);
+		model.addObject("allgroup", allGroupInfo);
+		
 		for(progressDTO pd: progressInfo) {
 			System.out.println(pd.toString());
 		}

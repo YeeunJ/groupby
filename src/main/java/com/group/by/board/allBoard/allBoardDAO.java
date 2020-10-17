@@ -14,24 +14,29 @@ public class allBoardDAO {
 	protected PreparedStatement pstmt;
 	protected ResultSet rs;
 	private StringBuffer query;
-	protected String sql, sql2, sql3, sql4;
+	protected String sql, sql2, sql3, sql4, sql_all;
 	protected Boolean result = false;
-	private groupinfoDTO allgroupdata;
 	
 	public ArrayList<groupinfoDTO> getGroupInfo(int cnt) throws SQLException {
 		ArrayList<groupinfoDTO> allgroupdatas = new ArrayList<groupinfoDTO>();
-		sql = "SELECT * FROM `group_info` order by regDate limit ?, 10;";
+		
+		sql_all = "SELECT * FROM `group_info` order by regDate limit ?, 10;";
 		query = new StringBuffer();
-		query.append(sql);
+		query.append(sql_all);
 		pstmt = conn.prepareStatement(query.toString());
-		pstmt.setNString(1, Integer.toString((cnt-1)*10));
+		pstmt.setInt(1, (cnt-1)*10);
 		rs = pstmt.executeQuery();
+		
 		if(rs.next()){
-			allgroupdata = null;
+			
+			groupinfoDTO allgroupdata = new groupinfoDTO();
+			System.out.println("hey...");
+			
 			allgroupdata.setId(rs.getInt("id"));
 			allgroupdata.setName(rs.getString("name"));
 			allgroupdata.setManager(rs.getInt("manager"));
 			allgroupdata.setVisible((rs.getBoolean("visible")));
+			
 			allgroupdata.setLink((rs.getString("link")));
 			allgroupdata.setReward((rs.getString("reward")));
 			allgroupdata.setRwCondition((rs.getString("rwCondition")));

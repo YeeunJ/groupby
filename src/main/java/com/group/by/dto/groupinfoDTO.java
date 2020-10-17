@@ -14,7 +14,6 @@ public class groupinfoDTO implements DTO {
 	String notice;
 	boolean createYN;
 	Date regDate;
-	boolean forever;
 	Date startDate;
 	Date endDate;
 	int maxNum;
@@ -84,12 +83,6 @@ public class groupinfoDTO implements DTO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public boolean isForever() {
-		return forever;
-	}
-	public void setForever(boolean forever) {
-		this.forever = forever;
-	}
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -108,12 +101,6 @@ public class groupinfoDTO implements DTO {
 	public void setMaxNum(int maxNum) {
 		this.maxNum = maxNum;
 	}
-	@Override
-	public String toString() {
-		return "groupinfoDTO [id=" + id + ", name=" + name + ", manager=" + manager + ", visible=" + visible + ", link="
-				+ link + ", reward=" + reward + ", rwCondition=" + rwCondition + ", introduce=" + introduce
-				+ ", notice=" + notice + ", createYN=" + createYN + ", regDate=" + regDate + ", forever=" + forever
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", maxNum=" + maxNum + "]";
-	}
+	
 	
 }
