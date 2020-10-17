@@ -14,7 +14,7 @@ public class allBoardDAO {
 	protected PreparedStatement pstmt;
 	protected ResultSet rs;
 	private StringBuffer query;
-	protected String sql;
+	protected String sql, sql2, sql3, sql4;
 	protected Boolean result = false;
 	private groupinfoDTO allgroupdata;
 	
@@ -48,4 +48,50 @@ public class allBoardDAO {
 		return allgroupdatas;
 	}
 	
+	public int  createGroup(groupinfoDTO groupInfo) throws SQLException {
+		sql = "INSERT INTO group_info(name, visible, link, reward, rwCondition, introduce, notice, createYN, startDate, endDate, maxNum, manager) "
+				+ "VALUES (?, ?, ?, ?,?,?,?,?,?,?,?,?);";
+		sql2 = "INSERT INTO participation (userID, groupID) VALUES (?, ?);";
+		sql3 = "select id from group_info where link = ?;";
+		sql4 = "";
+		if(!groupInfo.getName().isEmpty()) {
+			query = new StringBuffer();
+			query.append(sql);
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setString(1, groupInfo.getName());
+			pstmt.setBoolean(2, groupInfo.isVisible());
+			pstmt.setString(3, groupInfo.getLink());
+			pstmt.setString(4, groupInfo.getReward());
+			pstmt.setString(5, groupInfo.getRwCondition());
+			pstmt.setString(6, groupInfo.getIntroduce());
+			pstmt.setString(7, groupInfo.getNotice());
+			pstmt.setBoolean(8, groupInfo.isCreateYN());
+			pstmt.setDate(9, groupInfo.getStartDate());
+			pstmt.setDate(10, groupInfo.getEndDate());
+			pstmt.setInt(11, groupInfo.getMaxNum());
+			pstmt.setInt(12, groupInfo.getManager());
+			pstmt.executeUpdate();
+		}
+		query = new StringBuffer();
+		query.append(sql3);
+		pstmt = conn.prepareStatement(query.toString());
+		pstmt.setString(1, groupInfo.getLink());
+		rs = pstmt.executeQuery();
+		groupInfo.setId(0);
+		if(rs.next()) {
+			groupInfo.setId(rs.getInt("id"));
+		}
+		if(groupInfo.getId() == 0) {
+			query = new StringBuffer();
+			query.append(sql2);
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setInt(1, groupInfo.getManager());
+			pstmt.setInt(2, groupInfo.getId());
+			pstmt.executeUpdate();
+		}else {
+			return 2;
+		}
+		
+		return 1;
+	}
 }
