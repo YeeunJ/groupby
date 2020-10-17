@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,10 +18,10 @@ import com.group.by.board.myBoard.myBoardDAO;
 public class myBoardController {
 	//myboard는 나중에 뒤에 링크 넣어서 할거야!! 지금은 일단 이렇게!!
 	
-	@RequestMapping("/myBoard")
-	public ModelAndView my() {        
+	@RequestMapping("/myBoard/{id}")
+	public ModelAndView my(@PathVariable("id") int id) {        
 		ModelAndView model = new ModelAndView("myBoard");
-		//model.addObject("여기에다가", "정보담아서 전달 가능해!!");
+		
 		return model;
 	}
 	
