@@ -17,7 +17,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 }
 #EditCheckList {
   display: none;
-  height: 870px;
+  height: 845px;
   overflow-y: scroll;
 }
 #AllGroup {
@@ -28,7 +28,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   margin: 15px 0;
 }
 #CHECKLIST {
-  height: 870px;
+  height: 845px;
   overflow-y: scroll;
 }
 

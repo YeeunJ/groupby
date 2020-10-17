@@ -18,16 +18,29 @@
 		<title>TOGETHER</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<%@ include file="/WEB-INF/views/createBoard_my.jsp" %>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script type="text/javascript" src="/js/allBoard.js"></script>
+    <script type="text/javascript" src="/js/createBoard.js?d"></script>
+    <link rel="stylesheet" href="/css/createBoard_my.css?">
+
+
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    	<link href="/css/myBoard.css" rel="stylesheet" />
+    <link href="/css/myBoard.css" rel="stylesheet" />
 		<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 
 	</head>
 	<script type="text/JavaScript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!-- seunga script -->
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -46,7 +59,11 @@
 				$('#CHECKLIST').hide();
 			});
 			// ajax 새로고침
-			$('#editfin').click(function(){
+			// $('#editfin').click(function(){
+			// 	$('#EditCheckList').hide();
+			// 	$('#CHECKLIST').show();
+			// });
+			$('#editcancel').click(function(){
 				$('#EditCheckList').hide();
 				$('#CHECKLIST').show();
 			});
@@ -201,7 +218,6 @@
 			<%
 				groupinfoDTO info = dao.GroupInfo(null);
 				dto_group = info;
-
 			%>
 
       <div class="w3-card w3-round w3-white w3-hide-small">
@@ -212,14 +228,12 @@
     					</div>
     					<hr>
     					<div style="position: relative; margin-bottom: 15px;">
-    						<!-- <span class="arrow"><i class="fa fa-angle-double-right"></i></span> -->
     						<span class="bold">나의 진행률</span><br>
     						<div id="progressbar">
     						  <div style="width: 40%;"><p class="prog_text" >40%</p></div>
     						</div>
     					</div>
     					<div style="position: relative; margin-bottom: 15px;">
-    						<!-- <span class="arrow"><i class="fa fa-angle-double-right"></i></span> -->
     						<span class="bold">전체 진행률</span><br>
     						<div id="progressbar">
     						  <div style="width: 23%;"><p class="prog_text" >23%</p></div>
@@ -239,22 +253,23 @@
 					<!-- Group Info Edit -->
 					<div id="GroupEdit" class="w3-row-padding">
 
-						<form class="" action="myBoard" method="post">
+						<form class="" action="updateGroup" method="post">
 							<div style="margin: 15px 0;">
-								<input type="text" class="title" name="" value="알고리즘 화이팅" style>
-								<!-- <span class="title">알고리즘 화이팅</span> -->
+								<input type="text" class="title" name="title" value="<%= dto_group.getName() %>" style>
 							</div>
 							<hr>
-							<span class="bold" style="margin-bottom: 0px;">모임 활동 기간&nbsp;&nbsp;</span>
-							<input type="text" name="" value="2020.08.08 ~ 2020.12.3"><br>
-							<!-- <span style="margin-bottom:20px; display: inline-block">2020.08.08 ~ 2020.12.31</span><br> -->
-							<span class="bold" style="margin-top: 10px;">보상 및 조건</span><br>
-							<textarea name="name" rows="3" cols="35" class="textarea">보증금 환불
-30일간 90문제</textarea><br>
+							<span class="bold" style="margin-bottom: 0px;">모임 활동 기간&nbsp;&nbsp;</span><br>
+							<input type="date" name="startdate" style="width:45%;" value="<%= dto_group.getStartDate() %>"><span>~</span><input type="date" style="width:45%;" name="enddate" value="<%= dto_group.getEndDate() %>">
+							<%-- <input typeㄹ="text" name="enddate" value="2020.08.08 ~ 2020.12.3"><br> --%>
+							<br /><span class="bold" style="margin-top: 10px;">보상 및 조건</span><br>
+							<textarea name="reward" rows="2" width="100%" class="textarea"><%= dto_group.getReward() %></textarea><br>
+							<textarea name="rewardCD" rows="2" width="100%" class="textarea"><%= dto_group.getRwCondition() %></textarea><br>
 							<span class="bold" style="margin-top: 10px;">모임 소개</span><br>
-							<textarea name="name" rows="5" style="width:100%;">"방학동안 알고리즘 공부를 함께하기 위해 만든 모임입니다. 열정 있으신 분이라면 모두 참여 가능합니다."</textarea>
+							<textarea name="notice" rows="5" style="width:100%;"><%= dto_group.getNotice() %></textarea>
+							<button type="submit" name="button" id="GroupInfoOk" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0; border:none">완료</button>
+							<%-- <span id="GroupInfoOk" class="btn" style=``"background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0;">완료</span> --%>
 						</form>
-						<span id="GroupInfoOk" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0;">완료</span>
+						<%-- <span id="GroupInfoOk" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0;">완료</span> --%>
 		      </div>
         </div>
       </div>
@@ -268,19 +283,22 @@
       <div id="CHECKLIST" class="w3-container w3-card w3-white w3-round w3-margin" style="margin-top:0!important;"><br>
 				<div style="text-align: right; margin-bottom: 30px;">
 					<h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53;">CHECKLIST</h2>
-					<button type="button" name="button" style="font-size: 13px; padding: 4px 20px; border:none; margin: 6px 10px 0 0;">과제 추가</button>
+					<a class="a-no-style" href="#group_make_my" rel="modal:open"><button type="button" style="color: #fff; background: #3a4b53; border: none; border-radius: 4px;">과제 추가</button></a>
+					<%-- <button type="button" name="button" style="font-size: 13px; padding: 4px 20px; border:none; margin: 6px 10px 0 0;">과제 추가</button> --%>
 					<span id="editbtn"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer"></i></span>
 				</div>
 				<hr>
 
 
+
 				<%
 					ArrayList<missionDTO> list = dao.MissionList(null);
-					System.out.print("list isze: "+list.size());
+					ArrayList<String> mlist = dao.MissionComplete(null);
+
+					// System.out.print("list isze: "+mlist.get(1));
 					for(int i=0 ; i<list.size() ; i++) {
 						dto = list.get(i);
-
-						System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
+						// System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
 				%>
 
 				<div class="check">
@@ -291,8 +309,7 @@
 						<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
 					</div>
 					<div class="check_finish">
-						<p>신희주 완료</p>
-						<p>박상범 완료</p>
+						<%= mlist.get(i) %>완료
 					</div>
 					<div class="check_detail">
 						<p><%= dto.getContent() %></p>
@@ -304,65 +321,47 @@
 				%>
 
 				</div>
+				<!-- edit checklist -->
+			  <div id="EditCheckList" class="w3-container w3-card w3-white w3-round w3-margin" style="margin-top: 0 !important;"><br>
+				  <div>
+
+							<form class="" action="missionEdit" method="post">
+								<div style="text-align: right; margin-bottom: 35px;">
+									<h2 style="float:left; line-height:30px; font-weight: bold; color: #3a4b53">CHECKLIST EDIT</h2>
+									<span id="editcancel" class="btn" style="background:#ccc; margin-top: 15px;">취소</span>
+									<input id="editfin" type="submit" class="check_edit btn" style="background:rgba(76, 175, 80, 0.6); border: none; margin-top: 13px;" name="" value="완료">
+								</div>
+								<hr>
+
+								<%
+
+									// System.out.print("list isze: "+list.size());
+									for(int i=0 ; i<list.size() ; i++) {
+										dto = list.get(i);
+								%>
+
+
+								<div class="checkEditlist">
+									<input type="hidden" name="missionID"  value="<%= dto.getId() %>">
+									<input type="text" name="title" value="<%= dto.getName() %>">
+									<div style="float:right;">
+										<span class="btn" style="background:rgba(244, 67, 54, 0.6)">삭제</span>
+									</div>
+									<div class="p_cont check_detail_edit">
+										<textarea name="content" style="width:100%;"><%= dto.getContent() %></textarea>
+									</div>
+								</div>
+
+								<%
+									}
+								%>
+
+							</form>
+						</div>
+		      </div>
       </div>
 
-		  <!-- edit checklist -->
-		  <div id="EditCheckList" class="w3-container w3-card w3-white w3-round w3-margin" style="margin-top:0!important;"><br>
-			  <div>
-						<form class="" action="myBoard" method="post">
-							<div style="text-align: right; margin-bottom: 35px;">
-								<h2 style="float:left; line-height:30px; font-weight: bold; color: #3a4b53">CHECKLIST EDIT</h2>
-								<input id="editfin" type="submit" class="check_edit btn" style="background:rgba(76, 175, 80, 0.6); border: none; margin-top: 13px;" name="" value="완료">
-							</div>
-							<hr>
-							<div class="checkEditlist">
-								<input type="text" name="" value="백준 171, 181번">
-								<div style="float:right;">
-									<span class="btn" style="background:rgba(244, 67, 54, 0.6)">삭제</span>
-								</div>
-								<div class="p_cont check_detail_edit">
-									<textarea name="name" style="width:100%;">다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</textarea>
-								</div>
-							</div>
-							<div class="checkEditlist">
-								<input type="text" name="" value="백준 171, 181번">
-								<div style="float:right;">
-									<span class="btn" style="background:rgba(244, 67, 54, 0.6)">삭제</span>
-								</div>
-								<div class="p_cont check_detail_edit">
-									<textarea name="name" style="width:100%;">다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</textarea>
-								</div>
-							</div>
-							<div class="checkEditlist">
-								<input type="text" name="" value="백준 171, 181번">
-								<div style="float:right;">
-									<span class="btn" style="background:rgba(244, 67, 54, 0.6)">삭제</span>
-								</div>
-								<div class="p_cont check_detail_edit">
-									<textarea name="name" style="width:100%;">다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</textarea>
-								</div>
-							</div>
-							<div class="checkEditlist">
-								<input type="text" name="" value="백준 171, 181번">
-								<div style="float:right;">
-									<span class="btn" style="background:rgba(244, 67, 54, 0.6)">삭제</span>
-								</div>
-								<div class="p_cont check_detail_edit">
-									<textarea name="name" style="width:100%;">다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</textarea>
-								</div>
-							</div>
-							<div class="checkEditlist">
-								<input type="text" name="" value="백준 171, 181번">
-								<div style="float:right;">
-									<span class="btn" style="background:rgba(244, 67, 54, 0.6)">삭제</span>
-								</div>
-								<div class="p_cont check_detail_edit">
-									<textarea name="name" style="width:100%;">다이나믹 프로그래밍을 이용한 탑 다운 프로그램을 작성하는 문제입니다. 어렵더라도 포기하지 말고 열심히 합시다!</textarea>
-								</div>
-							</div>
-						</form>
-					</div>
-	      </div>
+
     <!-- End Middle Column -->
 
 

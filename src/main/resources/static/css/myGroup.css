@@ -17,6 +17,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 }
 #EditCheckList {
   display: none;
+  margin-top: 0 !important;
   height: 870px;
   overflow-y: scroll;
 }
@@ -102,10 +103,10 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 }
 .check_detail_edit {
   width: 100%;
-  margin-top: 15px;
+  margin-top: 10px;
   border-top: 1px solid #bdbdbd;
   display: block;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 .check_detail_edit p {
   margin: 0;
