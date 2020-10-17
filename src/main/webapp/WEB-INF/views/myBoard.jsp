@@ -44,35 +44,93 @@
 	<!-- seunga script -->
 	<script type="text/javascript">
 		$(document).ready(function(){
-			// checkbox
+
+			$(".deleteMission").click(function() {
+				// var $box = $(this).parent('div.checkEditlist');
+				// var missionID = $(this).parent('div.checkEditlist').attr("value");
+				// console.log(missionID);
+				console.log($(this).attr("value"));
+
+				if (confirm("정말 삭제하시겠습니까?") == true){
+					$.ajax({
+						type: "POST",
+						url: "/deleteMission",
+						data: {"missionID":$(this).attr("value")},
+						success: function() {
+							alert('미션이 삭제되었습니다.');
+						}, error: function() {
+							alert('미션 삭제에 실패했습니다.');
+						}
+					});
+					$(this).parent('div.checkEditlist').remove();
+					// $box.remove();
+ 				}else{   //취소
+     			return false;
+ 				}
+			});
+
+
 			$("input:checkbox[name=mission]").click(function(){
 				if($(this).is(":checked")==true) {
-					var $box = $(this).parent('div.check');
-
-					alert("미션을 완료했습니다.");
 					$(this).parent( 'div.check' ).css( 'background', '#ccc' );
-					// var $box = $(this).parent('div.check').clone();
-					// $(this).parent('div.check').hide();
-					// $(".checkWrapper").append($box);
-					// $(".checkWrapper").append($(this).parent('div.check'));
-					var missionID =  $(this).attr("value");
-					var userID = 2;
-					dao.missionTrue(userID, missionID);
-
+					$.ajax({
+						type: "POST",
+						url: "/missionTrue",
+						data: {"userID":2, "missionID":$(this).attr("value")},
+						success: function() {
+							alert('미션을 완료했습니다.');
+						}, error: function() {
+							alert('미션 추가에 실패했습니다.');
+						}
+					});
 				}
 				else {
-					alert("풀렸음");
 					$(this).parent( 'div.check' ).css( 'background', 'rgb(250, 250, 250)' );
-					// var index = $(this).parent('div.check').attr("value");
-					// console.log(index);
-					var missionID =  $(this).attr("value");
-					var userID = 2;
-					dao.missionTrue(userID, missionID);
-
-					// $('div.check').eq(index).show();
-					// $(this).parent('div.check').remove();
+					$.ajax({
+						type: "POST",
+						url: "/missionFalse",
+						data: {"userID":2, "missionID":$(this).attr("value")},
+						success: function() {
+							alert('미션 체크 해제.');
+						}, error: function() {
+							alert('미션 추가에 실패했습니다.');
+						}
+					});
 				}
 			});
+
+
+			// checkbox
+			// $("input:checkbox[name=mission]").click(function(){
+			// 	if($(this).is(":checked")==true) {
+			// 		var $box = $(this).parent('div.check');
+			//
+			// 		alert("미션을 완료했습니다.");
+			// 		$(this).parent( 'div.check' ).css( 'background', '#ccc' );
+			// 		// var $box = $(this).parent('div.check').clone();
+			// 		// $(this).parent('div.check').hide();
+			// 		// $(".checkWrapper").append($box);
+			// 		// $(".checkWrapper").append($(this).parent('div.check'));
+			// 		var missionID =  $(this).attr("value");
+			// 		var userID = 2;
+			// 		dao.missionTrue(userID, missionID);
+			//
+			// 	}
+			// 	else {
+			// 		alert("풀렸음");
+			// 		$(this).parent( 'div.check' ).css( 'background', 'rgb(250, 250, 250)' );
+			// 		// var index = $(this).parent('div.check').attr("value");
+			// 		// console.log(index);
+			// 		var missionID =  $(this).attr("value");
+			// 		var userID = 2;
+			// 		dao.missionTrue(userID, missionID);
+			//
+			// 		// $('div.check').eq(index).show();
+			// 		// $(this).parent('div.check').remove();
+			// 	}
+			// });
+
+
 			// function checkedBox() {}
 			// 		if($("input:checkbox[name=mission]").is(":checked")==true) {
 			// 			$(this).parent( 'div.check' ).css( 'background', '#ccccccf' );
@@ -89,6 +147,8 @@
 			// var str = $(".textarea").val();
 			// str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
 			// $(".textarea").html(str);
+
+
 			$('#editbtn').click(function(){
 				$('#EditCheckList').show();
 				$('#CHECKLIST').hide();
@@ -336,15 +396,36 @@
 					<%
 						ArrayList<missionDTO> list = dao.MissionList(null);
 						ArrayList<String> mlist = dao.MissionComplete(null);
+						ArrayList<Integer> userlist = dao.missionList();
 
-						// System.out.print("list isze: "+mlist.get(1));
+						System.out.print("userlist: "+userlist.get(0)+"//"+userlist.size());
+
 						for(int i=0 ; i<list.size() ; i++) {
 							dto = list.get(i);
 							// System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
-					%>
-					<div class="check" value="<%= i %>">
-						<input type="checkbox" name="mission" value="<%= dto.getId() %>">
 
+					%>
+					<%-- <div class="check" value="<%= i %>"> --%>
+						<%-- checked="checked --%>
+						<%
+						int flag=0;
+						for(int j=0 ; j<userlist.size(); j++) {
+							if(userlist.get(j) == dto.getId()){
+								flag=1;
+						%>
+							<div class="check" value="<%= i %>" style="background:#ccc;">
+								<input type="checkbox" name="mission" value="<%= dto.getId() %>" checked="checked">
+						<%
+								break;
+							}
+						}
+						if(flag==0){
+						%>
+						<div class="check" value="<%= i %>">
+							<input type="checkbox" name="mission" value="<%= dto.getId() %>">
+						<%
+						}
+						%>
 						<span style="padding-left: 10px;"><%= dto.getName() %></span>
 						<div style="float:right;">
 							<span class="showfinish"><i class="fa fa-list-alt"></i></span>
@@ -390,9 +471,9 @@
 								<div class="checkEditlist">
 									<input type="hidden" name="missionID"  value="<%= dto.getId() %>">
 									<input type="text" name="title" value="<%= dto.getName() %>">
-									<div style="float:right;">
-										<span class="btn" style="background:rgba(244, 67, 54, 0.6)">삭제</span>
-									</div>
+									<span class="btn deleteMission" value="<%= dto.getId() %>" style="float:right; background:rgba(244, 67, 54, 0.6)">삭제</span>
+
+
 									<div class="p_cont check_detail_edit">
 										<textarea name="content" style="width:100%;"><%= dto.getContent() %></textarea>
 									</div>
@@ -401,6 +482,9 @@
 								<%
 									}
 								%>
+								<div class="checkEditlist">
+									<p>삭제된 미션입니다.</p>
+								</div>
 
 							</form>
 						</div>

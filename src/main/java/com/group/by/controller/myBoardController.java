@@ -25,6 +25,54 @@ public class myBoardController {
 	}
 	
 	
+	@RequestMapping("/deleteMission")
+	public void deleteMission(HttpServletRequest request) throws UnsupportedEncodingException { 
+		
+		myBoardDAO dao = new myBoardDAO();
+		int missionID = Integer.parseInt(request.getParameter("missionID"));
+		
+		try {
+			dao.missionDelete(missionID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	@RequestMapping("/missionTrue")
+	public void missionTrue(HttpServletRequest request) throws UnsupportedEncodingException { 
+		
+		myBoardDAO dao = new myBoardDAO();
+		int userID = Integer.parseInt(request.getParameter("userID"));
+		int missionID = Integer.parseInt(request.getParameter("missionID"));
+		System.out.print("in True: "+userID + " / "+missionID);
+		
+		try {
+			dao.missionTrue(userID, missionID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	@RequestMapping("/missionFalse")
+	public void missionFalse(HttpServletRequest request) throws UnsupportedEncodingException { 
+		
+		myBoardDAO dao = new myBoardDAO();
+		int userID = Integer.parseInt(request.getParameter("userID"));
+		int missionID = Integer.parseInt(request.getParameter("missionID"));
+		try {
+			dao.missionFalse(userID, missionID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	
 	@RequestMapping("/mymissionAdd")
 	public String myupload(HttpServletRequest request) throws UnsupportedEncodingException {        
 		ModelAndView model = new ModelAndView("myBoard");

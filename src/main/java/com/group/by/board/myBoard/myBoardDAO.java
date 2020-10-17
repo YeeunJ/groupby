@@ -20,27 +20,42 @@ public class myBoardDAO {
 	private StringBuffer query;
 	protected Boolean result = false;
 	
-	
-	public void missonTrue(int userID, int missionID) throws SQLException {
+	public void missionDelete(int missionID) throws SQLException {
 		
-		sql=("UPDATE mission_info SET check=1 WHERE userID=? AND missionID=?");
+		sql=("UPDATE mission SET isDelete=? WHERE missionID=?");
 		query = new StringBuffer();
 		query.append(sql);
 		pstmt = conn.prepareStatement(query.toString());
-		pstmt.setInt(1, userID);
+		pstmt.setInt(1, 1);
 		pstmt.setInt(2, missionID);
-		pstmt.executeUpdate();
-
+		
 	}
 	
-	public void missonFalse(int userID, int missionID) throws SQLException {
+	
+	public void missionTrue(int userID, int missionID) throws SQLException {
 		
-		sql=("UPDATE mission_info SET check=0 WHERE userID=? AND missionID=?");
+		sql=("UPDATE mission_info SET complete=? WHERE userID=? AND missionID=?");
 		query = new StringBuffer();
 		query.append(sql);
 		pstmt = conn.prepareStatement(query.toString());
-		pstmt.setInt(1, userID);
-		pstmt.setInt(2, missionID);
+//		System.out.println(userID+" / "+missionID);
+		pstmt.setInt(1, 1);
+		pstmt.setInt(2, userID);
+		pstmt.setInt(3, missionID);
+		pstmt.executeUpdate();
+		System.out.println("true finish");
+
+	}
+
+	public void missionFalse(int userID, int missionID) throws SQLException {
+		
+		sql=("UPDATE mission_info SET complete=? WHERE userID=? AND missionID=?");
+		query = new StringBuffer();
+		query.append(sql);
+		pstmt = conn.prepareStatement(query.toString());
+		pstmt.setInt(1, 0);
+		pstmt.setInt(2, userID);
+		pstmt.setInt(3, missionID);
 		pstmt.executeUpdate();
 
 	}	
@@ -216,6 +231,40 @@ public class myBoardDAO {
 		
 	}
 	
+	
+	public ArrayList<Integer> missionList() throws SQLException {
+		
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+//		int gid = dto.getId();
+		int userID = 2;
+		int gid = 2;
+		
+		sql = ("SELECT missionID FROM mission_info WHERE userID=? AND complete=? AND group_info=?");
+		query = new StringBuffer();
+		query.append(sql);
+		pstmt = conn.prepareStatement(query.toString());
+		pstmt.setInt(1, userID);
+		pstmt.setInt(2, 1);
+		pstmt.setInt(3, gid);
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			do {
+				
+				int num = rs.getInt("missionID");
+				list.add(num);
+				System.out.print(num+" /// ");
+			
+		    	
+			}while(rs.next());
+			
+	    }
+
+		return list;
+	}
+	
+	
 	public ArrayList<String> MissionComplete(groupinfoDTO dto) throws SQLException {
 
 		ArrayList<String> Comp = null;
@@ -277,11 +326,12 @@ public class myBoardDAO {
 //		int gid = dto.getId();
 		int gid = 2;
 		
-		sql = (" SELECT * FROM mission where groupID = ?");
+		sql = (" SELECT * FROM mission where groupID = ? AND isDelete=?");
 		query = new StringBuffer();
 		query.append(sql);
 		pstmt = conn.prepareStatement(query.toString());
 		pstmt.setInt(1, gid);
+		pstmt.setInt(2, 0);
 		rs = pstmt.executeQuery();
 		
 		if(rs.next()) {
