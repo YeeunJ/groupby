@@ -192,7 +192,7 @@
                 	for(int i=0; i<all_list.size(); i++){
                 		%>
                   <a class="a-no-style" href="#group_join" rel="modal:open">
-                    <div class="check" onlick="change_id(i)">
+                    <div class="check" onclick="changeSpecific(this)">
                       <div class="contentLeft2">
                         <h4 style="font-weight: 700;"><%= all_list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                       </div>
@@ -200,6 +200,15 @@
                         <%= all_list.get(i).getRegDate() %>
                       </div>
                       <p><%= all_list.get(i).getIntroduce() %></p>
+                      <div style="width:0; height:0; font-size:0px;">
+                    	<div><%= all_list.get(i).getName() %></div>
+                    	<div>15</div>
+                    	<div><%= all_list.get(i).getStartDate() %></div>
+                    	<div><%= all_list.get(i).getEndDate() %></div>
+                    	<div><%= all_list.get(i).getRwCondition() %></div>
+                    	<div><%= all_list.get(i).getReward() %></div>
+                    	<div><%= all_list.get(i).getIntroduce() %></div>
+                    </div>
                     </div>
                   </a>
                     <%
@@ -257,8 +266,16 @@
         document.getElementById("allBoard").style.display = "block";
       }
       
-      function change_id(int idx){
-    	  selected = idx;
+      function changeSpecific(obj){
+    	  document.getElementById('all_title').innerHTML=obj.children[3].children[0].innerHTML;
+    	  document.getElementById('all_num').innerHTML=obj.children[3].children[1].innerHTML;
+    	  document.getElementById('all_start').innerHTML=obj.children[3].children[2].innerHTML;
+    	  document.getElementById('all_end').innerHTML=obj.children[3].children[3].innerHTML;
+    	  document.getElementById('all_rwc').innerHTML=obj.children[3].children[4].innerHTML;
+    	  document.getElementById('all_rw').innerHTML=obj.children[3].children[5].innerHTML;
+    	  document.getElementById('all_explan').innerHTML="\" "+obj.children[3].children[6].innerHTML+" \"";
+    	  //null이면 없음으로
+    	  //visibility변
       }
     </script>
 
