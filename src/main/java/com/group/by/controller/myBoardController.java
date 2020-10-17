@@ -59,4 +59,8 @@ public class myBoardController {
 
 		return model;
 	}
+	@RequestMapping("/createGroup")
+	public String createGroup() {
+		return "redirect:/";
+	}
 }

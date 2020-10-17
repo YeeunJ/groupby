@@ -19,7 +19,8 @@ public class boardDAO {
 	
 	public ArrayList<progressDTO> getmyBoardInfo(int userID) throws ClassNotFoundException, SQLException {
 		ArrayList<progressDTO> groupData = new ArrayList<progressDTO>();
-		sql1 = "select info.group_info as id, gi.name as name, count(*) as allMission from mission_info as info right join group_info as gi on gi.id = info.group_info where group_info in (select g.id from group_info as g join participation as p on p.groupID = g.id where p.userID = 1) group by group_info order by group_info;";
+		
+		sql1 = "select info.group_info as id, gi.name as name, count(*) as allMission from mission_info as info right join group_info as gi on gi.id = info.group_info where group_info in (select g.id from group_info as g join participation as p on p.groupID = g.id where p.userID = ?) group by group_info order by group_info;";
 		sql2 = "select info.group_info as id, gi.name as name, count(*) as completeMission from mission_info as info right join group_info as gi on gi.id = info.group_info where group_info in (select g.id from group_info as g join participation as p on p.groupID = g.id where p.userID = ?) and info.complete = 1 group by group_info order by group_info;";
 	    query1 = new StringBuffer();
 	    query2 = new StringBuffer();
@@ -31,13 +32,20 @@ public class boardDAO {
 	    pstmt2.setInt(1, userID);
 	    rs1 = pstmt1.executeQuery();
 	    rs2 = pstmt2.executeQuery();
+	    
+	    rs2.next();
 	    while(rs1.next()) {
-	    	rs2.next();
+	    	
 	    	progressDTO data = new progressDTO();
-	    	data.setId(rs1.getInt("allMission"));;
+	    	data.setId(rs1.getInt("allMission"));
 	    	data.setName(rs1.getString("name"));
 	    	data.setAllMission(rs1.getInt("allMission"));
-	    	data.setCompleteMission(rs2.getInt("completeMission"));
+	    	if(rs2.getInt("id") == rs1.getInt("id")) {
+	    		data.setCompleteMission(rs2.getInt("completeMission"));
+	    		rs2.next();
+	    	}
+	    	else
+	    		data.setCompleteMission(0);
 	    	groupData.add(data);
 	    }
 		return groupData;

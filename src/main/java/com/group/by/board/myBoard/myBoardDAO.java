@@ -222,6 +222,7 @@ public class myBoardDAO {
 				pstmt.setInt(1, mid);
 				ResultSet rs2 = pstmt.executeQuery();
 				
+				
 				String result="";
 				
 				if(rs2.next()) {
@@ -288,3 +289,5 @@ public class myBoardDAO {
 		
 	}
 }
+	
+	

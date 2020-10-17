@@ -1,4 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList" %>
+<%@ page import = "com.group.by.dto.progressDTO" %>
 <!DOCTYPE html>
 <html>
 <title>TOGETHER</title>
@@ -13,19 +15,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel='stylesheet' href='/css/index.css?d'>
 
-    <!-- heeju -->
-    <%@ include file="/WEB-INF/views/createBoard.jsp" %>
-	<%@ include file="/WEB-INF/views/allBoard.jsp" %>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <script type="text/javascript" src="/js/allBoard.js"></script>
-    <script type="text/javascript" src="/js/createBoard.js?d"></script>
-    <link rel="stylesheet" href="/css/createBoard.css?">
-    <link rel="stylesheet" href="/css/allBoard.css?d">
+<!-- heeju -->
+<%@ include file="/WEB-INF/views/createBoard.jsp" %>
+<%@ include file="/WEB-INF/views/allBoard.jsp" %>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<script type="text/javascript" src="/js/allBoard.js"></script>
+<script type="text/javascript" src="/js/createBoard.js?d"></script>
+<link rel="stylesheet" href="/css/createBoard.css?">
+<link rel="stylesheet" href="/css/allBoard.css?d">
 
 <style>
   html,
@@ -40,7 +43,7 @@
 </style>
 
 <body class="w3-theme-l5">
-
+  <% ArrayList<progressDTO> list = (ArrayList<progressDTO>)request.getAttribute("progress"); %>
   <!-- Navbar -->
   <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
@@ -120,7 +123,7 @@
         <div class="w3-row-padding">
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
-              <div id = "myBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px;"><br>
+              <div id="myBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px;"><br>
                 <div style="text-align: right; margin-bottom: 30px;">
                   <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53;">MY BOARDS</h2>
                 </div><br>
@@ -136,119 +139,107 @@
                   </select>
                   <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" style="float: right; color: #fff; background: #3a4b53; border: none; border-radius: 4px;">new</button></a>
                 </form>
+                <%
+                if(list != null){
+                	for(int i=0; i<list.size(); i++){
+                		%>
                 <div class="check" onclick="location.href='./myBoard'">
                   <div class="contentLeft2">
-                    <h4 style="font-weight: 700;">ALGORITHM CAMP <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
+                    <h4 style="font-weight: 700;"> <%= list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                     <div id="progressbar_tot">
-        						  <div style="width: 93%;"><p class="prog_text_tot">93% (93/100)</p></div>
-        						</div>
+
+                      <div style="width: <%= list.get(i).getCompleteMission() / list.get(i).getAllMission() *100 %>%;">
+                        <p class="prog_text_tot"><%= list.get(i).getCompleteMission() / list.get(i).getAllMission() *100 %>% (<%= list.get(i).getCompleteMission() %>/<%= list.get(i).getAllMission() %>)</p>
+                      </div>
+                    </div>
                   </div>
                   <div class="contentRight2">
                     2020/08/20 13:29:37
                   </div>
                 </div>
-                <div class="check" onclick="location.href='./myBoard'">
-                  <div class="contentLeft2">
-                    <h4 style="font-weight: 700;">ALGORITHM CAMP <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
-                    <div id="progressbar_tot">
-        						  <div style="width: 93%;"><p class="prog_text_tot">93% (93/100)</p></div>
-        						</div>
-                  </div>
-                  <div class="contentRight2">
-                    2020/08/20 13:29:37
-                  </div>
-                </div>
-                <div class="check" onclick="location.href='./myBoard'">
-                  <div class="contentLeft2">
-                    <h4 style="font-weight: 700;">ALGORITHM CAMP <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
-                    <div id="progressbar_tot">
-        						  <div style="width: 93%;"><p class="prog_text_tot">93% (93/100)</p></div>
-        						</div>
-                  </div>
-                  <div class="contentRight2">
-                    2020/08/20 13:29:37
-                  </div>
-                </div>
+
+                <%
+                	}
+                }
+                %>
               </div>
-
-              <div id = "allBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px;"><br>
-                <div style="text-align: right; margin-bottom: 30px;">
-                  <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53;">ALL BOARDS</h2>
-                </div><br>
-                <hr class="w3-clear">
-                <form id="mySearch" class="form-inline search" method="get">
-                  <input type="text" class="Tsearch" name="Tsearch" value="" placeholder="제목, 내용으로 검색하세요..">
-                  <button type="button" name="button" class="sButton"><i class="fa fa-search fa-fw "></i></button>
-                  <select class="category" name="category" class="form-control">
-                    <option value="allCategory">all category</option>
-                    <option value="study">study</option>
-                    <option value="etc">뭐가</option>
-                    <option value="etc2">있을까</option>
-                  </select>
-                </form>
-                <a class="a-no-style" href="#group_join" rel="modal:open">
-                <div class="check">
-                  <div class="contentLeft2">
-                    <h4 style="font-weight: 700;">ALGORITHM CAMP <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
-                  </div>
-                  <div class="contentRight">
-                    2020/08/20 13:29:37
-                  </div>
-                  <p>하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!! 같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~</p>
-                </div></a>
-
+                <div id="allBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px;"><br>
+                  <div style="text-align: right; margin-bottom: 30px;">
+                    <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53;">ALL BOARDS</h2>
+                  </div><br>
+                  <hr class="w3-clear">
+                  <form id="mySearch" class="form-inline search" method="get">
+                    <input type="text" class="Tsearch" name="Tsearch" value="" placeholder="제목, 내용으로 검색하세요..">
+                    <button type="button" name="button" class="sButton"><i class="fa fa-search fa-fw "></i></button>
+                    <select class="category" name="category" class="form-control">
+                      <option value="allCategory">all category</option>
+                      <option value="study">study</option>
+                      <option value="etc">뭐가</option>
+                      <option value="etc2">있을까</option>
+                    </select>
+                  </form>
+                  <a class="a-no-style" href="#group_join" rel="modal:open">
+                    <div class="check">
+                      <div class="contentLeft2">
+                        <h4 style="font-weight: 700;">ALGORITHM CAMP <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
+                      </div>
+                      <div class="contentRight">
+                        2020/08/20 13:29:37
+                      </div>
+                      <p>하루에 알고리즘 5문제씩 같이 푸려고 만든 모임입니다!! 같이 성실하게 알고리즘 문제를 같이 풀면서 나눌 생각 있으신 분 누구나 환영해요~</p>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Right Column -->
-      <div class="w3-col m2">
-        <div class="w3-card w3-round w3-white w3-center">
-          <div class="w3-container">
-            <p>여기에 달력 넣을 예정!!:</p>
-            <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
-            <p><strong>Holiday</strong></p>
-            <p>Friday 15:00</p>
-            <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+          <!-- Right Column -->
+          <div class="w3-col m2">
+            <div class="w3-card w3-round w3-white w3-center">
+              <div class="w3-container">
+                <p>여기에 달력 넣을 예정!!:</p>
+                <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
+                <p><strong>Holiday</strong></p>
+                <p>Friday 15:00</p>
+                <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+              </div>
+            </div>
+            <br>
           </div>
-        </div>
-        <br>
+            <!-- End Right Column -->
 
-        <!-- End Right Column -->
+          <!-- End Grid -->
+
+        <!-- End Page Container -->
       </div>
-
-      <!-- End Grid -->
+      <br>
     </div>
+    <!-- Footer -->
+    <footer class="w3-container w3-theme-d3 w3-padding-16">
+    </footer>
 
-    <!-- End Page Container -->
-  </div>
-  <br>
-
-  <!-- Footer -->
-  <footer class="w3-container w3-theme-d3 w3-padding-16">
-  </footer>
-
-  <script>
-    // Used to toggle the menu on smaller screens when clicking on the menu button
-    function openNav() {
-      var x = document.getElementById("navDemo");
-      if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-      } else {
-        x.className = x.className.replace(" w3-show", "");
+    <script>
+      // Used to toggle the menu on smaller screens when clicking on the menu button
+      function openNav() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else {
+          x.className = x.className.replace(" w3-show", "");
+        }
       }
-    }
-    function myBoard(){
-      document.getElementById("myBoard").style.display = "block";
-      document.getElementById("allBoard").style.display = "none";
-    }
-    function allBoard(){
-      document.getElementById("myBoard").style.display = "none";
-      document.getElementById("allBoard").style.display = "block";
-    }
-  </script>
+
+      function myBoard() {
+        document.getElementById("myBoard").style.display = "block";
+        document.getElementById("allBoard").style.display = "none";
+      }
+
+      function allBoard() {
+        document.getElementById("myBoard").style.display = "none";
+        document.getElementById("allBoard").style.display = "block";
+      }
+    </script>
 
 </body>
 
