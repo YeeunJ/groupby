@@ -11,7 +11,7 @@
         - 보증금 환불<br> - 30일간 90문제
       </div>-->
     </div>
-    <p class="explan"><%= all_list.get(selected).getIntroduce() %></p>
+    <p class="explan">"<%= all_list.get(selected).getIntroduce() %>"</p>
     <div class="total_info top">
       <div class="total_info_box left">
         <h3 class="all">공통 미션 예시</h3>
