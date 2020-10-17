@@ -55,7 +55,7 @@ public class allBoardDAO {
 		sql3 = "select id from group_info where link = ?;";
 		sql4 = "";
 		
-		if(!groupInfo.getName().isEmpty()) {
+		if(groupInfo.getName().compareTo("")!=0) {
 			query = new StringBuffer();
 			query.append(sql);
 			pstmt = conn.prepareStatement(query.toString());
@@ -88,6 +88,7 @@ public class allBoardDAO {
 			groupInfo.setId(rs.getInt("id"));
 		}
 		System.out.println(groupInfo.getId());
+		System.out.println("hello");
 		if(groupInfo.getId() != 0) {
 			query = new StringBuffer();
 			query.append(sql2);

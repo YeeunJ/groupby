@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class groupinfoDTO implements DTO {
 	int id;
-	String name;
+	String name = "";
 	int manager;
 	boolean visible;
 	String link;

@@ -64,8 +64,8 @@
     </form>
 
     <div id="link_div">
-      <form name="link_group_form" class="form" role="form">
-        <input name="group_link" placeholder="링크를 입력해주세요" required/>
+      <form name="link_group_form"action = "/createGroup" method="post" class="form" role="form">
+        <input name="link" placeholder="링크를 입력해주세요" required/>
         <button type="submit" class="btnB">참가하기</button>
       </form>
     </div>

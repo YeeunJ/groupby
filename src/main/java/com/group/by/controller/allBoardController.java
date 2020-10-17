@@ -53,12 +53,13 @@ public class allBoardController {
 		System.out.println(groupInfo.toString());
 		System.out.println("hello");
 		
+		
+		ModelAndView model = new ModelAndView("myBoard");
 		myBoardDAO dao = new myBoardDAO();
 		allBoardDAO alldao = new allBoardDAO();
 		
 		int result = alldao.createGroup(groupInfo);
-		
-		if(result == 1) {
+		if(result == 1 && groupInfo.getName().compareTo("")!=0) {
 			request.setCharacterEncoding("UTF-8");
 		    String [] name = request.getParameterValues("title");
 		    String [] content = request.getParameterValues("description");
@@ -69,7 +70,7 @@ public class allBoardController {
 
 		    for(int i=0 ; i<name.length-1; i++) {
 		      dao.missionAdd(name[i], content[i], start, end);
-		      int result2 = dao.shootMission();
+		       int result2 = dao.shootMission();
 		    }
 		    
 		}
