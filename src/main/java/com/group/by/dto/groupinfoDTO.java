@@ -13,6 +13,7 @@ public class groupinfoDTO implements DTO {
 	String introduce;
 	String notice;
 	boolean createYN;
+	boolean forever;
 	Date regDate;
 	Date startDate;
 	Date endDate;
@@ -100,6 +101,12 @@ public class groupinfoDTO implements DTO {
 	}
 	public void setMaxNum(int maxNum) {
 		this.maxNum = maxNum;
+	}
+	public boolean isForever() {
+		return forever;
+	}
+	public void setForever(boolean forever) {
+		this.forever = forever;
 	}
 	
 	
