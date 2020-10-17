@@ -54,6 +54,7 @@ public class allBoardDAO {
 		sql2 = "INSERT INTO participation (userID, groupID) VALUES (?, ?);";
 		sql3 = "select id from group_info where link = ?;";
 		sql4 = "";
+		
 		if(!groupInfo.getName().isEmpty()) {
 			query = new StringBuffer();
 			query.append(sql);
@@ -66,8 +67,13 @@ public class allBoardDAO {
 			pstmt.setString(6, groupInfo.getIntroduce());
 			pstmt.setString(7, groupInfo.getNotice());
 			pstmt.setBoolean(8, groupInfo.isCreateYN());
-			pstmt.setDate(9, groupInfo.getStartDate());
-			pstmt.setDate(10, groupInfo.getEndDate());
+			if(!groupInfo.isForever()) {
+				pstmt.setDate(9, groupInfo.getStartDate());
+				pstmt.setDate(10, groupInfo.getEndDate());
+			}else {
+				pstmt.setString(9, "now()");
+				pstmt.setString(10, "now()");
+			}
 			pstmt.setInt(11, groupInfo.getMaxNum());
 			pstmt.setInt(12, groupInfo.getManager());
 			pstmt.executeUpdate();
@@ -81,7 +87,8 @@ public class allBoardDAO {
 		if(rs.next()) {
 			groupInfo.setId(rs.getInt("id"));
 		}
-		if(groupInfo.getId() == 0) {
+		System.out.println(groupInfo.getId());
+		if(groupInfo.getId() != 0) {
 			query = new StringBuffer();
 			query.append(sql2);
 			pstmt = conn.prepareStatement(query.toString());

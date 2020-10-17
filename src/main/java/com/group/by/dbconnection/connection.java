@@ -20,8 +20,7 @@ public class connection implements connection_info{
             Class.forName("com.mysql.cj.jdbc.Driver");
             // 연결
             con = DriverManager
-                    .getConnection("jdbc:mysql://db4free.net:3306/seunga?useSSL=false",
-                            "ch8925", "ch123456");
+                    .getConnection("jdbc:mysql://52.86.238.65:3306/miniProject","dbuser","mara2131@");
  
         } catch (ClassNotFoundException e) {
             System.out.println(e + "=> 로드 fail");
