@@ -152,7 +152,11 @@
                     <div id="progressbar_tot">
 
                       <div style="width: <%= list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() *100 %>%;">
+                      <% if(list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() > 0) {%>
                         <p class="prog_text_tot"><%= list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() *100 %>% (<%= list.get(i).getCompleteMission() %>/<%= list.get(i).getAllMission() %>)</p>
+                      <%}else{ %>
+                      <p class="prog_text_tot">0</p>
+                      <%} %>
                       </div>
                     </div>
                   </div>
