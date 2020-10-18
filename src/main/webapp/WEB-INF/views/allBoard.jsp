@@ -1,19 +1,19 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 
   <div id="group_join" class="modal">
-    <h1 class="all" id="all_title"><%= all_list.get(selected).getName() %></h1>
+    <h1 class="all" id="all_title">알고리즘 캠프</h1>
     <hr class="all">
-    <div class="total_info_ex"><span class="bold">참가 인원</span>15명</div>
-    <div class="total_info_ex"><span class="bold">모임 활동 기간</span><%= all_list.get(selected).getStartDate() %> ~ <%= all_list.get(selected).getEndDate() %></div>
-    <div class="total_info_ex"><span class="bold">보상 및 조건</span><%= all_list.get(selected).getReward() %> | <%= all_list.get(selected).getRwCondition() %>
+    <div class="total_info_ex"><span class="bold">참가 인원</span><span id="all_num">15</span>명</div>
+    <div class="total_info_ex"><span class="bold">모임 활동 기간</span><span id="all_start"></span> ~ <span id="all_end"></span></div>
+    <div class="total_info_ex"><span class="bold">보상 및 조건</span><span id="all_rwc"></span> | <span id="all_rw"></span>
       <!--
       <div id="reward_info">
         - 보증금 환불<br> - 30일간 90문제
       </div>-->
     </div>
-    <p class="explan">"<%= all_list.get(selected).getIntroduce() %>"</p>
+    <p class="explan" id="all_explan">"열심히 알고리즘을 풀어봅시다. ㅎㅎ랄라랄ㄹ라"</p>
     <div class="total_info top">
-      <div class="total_info_box left">
+      <div class="total_info_box all_left">
         <h3 class="all">공통 미션 예시</h3>
         <div style="text-align:center; font-size: 14px;">(현재 총 20개)</div>
         <div class="content">
@@ -31,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="total_info_box right">
+      <div class="total_info_box all_right">
         <h3 class="all">모임 활성도</h3>
         <div style="text-align:center; font-size: 13px; margin-bottom: 0px;">최근 일주일 간 미션 수행도</div>
         <div class="content" style="padding-right:10px; height: 145px;">
