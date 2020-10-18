@@ -29,7 +29,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script type="text/javascript" src="/js/allBoard.js"></script>
-<script type="text/javascript" src="/js/createBoard.js?d"></script>
+<script type="text/javascript" src="/js/createBoard.js?sd"></script>
 <link rel="stylesheet" href="/css/createBoard.css?">
 <link rel="stylesheet" href="/css/allBoard.css?d">
 
