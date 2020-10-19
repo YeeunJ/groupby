@@ -17,7 +17,6 @@
 <link rel='stylesheet' href='/css/index.css?d'>
 
 <!-- heeju -->
-<% int selected = 0;%>
 <% ArrayList<groupinfoDTO> all_list = (ArrayList<groupinfoDTO>)request.getAttribute("allgroup"); %>
 <%@ include file="/WEB-INF/views/createBoard.jsp" %>
 <%@ include file="/WEB-INF/views/allBoard.jsp" %>
