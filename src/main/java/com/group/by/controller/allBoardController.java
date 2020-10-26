@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -50,6 +52,7 @@ public class allBoardController {
 			System.out.println(pd.toString());
 		}
 		model.addObject("progress", progressInfo);
+		
 		return model;
 	}
 	
@@ -82,5 +85,13 @@ public class allBoardController {
 		    
 		}
 		return new ModelAndView("redirect:/");
+	}
+	     
+	@RequestMapping(value = "/login")
+	public String login() {
+		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//System.out.println(auth.toString());
+		System.out.println("redirecting to home page");
+		return "redirect:/home";
 	}
 }

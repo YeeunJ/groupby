@@ -29,9 +29,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script type="text/javascript" src="/js/allBoard.js"></script>
-<script type="text/javascript" src="/js/createBoard.js?sd"></script>
+<script type="text/javascript" src="/js/createBoard.js?d"></script>
 <link rel="stylesheet" href="/css/createBoard.css?">
-<link rel="stylesheet" href="/css/allBoard.css?dd">
+<link rel="stylesheet" href="/css/allBoard.css?d">
 
 <style>
   html,
@@ -60,7 +60,7 @@
           <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
         </div>
       </div>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Logout</a>
+      <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
     </div>
   </div>
 
@@ -192,7 +192,7 @@
                 	for(int i=0; i<all_list.size(); i++){
                 		%>
                   <a class="a-no-style" href="#group_join" rel="modal:open">
-                    <div class="check" onclick="changeSpecific(this)">
+                    <div class="check" onlick="change_id(i)">
                       <div class="contentLeft2">
                         <h4 style="font-weight: 700;"><%= all_list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                       </div>
@@ -200,15 +200,6 @@
                         <%= all_list.get(i).getRegDate() %>
                       </div>
                       <p><%= all_list.get(i).getIntroduce() %></p>
-                      <div style="width:0; height:0; font-size:0px;">
-                    	<div><%= all_list.get(i).getName() %></div>
-                    	<div>15</div>
-                    	<div><%= all_list.get(i).getStartDate() %></div>
-                    	<div><%= all_list.get(i).getEndDate() %></div>
-                    	<div><%= all_list.get(i).getRwCondition() %></div>
-                    	<div><%= all_list.get(i).getReward() %></div>
-                    	<div><%= all_list.get(i).getIntroduce() %></div>
-                    </div>
                     </div>
                   </a>
                     <%
@@ -266,28 +257,8 @@
         document.getElementById("allBoard").style.display = "block";
       }
       
-      function changeSpecific(obj){
-    	  var title= obj.children[3].children[0].innerHTML;
-    	  var num= obj.children[3].children[1].innerHTML;
-    	  var start=obj.children[3].children[2].innerHTML;	 
-    	  var end =obj.children[3].children[3].innerHTML;
-    	  var rwc = obj.children[3].children[4].innerHTML;
-    	  var rw = obj.children[3].children[5].innerHTML;
-    	  var explan = obj.children[3].children[6].innerHTML;
-    	  if(title == "null") title="없음";
-    	  if(num == "null") num="0";
-    	  if(start == "null") start = "없음";
-    	  if(end == "null") end = "없음";
-    	  if(rwc == "null") rwc = "없음";
-    	  if(rw == "null") rw = "없음";
-    	  if(explan == "null") explan = "없음";
-    	  document.getElementById('all_title').innerHTML= title;
-    	  document.getElementById('all_num').innerHTML= num;
-    	  document.getElementById('all_start').innerHTML= start;
-    	  document.getElementById('all_end').innerHTML= end;
-    	  document.getElementById('all_rwc').innerHTML= rwc;
-    	  document.getElementById('all_rw').innerHTML = rw;
-    	  document.getElementById('all_explan').innerHTML="\" "+explan+" \"";
+      function change_id(var idx){
+    	  selected = idx;
       }
     </script>
 
