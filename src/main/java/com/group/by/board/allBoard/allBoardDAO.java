@@ -52,6 +52,24 @@ public class allBoardDAO {
 		}
 		return allgroupdatas;
 	}
+	public int joinGroup(groupinfoDTO groupInfo) throws SQLException {
+		sql = "INSERT INTO participation (userID, groupID, name, state, introduce) values (?, ?, ?, ?, ?);";
+		
+		if(groupInfo.getId() != 0) {
+			query = new StringBuffer();
+			query.append(sql);
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, groupInfo.getId());
+			pstmt.setString(3, "지정한 이름");
+			pstmt.setInt(4, 1);
+			pstmt.setString(5, "소개");
+			pstmt.executeUpdate();
+		}else {
+			return 0;
+		}	
+		return 1;
+	}
 	
 	public int  createGroup(groupinfoDTO groupInfo) throws SQLException {
 		sql = "INSERT INTO group_info(name, visible, link, reward, rwCondition, introduce, notice, createYN, startDate, endDate, maxNum, manager) "

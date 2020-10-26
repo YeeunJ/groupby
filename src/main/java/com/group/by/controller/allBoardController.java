@@ -93,5 +93,30 @@ public class allBoardController {
 		//System.out.println(auth.toString());
 		System.out.println("redirecting to home page");
 		return "redirect:/home";
+}
+	@RequestMapping(value="/joinGroup", method=RequestMethod.POST)
+	public ModelAndView joinGroup(groupinfoDTO groupInfo, HttpServletRequest request) throws ClassNotFoundException, SQLException, UnsupportedEncodingException {
+		
+		ModelAndView model = new ModelAndView("allBoard");
+		myBoardDAO dao = new myBoardDAO();
+		allBoardDAO alldao = new allBoardDAO();
+		/*
+		int result = alldao.createGroup(groupInfo);
+		if(result == 1 && groupInfo.getName().compareTo("")!=0) {
+			request.setCharacterEncoding("UTF-8");
+		    String [] name = request.getParameterValues("title");
+		    String [] content = request.getParameterValues("description");
+
+		    Date start = null;
+		    Date end = null;
+
+
+		    for(int i=0 ; i<name.length-1; i++) {
+		      dao.missionAdd(name[i], content[i], start, end);
+		       int result2 = dao.shootMission();
+		    }
+		    
+		}*/
+		return new ModelAndView("redirect:/");
 	}
 }
