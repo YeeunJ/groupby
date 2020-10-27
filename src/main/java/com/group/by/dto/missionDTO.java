@@ -10,6 +10,7 @@ public class missionDTO implements DTO {
 	Date regDate;
 	Date startDate;
 	Date endDate;
+
 	public int getId() {
 		return id;
 	}
@@ -53,8 +54,10 @@ public class missionDTO implements DTO {
 		this.endDate = endDate;
 	}
 	
-	public void CheckPrint() { 
-		System.out.print("missionDTO [id=" + id + ", name=" + name + ", groupID=" + groupID + ", content=" + content + ", regdate=" + regDate + ", startdate=" + startDate + ", enddate=" + endDate + "]");
+	@Override
+	public String toString() {
+		return "missionDTO [id=" + id + ", name=" + name + ", groupID=" + groupID + ", content=" + content
+				+ ", regDate=" + regDate + ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
 	
 }
