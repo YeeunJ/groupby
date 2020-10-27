@@ -156,3 +156,6 @@ textarea{
 .blocker{
   background-color: rgba(68, 85, 93, 0.3) !important;
 }
+.modal {
+  box-shadow: 0 0 10px rgba(68, 85, 93, 0.8) !important;
+}

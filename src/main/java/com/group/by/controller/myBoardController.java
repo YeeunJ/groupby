@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.group.by.board.boardDAO;
 import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.dto.missionDTO;
+import com.group.by.dto.participationDTO;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.board.myBoard.*;
 
@@ -35,9 +36,11 @@ public class myBoardController {
 		groupinfoDTO info = dao.GroupInfo(id);
 		model.addObject("groupinfo", info);
 		
+		ArrayList<participationDTO> plist = dao.waitStudent(id);
 		ArrayList<missionDTO> list = dao.MissionList(id);
 		ArrayList<String> mlist = dao.MissionComplete(id);
 		ArrayList<Integer> userlist = dao.completeYN();
+		model.addObject("plist", plist);
 		model.addObject("groupid", id);
 		model.addObject("list", list);
 		model.addObject("mlist", mlist);

@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel='stylesheet' href='/css/index.css?qwe'>
 <link rel="stylesheet" href="/css/createBoard.css?asd">
-<link rel="stylesheet" href="/css/allBoard.css?asdfgh">
+<link rel="stylesheet" href="/css/allBoard.css?abcd">
 
 <!-- heeju -->
 <% ArrayList<groupinfoDTO> all_list = (ArrayList<groupinfoDTO>)request.getAttribute("allgroup"); %>
@@ -245,56 +245,69 @@
       <br>
     </div>
     <!-- Footer -->
-    <footer class="w3-container w3-theme-d3 w3-padding-16">
-    </footer>
+	<footer class="w3-container w3-theme-d3 w3-padding-16" style="">
+		<div style="float: left; width: 50%; margin: 10px 0px;">Copyright
+			&copy; WA LAB. 일팔즈</div>
+		<div
+			style="float: left; text-align: right; width: 50%; margin: 10px 0px;">정예은
+			박상범 신희주 최승아</div>
+	</footer>
 
-    <script>
-      // Used to toggle the menu on smaller screens when clicking on the menu button
-      function openNav() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-        } else {
-          x.className = x.className.replace(" w3-show", "");
-        }
-      }
+	<script>
+		// Used to toggle the menu on smaller screens when clicking on the menu button
+		function openNav() {
+			var x = document.getElementById("navDemo");
+			if (x.className.indexOf("w3-show") == -1) {
+				x.className += " w3-show";
+			} else {
+				x.className = x.className.replace(" w3-show", "");
+			}
+		}
 
-      function myBoard() {
-        document.getElementById("myBoard").style.display = "block";
-        document.getElementById("allBoard").style.display = "none";
-      }
+		function myBoard() {
+			document.getElementById("myBoard").style.display = "block";
+			document.getElementById("allBoard").style.display = "none";
+		}
 
-      function allBoard() {
-        document.getElementById("myBoard").style.display = "none";
-        document.getElementById("allBoard").style.display = "block";
-      }
+		function allBoard() {
+			document.getElementById("myBoard").style.display = "none";
+			document.getElementById("allBoard").style.display = "block";
+		}
 
-      function changeSpecific(obj){
-    	  var title= obj.children[3].children[0].innerHTML;
-    	  var num= obj.children[3].children[1].innerHTML;
-    	  var start=obj.children[3].children[2].innerHTML;
-    	  var end =obj.children[3].children[3].innerHTML;
-    	  var rwc = obj.children[3].children[4].innerHTML;
-    	  var rw = obj.children[3].children[5].innerHTML;
-    	  var explan = obj.children[3].children[6].innerHTML;
-    	  var id = obj.children[3].children[7].innerHTML;
-    	  if(title == "null") title="없음";
-    	  if(num == "null") num="0";
-    	  if(start == "null") start = "없음";
-    	  if(end == "null") end = "없음";
-    	  if(rwc == "null") rwc = "없음";
-    	  if(rw == "null") rw = "없음";
-    	  if(explan == "null") explan = "없음";
-    	  document.getElementById('all_title').innerHTML= title;
-    	  document.getElementById('all_num').innerHTML= num;
-    	  document.getElementById('all_start').innerHTML= start;
-    	  document.getElementById('all_end').innerHTML= end;
-    	  document.getElementById('all_rwc').innerHTML= rwc;
-    	  document.getElementById('all_rw').innerHTML = rw;
-    	  document.getElementById('all_explan').innerHTML="\" "+explan+" \"";
-    	  $('#group_id').val(id);
-      }
-    </script>
+		function changeSpecific(obj) {
+			var title = obj.children[3].children[0].innerHTML;
+			var num = obj.children[3].children[1].innerHTML;
+			var start = obj.children[3].children[2].innerHTML;
+			var end = obj.children[3].children[3].innerHTML;
+			var rwc = obj.children[3].children[4].innerHTML;
+			var rw = obj.children[3].children[5].innerHTML;
+			var explan = obj.children[3].children[6].innerHTML;
+			var id = obj.children[3].children[7].innerHTML;
+			if (title == "null")
+				title = "없음";
+			if (num == "null")
+				num = "0";
+			if (start == "null")
+				start = "없음";
+			if (end == "null")
+				end = "없음";
+			if (rwc == "null")
+				rwc = "없음";
+			if (rw == "null")
+				rw = "없음";
+			if (explan == "null")
+				explan = "없음";
+			document.getElementById('all_title').innerHTML = title;
+			document.getElementById('all_num').innerHTML = num;
+			document.getElementById('all_start').innerHTML = start;
+			document.getElementById('all_end').innerHTML = end;
+			document.getElementById('all_rwc').innerHTML = rwc;
+			document.getElementById('all_rw').innerHTML = rw;
+			document.getElementById('all_explan').innerHTML = "\" " + explan
+					+ " \"";
+			$('#group_id').val(id);
+		}
+	</script>
 
 </body>
 

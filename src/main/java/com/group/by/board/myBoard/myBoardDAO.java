@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import com.group.by.dbconnection.connection;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.missionDTO;
+import com.group.by.dto.participationDTO;
 
 
 public class myBoardDAO {
@@ -19,6 +20,35 @@ public class myBoardDAO {
 	protected String sql;
 	private StringBuffer query;
 	protected Boolean result = false;
+	
+	public ArrayList<participationDTO> waitStudent(int gid) throws SQLException {
+		ArrayList<participationDTO> list = new ArrayList<participationDTO>();
+		sql=("SELECT * FROM participation WHERE state=? and groupID=?");
+		query = new StringBuffer();
+		query.append(sql);
+		pstmt = conn.prepareStatement(query.toString());
+		pstmt.setInt(1, 0);
+		pstmt.setInt(2, gid);
+		
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			do {
+				participationDTO pdto = new participationDTO();
+				pdto.setId(rs.getInt("id"));
+				pdto.setUserID(rs.getInt("userID"));
+				pdto.setGroupID(rs.getInt("groupID"));
+				pdto.setName(rs.getString("name"));
+				pdto.setState(rs.getInt("state"));
+				pdto.setIntroduce(rs.getString("introduce"));
+				pdto.setRegDate(rs.getDate("regDate"));
+				pdto.setStateDate(rs.getDate("stateDate"));
+				
+				list.add(pdto);
+			}while(rs.next());
+	    } 
+		return list;
+	}
 	
 	public void missionDelete(int missionID) throws SQLException {
 		

@@ -4,6 +4,7 @@
 <%@ page import="com.group.by.board.myBoard.*" %>
 <%@ page import="com.group.by.dto.missionDTO" %>
 <%@ page import="com.group.by.dto.groupinfoDTO" %>
+<%@ page import="com.group.by.dto.participationDTO" %>
 <%@ page import="java.io.*"%>
 <%@ page import="java.util.*"%>
 
@@ -21,7 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <script type="text/javascript" src="/js/allBoard.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+		<script type="text/javascript" src="/js/allBoard.js"></script>
     <script type="text/javascript" src="/js/createBoard.js?d"></script>
     <link rel="stylesheet" href="/css/createBoard_my.css?">
 
@@ -29,6 +31,7 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+		<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/css/myBoard.css" rel="stylesheet" />
 		<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -62,7 +65,7 @@
 
 			$("input:checkbox[name=mission]").click(function(){
 				if($(this).is(":checked")==true) {
-					$(this).parent( 'div.check' ).css( 'background', '#ccc' );
+					$(this).parent( 'div.check' ).css( 'background', '#ccc9' );
 					$.ajax({
 						type: "POST",
 						url: "/missionTrue",
@@ -167,16 +170,37 @@
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>TOGETHER</a>
   <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-      <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-      <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
+    <button class="w3-button w3-padding-large" title="Notifications" style="height:50px;"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
+	<div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+	<%
+		ArrayList<participationDTO> plist = (ArrayList<participationDTO>)request.getAttribute("plist");
+		
+		if(plist.isEmpty()) {
+	%>
+		<div style="text-align: center; color: #3a4b53;">
+			<p>대기 인원이 없습니다.</p>
+		</div>
+
+	<%
+		}
+		else {
+			for(int i=0 ; i<plist.size() ; i++) {
+			// System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
+
+	%>
+		<p class="w3-bar-item"><%= plist.get(i).getName() %></p>
+		<button name="button" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0; border:none">수락</button>
+		<button name="button" class="exitbtn" style="float:right; margin: 15px 0; border:none">거절</button>
+	<% 
+			}
+		}
+	%>
+<!-- 	
+      <p class="w3-bar-item">최승아</p>
+      <p class="w3-bar-item">신희주</p>
+      <p class="w3-bar-item">정예은</p> -->
     </div>
   </div>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
@@ -212,42 +236,13 @@
       <br>
 
       <!-- Accordion -->
-      <div class="w3-card w3-round">
-        <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
-          <div id="Demo1" class="w3-hide w3-container">
-            <p>Some text..</p>
-          </div>
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
-          <div id="Demo2" class="w3-hide w3-container">
-            <p>Some other text..</p>
-          </div>
-          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
-          <div id="Demo3" class="w3-hide w3-container">
-         <div class="w3-row-padding">
-         <br>
-           <div class="w3-half">
-             <!-- <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom"> -->
-           </div>
-           <div class="w3-half">
-             <!-- <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom"> -->
-           </div>
-           <div class="w3-half">
-             <!-- <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom"> -->
-           </div>
-           <div class="w3-half">
-             <!-- <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom"> -->
-           </div>
-           <div class="w3-half">
-             <!-- <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom"> -->
-           </div>
-           <div class="w3-half">
-             <!-- <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom"> -->
-           </div>
-         </div>
-          </div>
-        </div>
-      </div>
+
+			<div class="w3-card w3-round">
+				<div class="w3-white">
+					<button style="height:38px;" class="w3-button w3-block w3-theme-l1 w3-left-align" onclick="location.href='/'"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>My Groups</button>
+					<button style="height:38px;" class="w3-button w3-block w3-theme-l1 w3-left-align" onclick=""><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> All Boards</button>
+				</div>
+			</div>
       <br>
 
       <!-- Group Info -->
@@ -259,17 +254,17 @@
         <div class="w3-container">
           <div id="GroupInfo">
     					<div style="margin: 15px 0;">
-    						<span class="title"><%= info.getName() %></span>
+    						<span class="title" style="font-family: 'Do Hyeon', sans-serif;"><%= info.getName() %></span>
     					</div>
     					<hr>
     					<div style="position: relative; margin-bottom: 15px;">
-    						<span class="bold">나의 진행률</span><br>
+    						<span class="bold" style="font-family: 'Do Hyeon', sans-serif;">나의 진행률</span><br>
     						<div id="progressbar">
     						  <div style="width: 40%;"><p class="prog_text" >40%</p></div>
     						</div>
     					</div>
     					<div style="position: relative; margin-bottom: 15px;">
-    						<span class="bold">전체 진행률</span><br>
+    						<span class="bold" style="font-family: 'Do Hyeon', sans-serif;">전체 진행률</span><br>
     						<div id="progressbar">
     						  <div style="width: 23%;"><p class="prog_text" >23%</p></div>
     						</div>
@@ -277,7 +272,7 @@
     					<div style="position: relative;">
     						<!-- <span id="total" class="arrow"><i class="fa fa-angle-double-right"></i> </span><span class="bold" style="margin-bottom: 20px;">대기 신청자 관리</span><br> -->
     						<span class="bold" style="margin-bottom: 5px;">참가 인원&nbsp;&nbsp;</span><span>15명</span><br>
-    						<span class="bold" style="margin-bottom: 0px;">모임 활동 기간&nbsp;&nbsp;</span><span style="margin-bottom:20px; display: inline-block">2020.08.08 ~ 2020.12.31</span><br>
+    						<span class="bold" style="margin-bottom: 0px;">모임 활동 기간&nbsp;&nbsp;</span><span style="margin-bottom:20px; display: inline-block; font-size: 14px;" >2020.08.08 ~ 2020.12.31</span><br>
     						<span class="bold">보상 및 조건</span><br>
     						<span>- 보상: <%= info.getReward() %></span><br>
     						<span>- 조건: <%= info.getRwCondition() %></span><br>
@@ -316,8 +311,8 @@
 	  <!-- CHECKLIST -->
       <div id="CHECKLIST" class="w3-container w3-card w3-white w3-round w3-margin" style="margin-top:0!important;"><br>
 				<div style="text-align: right; margin-bottom: 30px;">
-					<h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53;">CHECKLIST</h2>
-					<a class="a-no-style" href="#group_make_my" rel="modal:open"><button type="button" style="color: #fff; background: #3a4b53; border: none; border-radius: 4px;">과제 추가</button></a>
+					<h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">CHECKLIST</h2>
+					<a class="a-no-style" href="#group_make_my" rel="modal:open"><button type="button" style="color: #fff; background: #3a4b53; border: none; border-radius: 4px; font-family: 'Do Hyeon', sans-serif;">과제 추가</button></a>
 					<%-- <button type="button" name="button" style="font-size: 13px; padding: 4px 20px; border:none; margin: 6px 10px 0 0;">과제 추가</button> --%>
 					<span id="editbtn"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer"></i></span>
 				</div>
@@ -433,7 +428,7 @@
 		<div class="w3-card w3-round w3-white w3-center allpeople">
 			<!-- 전체 참가자 -->
 			<div id="AllGroup" class="w3-container">
-				<p style="font-size: 25px; font-weight: bold; color: #3a4b53; margin: 0 0 10px 0; display: inline-block; margin-bottom: 15px;">전체 진행률</p>
+				<p style="font-size: 25px; font-weight: bold; color: #3a4b53; margin: 0 0 10px 0; display: inline-block; margin-bottom: 15px; font-family: 'Do Hyeon', sans-serif;">전체 진행률</p>
 				<span class="member_setting"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer; float: right; margin-top: 8px;"></i></span>
 
 				<div class="eachcontent">
@@ -602,7 +597,7 @@
 		</div>
 		<br>
 
-		<!-- 잔디판 -->
+		<%-- <!-- 잔디판 -->
 		<div class="w3-card w3-round w3-white w3-center">
 			<div class="w3-container">
 				<p>Friend Request</p>
@@ -617,7 +612,7 @@
 				</div>
 			</div>
 		</div>
-		<br>
+		<br> --%>
 	<!-- End Right Column -->
 	</div>
 
@@ -629,16 +624,12 @@
 <br>
 
 <!-- Footer -->
-<footer class="w3-container w3-theme-d3 w3-padding-16">
-  <h5>Footer</h5>
+<footer class="w3-container w3-theme-d3 w3-padding-16" style="rgba(255,255,255,0.9) !important">
+	<div style="float:left;width:50%; margin:10px 0px;">Copyright &copy; WA LAB. 일팔즈</div>
+	<div style="float:left; text-align:right; width:50%; margin:10px 0px;">정예은 박상범 신희주 최승아</div>
 </footer>
 
-<footer class="w3-container w3-theme-d5">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-</footer>
-
-
-
+</div>
 
 <script>
 // Accordion

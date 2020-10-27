@@ -129,9 +129,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   color: white;
 }
 .bold {
-    font-weight: bold;
+    /* font-weight: bold; */
     display: inline-block;
     margin-bottom: 4px;
+    font-size: 17px;
+    font-family: 'Do Hyeon', sans-serif;
 }
 .group_text {
   display: block;

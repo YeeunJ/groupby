@@ -39,7 +39,7 @@
               </div>
             </div>
 
-            <div style="overflow:hidden; margin-top:12px 0;">
+            <div style="overflow:hidden; margin:12px 0;">
               <div class="name" style="float:left; margin:0;"><p class="labelname" style="margin-bottom: 0;">보상(선택사항)</p></div>
               <textarea style="float:left" name="reward"></textarea>
             </div>
