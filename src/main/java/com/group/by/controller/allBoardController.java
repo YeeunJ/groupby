@@ -47,7 +47,6 @@ public class allBoardController {
 		CustomOAuth2UserService.makeSession(request.getSession());
 		int userID = 1;
 		int groupID = 2;
-		String email = "21800412@handong.edu";
 		int cnt = 1;
 		ArrayList<progressDTO> progressInfo;
 		ModelAndView model = new ModelAndView("dashboard");

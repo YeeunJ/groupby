@@ -65,9 +65,8 @@
           <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
         </div>
       </div>
-      <%if(request.getAttribute("user") == null){ %>
       <a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
-      <%}else{ %>
+      <%if(request.getAttribute("user") == null){ %><%}else{ %>
       <a href="/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Logout</a>
       <%} %>
     </div>
