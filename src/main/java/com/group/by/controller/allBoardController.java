@@ -61,7 +61,6 @@ public class allBoardController {
 		int userID = 1;
 		groupInfo.setManager(userID);
 		System.out.println(groupInfo.toString());
-		System.out.println("hello");
 		
 		
 		ModelAndView model = new ModelAndView("myBoard");
@@ -97,26 +96,17 @@ public class allBoardController {
 	@RequestMapping(value="/joinGroup", method=RequestMethod.POST)
 	public ModelAndView joinGroup(groupinfoDTO groupInfo, HttpServletRequest request) throws ClassNotFoundException, SQLException, UnsupportedEncodingException {
 		
-		ModelAndView model = new ModelAndView("allBoard2");
-		myBoardDAO dao = new myBoardDAO();
+		int userID = 1;
+		System.out.println("hellohello~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		String name = request.getParameterValues("name")[0];
+		String introduce = request.getParameterValues("introduce")[0];
+		int groupId = Integer.parseInt(request.getParameterValues("group_id")[0]);
+		ModelAndView model = new ModelAndView("allBoard");
+		//myBoardDAO dao = new myBoardDAO();
 		allBoardDAO alldao = new allBoardDAO();
-		/*
-		int result = alldao.createGroup(groupInfo);
-		if(result == 1 && groupInfo.getName().compareTo("")!=0) {
-			request.setCharacterEncoding("UTF-8");
-		    String [] name = request.getParameterValues("title");
-		    String [] content = request.getParameterValues("description");
-
-		    Date start = null;
-		    Date end = null;
-
-
-		    for(int i=0 ; i<name.length-1; i++) {
-		      dao.missionAdd(name[i], content[i], start, end);
-		       int result2 = dao.shootMission();
-		    }
-		    
-		}*/
+		
+		int result = alldao.joinGroup(userID, name, introduce, groupId);
+		System.out.println("---------------->" + result);
 		return new ModelAndView("redirect:/");
 	}
 }

@@ -17,12 +17,11 @@
 <link rel='stylesheet' href='/css/index.css?d'>
 
 <!-- heeju -->
-<% int selected = 0;%>
 <% ArrayList<groupinfoDTO> all_list = (ArrayList<groupinfoDTO>)request.getAttribute("allgroup"); %>
 <%@ include file="/WEB-INF/views/createBoard.jsp" %>
 <%@ include file="/WEB-INF/views/allBoard.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jqsuery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -208,6 +207,7 @@
                     	<div><%= all_list.get(i).getRwCondition() %></div>
                     	<div><%= all_list.get(i).getReward() %></div>
                     	<div><%= all_list.get(i).getIntroduce() %></div>
+                    	<div><%= all_list.get(i).getId() %></div>
                     </div>
                     </div>
                   </a>
@@ -274,6 +274,7 @@
     	  var rwc = obj.children[3].children[4].innerHTML;
     	  var rw = obj.children[3].children[5].innerHTML;
     	  var explan = obj.children[3].children[6].innerHTML;
+    	  var id = obj.children[3].children[7].innerHTML;
     	  if(title == "null") title="없음";
     	  if(num == "null") num="0";
     	  if(start == "null") start = "없음";
@@ -288,6 +289,7 @@
     	  document.getElementById('all_rwc').innerHTML= rwc;
     	  document.getElementById('all_rw').innerHTML = rw;
     	  document.getElementById('all_explan').innerHTML="\" "+explan+" \"";
+    	  $('#group_id').val(id);
       }
     </script>
 

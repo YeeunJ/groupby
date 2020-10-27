@@ -69,16 +69,17 @@
 
     <div class="total_info join">
       <h3 class="all">Join Info</h3>
-      <form>
+      <form id = "form_join" name="join_group_form" action = "/joinGroup" class="form" role="form" method="post">
       <table>
         <tr>
           <td class="ex">사용할 이름</td>
-          <td class="input"><input type="text" placeholder="사용할 이름을 입력해주세요"/></td>
+          <td class="input"><input type="text" name="name" placeholder="사용할 이름을 입력해주세요"/></td>
         </tr>
         <tr>
           <td class="ex">간단한 소개</td>
-          <td class="input"><textarea placeholder="모임에 간단하게 자기 소개를 해주세요~:)"></textarea></td>
+          <td class="input"><textarea name="introduce" placeholder="모임에 간단하게 자기 소개를 해주세요~:)"></textarea></td>
         </tr>
+        <input id="group_id" name="group_id" style="display:none"></input>
       </table>
       <!--<input style="margin-left: 10px;" type="checkbox" name="info" value="info" checked/>
       모임에 내 정보 공개-->
