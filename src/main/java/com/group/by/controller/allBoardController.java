@@ -69,6 +69,10 @@ public class allBoardController {
 			System.out.println("okok session!!--------------------------------------");
 			System.out.println(user.toString());
 			model.addObject("user", user);
+		}else {
+			user = new usersDTO();
+			user.setEmail("hello");
+			model.addObject("user", user);
 		}
 		return model;
 	}
