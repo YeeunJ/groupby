@@ -20,6 +20,7 @@ h3{
   width: 1000px;
   max-width: 1000px;
   border-radius: 0;
+  box-shadow: 0 0 10px rgba(68, 85, 93, 0.8) !important;
 }
 .blocker{
   background-color: rgba(68, 85, 93, 0.75
@@ -81,7 +82,7 @@ div.name{
   border-radius: 8px;
   margin-right: 3px;
   display: inline-block;
-  color: #3a4b53;
+  color: black;
 }
 
 .left input{

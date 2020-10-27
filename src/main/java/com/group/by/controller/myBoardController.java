@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.group.by.board.boardDAO;
 import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.dto.missionDTO;
+import com.group.by.dto.participationDTO;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.progressDTO;
 import com.group.by.board.myBoard.*;
@@ -53,6 +54,9 @@ public class myBoardController {
 		model.addObject("mlist", mlist);
 		model.addObject("userlist", userlist);
 		model.addObject("_list", _list);
+		
+		ArrayList<participationDTO> plist = dao.waitStudent(id);
+		model.addObject("plist", plist);
 		return model;
 	}
 	
@@ -110,10 +114,9 @@ public class myBoardController {
 		ModelAndView model = new ModelAndView("myBoard");
 		myBoardDAO dao = new myBoardDAO();
 		
-		//request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 	    String [] name = request.getParameterValues("title");
 	    String [] content = request.getParameterValues("description");
-
 	    Date start = null;
 	    Date end = null;
 

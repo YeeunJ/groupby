@@ -154,10 +154,9 @@ textarea{
 }
 
 .blocker{
-<<<<<<< HEAD
-  background-color: rgba(68, 85, 93, 0.96)
-}
-=======
+
   background-color: rgba(68, 85, 93, 0.3) !important;
 }
->>>>>>> branch 'master' of https://github.com/YeeunJ/groupby.git
+.modal {
+  box-shadow: 0 0 10px rgba(68, 85, 93, 0.8) !important;
+}

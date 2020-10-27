@@ -1,5 +1,6 @@
 package com.group.by.board.myBoard;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import com.group.by.dbconnection.connection;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.missionDTO;
+import com.group.by.dto.participationDTO;
 import com.group.by.dto.progressDTO;
 
 public class myBoardDAO {
@@ -210,7 +212,7 @@ public class myBoardDAO {
 		
 	}
 	// 미션 추가
-	public int missionAdd(String name, String cont, Date start, Date end)  {
+	public int missionAdd(String name, String cont, Date start, Date end) throws UnsupportedEncodingException  {
 		int cnt = 0;
 		int gid = 2;
 		
@@ -227,7 +229,7 @@ public class myBoardDAO {
 			pstmt.setString(3, cont);
 			pstmt.setDate(4, null);
 			pstmt.setDate(5, null);
-			
+			System.out.println(name);
 			cnt = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -402,6 +404,35 @@ public class myBoardDAO {
 		return list;
 		
 		
+	}
+	
+	public ArrayList<participationDTO> waitStudent(int gid) throws SQLException {
+		ArrayList<participationDTO> list = new ArrayList<participationDTO>();
+		sql=("SELECT * FROM participation WHERE state=? and groupID=?");
+		query = new StringBuffer();
+		query.append(sql);
+		pstmt = conn.prepareStatement(query.toString());
+		pstmt.setInt(1, 0);
+		pstmt.setInt(2, gid);
+		
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			do {
+				participationDTO pdto = new participationDTO();
+				pdto.setId(rs.getInt("id"));
+				pdto.setUserID(rs.getInt("userID"));
+				pdto.setGroupID(rs.getInt("groupID"));
+				pdto.setName(rs.getString("name"));
+				pdto.setState(rs.getInt("state"));
+				pdto.setIntroduce(rs.getString("introduce"));
+				pdto.setRegDate(rs.getDate("regDate"));
+				pdto.setStateDate(rs.getDate("stateDate"));
+				
+				list.add(pdto);
+			}while(rs.next());
+	    } 
+		return list;
 	}
 
 
