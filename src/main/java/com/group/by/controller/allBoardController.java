@@ -24,7 +24,10 @@ import com.group.by.board.allBoard.allBoardDAO;
 import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.dto.groupDTO;
 import com.group.by.dto.groupinfoDTO;
+import com.group.by.dto.missionDTO;
 import com.group.by.dto.progressDTO;
+import com.group.by.dto.usersDTO;
+import com.group.by.users.usersDAO;
 import com.group.by.board.allBoard.*;
 
 @RestController
@@ -38,15 +41,33 @@ public class allBoardController {
 	public ModelAndView home(@ModelAttribute groupDTO groupDTO,
             HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		int userID = 1;
+		int groupID = 2;
+		String email = "21800412@handong.edu";
 		int cnt = 1;
 		ArrayList<progressDTO> progressInfo;
 		ModelAndView model = new ModelAndView("dashboard");
 		boardDAO bd = new boardDAO();
 		progressInfo = bd.getmyBoardInfo(userID);
 		
+		//전체 그룹 정보 가져오기
 		allBoardDAO ad = new allBoardDAO();
 		ArrayList<groupinfoDTO> allGroupInfo = ad.getGroupInfo(cnt);
 		model.addObject("allgroup", allGroupInfo);
+		
+		//미션 정보 가져오기
+		/*
+		 * 이거 parameter -> groupID에 맞게
+		 */
+		ArrayList<missionDTO> missionInfo = ad.getMissionInfo(groupID);
+		model.addObject("mission", missionInfo);
+		
+		//유저 정보 가져오기
+		/*
+		 * paremeter -> email에 맞게
+		 */
+		usersDAO ud = new usersDAO();
+		usersDTO userInfo = ud.getUserInfo(email);
+		model.addObject("user", userInfo);
 		
 		for(progressDTO pd: progressInfo) {
 			System.out.println(pd.toString());
@@ -61,7 +82,6 @@ public class allBoardController {
 		int userID = 1;
 		groupInfo.setManager(userID);
 		System.out.println(groupInfo.toString());
-		System.out.println("hello");
 		
 		
 		ModelAndView model = new ModelAndView("myBoard");
@@ -97,26 +117,15 @@ public class allBoardController {
 	@RequestMapping(value="/joinGroup", method=RequestMethod.POST)
 	public ModelAndView joinGroup(groupinfoDTO groupInfo, HttpServletRequest request) throws ClassNotFoundException, SQLException, UnsupportedEncodingException {
 		
+		int userID = 1;
+		String name = request.getParameterValues("name")[0];
+		String introduce = request.getParameterValues("introduce")[0];
+		int groupId = Integer.parseInt(request.getParameterValues("group_id")[0]);
 		ModelAndView model = new ModelAndView("allBoard");
-		myBoardDAO dao = new myBoardDAO();
+		//myBoardDAO dao = new myBoardDAO();
 		allBoardDAO alldao = new allBoardDAO();
-		/*
-		int result = alldao.createGroup(groupInfo);
-		if(result == 1 && groupInfo.getName().compareTo("")!=0) {
-			request.setCharacterEncoding("UTF-8");
-		    String [] name = request.getParameterValues("title");
-		    String [] content = request.getParameterValues("description");
-
-		    Date start = null;
-		    Date end = null;
-
-
-		    for(int i=0 ; i<name.length-1; i++) {
-		      dao.missionAdd(name[i], content[i], start, end);
-		       int result2 = dao.shootMission();
-		    }
-		    
-		}*/
+		
+		int result = alldao.joinGroup(userID, name, introduce, groupId);
 		return new ModelAndView("redirect:/");
 	}
 }

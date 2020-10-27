@@ -2,6 +2,8 @@
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "com.group.by.dto.progressDTO" %>
 <%@ page import = "com.group.by.dto.groupinfoDTO" %>
+<%@ page import = "com.group.by.dto.missionDTO" %>
+<%@ page import = "com.group.by.dto.usersDTO" %>
 <!DOCTYPE html>
 <html>
 <title>TOGETHER</title>
@@ -20,12 +22,11 @@
 <link rel="stylesheet" href="/css/allBoard.css?asdfgh">
 
 <!-- heeju -->
-<% int selected = 0;%>
 <% ArrayList<groupinfoDTO> all_list = (ArrayList<groupinfoDTO>)request.getAttribute("allgroup"); %>
 <%@ include file="/WEB-INF/views/createBoard.jsp" %>
 <%@ include file="/WEB-INF/views/allBoard.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jqsuery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -83,11 +84,12 @@
         <div class="w3-card w3-round w3-white">
           <div class="w3-container">
             <h4 class="w3-center">My Profile</h4>
+            <% usersDTO user = (usersDTO)request.getAttribute("user"); %>
             <p class="w3-center"><img src="https://cdn.imweb.me/upload/S202002259d2c4f16c33cd/92b04bb4b9172.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
             <hr>
-            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Harry Edward</p>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> 0000000@handong.edu / 30</p>
-            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> 안녕하세요!!ㅎㅎ 자기소개자기소개!!</p>
+            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><%= user.getName() %></p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%= user.getEmail() %> / <%= user.getAge() %></p>
+            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <%= user.getIntroduce() %></p>
           </div>
         </div>
         <br>
@@ -188,8 +190,6 @@
                     </select>
                   </form>
                    <%
-                  	System.out.println("hello?");
-                  	System.out.println(all_list);
                 	if(all_list != null){
                 	for(int i=0; i<all_list.size(); i++){
                 		%>
@@ -204,12 +204,13 @@
                       <p style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><%= all_list.get(i).getIntroduce() %></p>
                       <div style="width:0; height:0; font-size:0px;">
                     	<div><%= all_list.get(i).getName() %></div>
-                    	<div>15</div>
+                    	<div><%= all_list.get(i).getCnt() %></div>
                     	<div><%= all_list.get(i).getStartDate() %></div>
                     	<div><%= all_list.get(i).getEndDate() %></div>
                     	<div><%= all_list.get(i).getRwCondition() %></div>
                     	<div><%= all_list.get(i).getReward() %></div>
                     	<div><%= all_list.get(i).getIntroduce() %></div>
+                    	<div><%= all_list.get(i).getId() %></div>
                     </div>
                     </div>
                   </a>
@@ -276,6 +277,7 @@
     	  var rwc = obj.children[3].children[4].innerHTML;
     	  var rw = obj.children[3].children[5].innerHTML;
     	  var explan = obj.children[3].children[6].innerHTML;
+    	  var id = obj.children[3].children[7].innerHTML;
     	  if(title == "null") title="없음";
     	  if(num == "null") num="0";
     	  if(start == "null") start = "없음";
@@ -290,6 +292,7 @@
     	  document.getElementById('all_rwc').innerHTML= rwc;
     	  document.getElementById('all_rw').innerHTML = rw;
     	  document.getElementById('all_explan').innerHTML="\" "+explan+" \"";
+    	  $('#group_id').val(id);
       }
     </script>
 

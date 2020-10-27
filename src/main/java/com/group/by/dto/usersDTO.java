@@ -81,5 +81,10 @@ public class usersDTO implements DTO {
 	public void setLoginCount(int loginCount) {
 		this.loginCount = loginCount;
 	}
-	
+	@Override
+	public String toString() {
+		return "usersDTO [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", age=" + age
+				+ ", image=" + image + ", introduce=" + introduce + ", regDdate=" + regDdate + ", modifyDate="
+				+ modifyDate + ", lastLoginDate=" + lastLoginDate + ", loginCount=" + loginCount + "]";
+	}
 }
