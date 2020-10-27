@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel='stylesheet' href='/css/index.css?d'>
+<link rel='stylesheet' href='/css/index.css?dsd'>
 
 <!-- heeju -->
 <% int selected = 0;%>
@@ -33,8 +33,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script type="text/javascript" src="/js/allBoard.js"></script>
 <script type="text/javascript" src="/js/createBoard.js?d"></script>
-<link rel="stylesheet" href="/css/createBoard.css?">
-<link rel="stylesheet" href="/css/allBoard.css?dd">
+<link rel="stylesheet" href="/css/createBoard.css?fds">
+<link rel="stylesheet" href="/css/allBoard.css?fddd">
 
 <style>
   html,
