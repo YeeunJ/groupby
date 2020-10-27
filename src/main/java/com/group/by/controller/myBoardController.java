@@ -19,6 +19,7 @@ import com.group.by.board.boardDAO;
 import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.dto.missionDTO;
 import com.group.by.dto.groupinfoDTO;
+import com.group.by.dto.progressDTO;
 import com.group.by.board.myBoard.*;
 
 
@@ -31,10 +32,19 @@ public class myBoardController {
 	public ModelAndView my(@PathVariable("id") int id) throws SQLException {        
 		ModelAndView model = new ModelAndView("myBoard");
 		
-		
+		ArrayList<progressDTO> _list = null;
 		groupinfoDTO info = dao.GroupInfo(id);
 		model.addObject("groupinfo", info);
-		
+		try {
+			_list = dao.getRightsideInfo(id);
+			System.out.println("Isitwork?");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ArrayList<missionDTO> list = dao.MissionList(id);
 		ArrayList<String> mlist = dao.MissionComplete(id);
 		ArrayList<Integer> userlist = dao.completeYN();
@@ -42,7 +52,7 @@ public class myBoardController {
 		model.addObject("list", list);
 		model.addObject("mlist", mlist);
 		model.addObject("userlist", userlist);
-		
+		model.addObject("_list", _list);
 		return model;
 	}
 	

@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <div id="group_make_my" class="modal">
     <div id="make_div">
-      <form name="make_group_form" action="/mymissionAdd/<%= (int)request.getAttribute("groupid") %>" class="form" role="form">
+      <form name="make_group_form" action="/mymissionAdd/<%= (int)request.getAttribute("groupid") %>" class="form" role="form" accept-charset="UTF-8">
         <div class="right">
             <h3 class="title">과제 <button type="button" id="add_hw" class="btnB" style="float:right;">과제추가</button></h3>
             <div id="list">

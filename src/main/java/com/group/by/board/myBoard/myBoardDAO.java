@@ -10,15 +10,56 @@ import java.sql.SQLException;
 import com.group.by.dbconnection.connection;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.missionDTO;
-
+import com.group.by.dto.progressDTO;
 
 public class myBoardDAO {
-	Connection conn = connection.getInstance().getConnection();
-	protected PreparedStatement pstmt;
-	protected ResultSet rs;
-	protected String sql;
-	private StringBuffer query;
-	protected Boolean result = false;
+	   Connection conn = connection.getInstance().getConnection();
+	   protected PreparedStatement pstmt;
+	   protected PreparedStatement pstmt1;
+	   protected PreparedStatement pstmt2;
+	   protected ResultSet rs;
+	   protected ResultSet rs1;
+	   protected ResultSet rs2;
+	   protected String sql;
+	   protected String sql1;
+	   protected String sql2;
+	   private StringBuffer query;
+	   private StringBuffer query1;
+	   private StringBuffer query2;
+	   protected Boolean result = false;
+	   
+	   public ArrayList<progressDTO> getRightsideInfo(int groupID) throws ClassNotFoundException, SQLException{
+	       ArrayList<progressDTO> groupData = new ArrayList<progressDTO>();
+	       
+	       sql1 = "select u.id, u.name, count(*) as allMission from mission_info as mission join users as u on u.id = mission.userID where mission.group_info = ? group by u.id;";
+	       sql2 = "select u.id, u.name, count(*) as completeMission from mission_info as mission join users as u on u.id = mission.userID where mission.group_info = ? and mission.complete = 1 group by u.id ORDER BY completeMISSION desc;";
+	       query1 = new StringBuffer();
+	        query2 = new StringBuffer();
+	        query1.append(sql1);
+	        query2.append(sql2);
+	        pstmt1 = conn.prepareStatement(query1.toString());
+	        pstmt2 = conn.prepareStatement(query2.toString());
+	        pstmt1.setInt(1, groupID);
+	        pstmt2.setInt(1, groupID);
+	        rs1 = pstmt1.executeQuery();
+	        rs2 = pstmt2.executeQuery();
+	        rs2.next();
+	        while(rs1.next()) {   
+	           progressDTO data = new progressDTO();
+	           data.setName(rs1.getString("name"));
+	           
+	           data.setAllMission(rs1.getInt("allMission"));
+	           
+	              data.setCompleteMission(rs2.getInt("completeMission"));
+	              rs2.next();
+	           
+	           groupData.add(data);
+	           System.out.println("Groupdatais " + groupData);
+	        }
+	        
+	       return groupData;
+	    }
+
 	
 	public void missionDelete(int missionID) throws SQLException {
 		
@@ -214,13 +255,19 @@ public class myBoardDAO {
 			ex.setId(rs.getInt("id"));
 			ex.setName(rs.getString("name"));
 			ex.setManager(rs.getInt("manager"));
-			ex.setVisible(rs.getBoolean("visible"));
 			ex.setLink(rs.getString("link"));
 			ex.setReward(rs.getString("reward"));
 			ex.setRwCondition(rs.getString("rwCondition"));
 			ex.setIntroduce(rs.getString("introduce"));
 			ex.setNotice(rs.getString("notice"));
-			ex.setCreateYN(rs.getBoolean("createYN"));
+			if(rs.getInt("createYN") == 1)
+				ex.setCreateYN(true);
+			else
+				ex.setCreateYN(false);
+			if(rs.getInt("visible") == 1)
+				ex.setCreateYN(true);
+			else
+				ex.setCreateYN(false);
 			ex.setRegDate(rs.getDate("regDate"));
 			ex.setStartDate(rs.getDate("startDate"));
 			ex.setEndDate(rs.getDate("endDate"));
@@ -359,5 +406,3 @@ public class myBoardDAO {
 
 
 }
-	
-	

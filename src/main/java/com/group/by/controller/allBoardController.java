@@ -75,6 +75,14 @@ public class allBoardController {
 		}
 		return model;
 	}
+	@RequestMapping(value="/login/oauth2/code/google")
+	public ModelAndView loginRedirection (HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
+		return new ModelAndView("redirect:/");
+	}
+	@RequestMapping(value="/w3images/forest.jpg")
+	public ModelAndView loginRedirection2 (HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
+		return new ModelAndView("redirect:/");
+	}
 	@RequestMapping(value="/logoutDetail", method=RequestMethod.POST)
 	public ModelAndView logoutDetail (HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
 		session.removeAttribute("user");
