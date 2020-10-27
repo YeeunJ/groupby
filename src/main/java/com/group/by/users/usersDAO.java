@@ -56,4 +56,15 @@ public class usersDAO {
 	    pstmt.setInt(5, updateData.getId());
 	    pstmt.executeUpdate();
 	}
+	public void addUserInfo(String email, String name) throws SQLException {
+		System.out.println(email + ";"+name);
+		sql = "insert into users(email, name) values (\"?\", \"?\");";
+	    query = new StringBuffer();
+	    query.append(sql);
+	    pstmt = conn.prepareStatement(query.toString());
+	    pstmt.setString(1, email);
+	    pstmt.setString(2, name);
+	    pstmt.executeUpdate();
+	}
+
 }
