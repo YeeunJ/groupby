@@ -6,10 +6,6 @@ $(document).ready(function(){
 	    $(this).remove();
 	  });
 	
-	  $('#duplicate_check').click(function(){
-	    alert("사용할 수 있는 링크입니다.");
-	  });
-	
 	  $('#deadline_check').change(function() {
 	        if(this.checked) {
 	          $("#deadline").hide();
@@ -39,6 +35,30 @@ $(document).ready(function(){
 	$(document).on("click", ".delete", function() {
 	    $(this).parent().remove();
 	});
-
+	
+	$('#duplicate_check').on('click', function(){
+        var data = {
+                link: $('#duplicateLink').val()
+        }
+        $.ajax({
+            url: "/duplicateCheck",
+            type: "POST",
+            data: data,
+            success: function(data){
+            console.log(data);
+             if(data == true){
+             	$('#duplicateLink').val("");
+             	alert("중복된 link입니다. 다시 입력해주세요!!");
+             	
+             }else{
+             	alert("사용할 수 있는 링크입니다!!");
+             	$('#duplicate').val("true");
+             }
+            },
+            error: function(){
+                alert("simpleWithObject err");
+            }
+        });
+    });
 
 });

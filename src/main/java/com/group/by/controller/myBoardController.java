@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.group.by.board.boardDAO;
 import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.dto.missionDTO;
 import com.group.by.dto.groupinfoDTO;
@@ -154,7 +157,14 @@ public class myBoardController {
 		return new ModelAndView("redirect:/myBoard/"+id);
 	}
 	
-	
+	@RequestMapping(value = "/duplicateCheck", method=RequestMethod.POST)
+	public boolean duplicateCheck(String link) throws SQLException {
+		boardDAO bd = new boardDAO();
+		if(bd.isDuplicateLink(link)) {
+			return true;
+		}
+		return false;
+	}
 	
 	@RequestMapping("/createGroup")
 	public String createGroup() {

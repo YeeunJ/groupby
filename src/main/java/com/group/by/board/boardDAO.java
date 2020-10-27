@@ -58,6 +58,17 @@ public class boardDAO {
 	    }
 		return groupData;
 	}
-	
+	public boolean isDuplicateLink(String link) throws SQLException {
+		sql1 = "select * from group_info where link = ?";
+		query1 = new StringBuffer();
+		query1.append(sql1);
+		pstmt1 = conn.prepareStatement(query1.toString());
+		pstmt1.setString(1, link);
+		rs1 = pstmt1.executeQuery();
+		if(rs1.next()) {
+			return true;
+		}
+		return false;
+	}
 
 }

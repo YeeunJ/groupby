@@ -9,7 +9,7 @@
    </div>
 
     <div id="make_div">
-      <form name="make_group_form" action = "/createGroup" class="form" role="form" method="post">
+      <form id = "form1" name="make_group_form" action = "/createGroup" class="form" role="form" method="post">
         <div class="left">
             <div class="name" style="display: inline-block;">모임 이름<span class="essential"> *</span></div>
             <input name="name" required/>
@@ -24,8 +24,8 @@
             <div class="name">모임 공지<span class="essential"> *</span></div>
             <textarea name="notice" required></textarea>
             <div class="name" style="display: inline-block; position: relative;">참가 링크<span class="essential"> *</span><button type="button" class="btnB" id="duplicate_check" style="position: absolute; top:-4px; left:310px; font-weight: initial">중복확인</button></div>
-            <input name="link" required></input>
-
+            <input name="link" id = "duplicateLink" required></input>
+			<input id="duplicate" hidden></input>
             <div class="name">모임 기한<span class="essential"> *</span>
               <input style="margin-left: 15px; width:auto;" type="checkbox" id="deadline_check" name="deadline" checked="checked" />무제한
               <br>

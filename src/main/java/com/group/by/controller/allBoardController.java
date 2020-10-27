@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -50,6 +52,7 @@ public class allBoardController {
 			System.out.println(pd.toString());
 		}
 		model.addObject("progress", progressInfo);
+		
 		return model;
 	}
 	
@@ -81,6 +84,39 @@ public class allBoardController {
 		    }
 		    
 		}
+		return new ModelAndView("redirect:/");
+	}
+	     
+	@RequestMapping(value = "/login")
+	public String login() {
+		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//System.out.println(auth.toString());
+		System.out.println("redirecting to home page");
+		return "redirect:/home";
+}
+	@RequestMapping(value="/joinGroup", method=RequestMethod.POST)
+	public ModelAndView joinGroup(groupinfoDTO groupInfo, HttpServletRequest request) throws ClassNotFoundException, SQLException, UnsupportedEncodingException {
+		
+		ModelAndView model = new ModelAndView("allBoard");
+		myBoardDAO dao = new myBoardDAO();
+		allBoardDAO alldao = new allBoardDAO();
+		/*
+		int result = alldao.createGroup(groupInfo);
+		if(result == 1 && groupInfo.getName().compareTo("")!=0) {
+			request.setCharacterEncoding("UTF-8");
+		    String [] name = request.getParameterValues("title");
+		    String [] content = request.getParameterValues("description");
+
+		    Date start = null;
+		    Date end = null;
+
+
+		    for(int i=0 ; i<name.length-1; i++) {
+		      dao.missionAdd(name[i], content[i], start, end);
+		       int result2 = dao.shootMission();
+		    }
+		    
+		}*/
 		return new ModelAndView("redirect:/");
 	}
 }
