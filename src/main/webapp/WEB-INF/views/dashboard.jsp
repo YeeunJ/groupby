@@ -80,14 +80,26 @@
       <div class="w3-col m3">
         <!-- Profile -->
         <div class="w3-card w3-round w3-white">
-          <div class="w3-container">
+          <div class="w3-container" id="UserInfo">
             <h4 class="w3-center">My Profile</h4>
             <% usersDTO user = (usersDTO)request.getAttribute("user"); %>
             <p class="w3-center"><img src="https://cdn.imweb.me/upload/S202002259d2c4f16c33cd/92b04bb4b9172.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
             <hr>
+            <span id="UserInfobtn" class="btn" style="background:rgba(54, 92, 244, 0.6); float:right; margin-bottom: 15px; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">수정</span>
             <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><%= user.getName() %></p>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%= user.getEmail() %> / <%= user.getAge() %></p>
             <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <%= user.getIntroduce() %></p>
+          </div>
+          <div class="w3-container" id="UserEdit" style="display:none;">
+            <h4 class="w3-center">My Profile</h4>
+            <p class="w3-center"><img src="https://cdn.imweb.me/upload/S202002259d2c4f16c33cd/92b04bb4b9172.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+            <hr>
+            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%= user.getName() %>"/></p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><span><input style="height: 25px;" value="<%= user.getEmail() %>"/></span></p>
+            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%= user.getIntroduce() %>"/></p>
+            <!--<button type="submit" name="button" class="btn" id="EditUserInfo" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 5px 0 0; border:none; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">완료</button>-->
+            <span id="EditUserInfo" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 0px 5px 20px 0; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">완료</span>
+            <span id="UserCancelbtn" class="btn" style="background:#ccc; float:right; margin: 0px 5px 20px 0; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">취소</span>
           </div>
         </div>
         <br>
@@ -292,6 +304,20 @@
     	  document.getElementById('all_explan').innerHTML="\" "+explan+" \"";
     	  $('#group_id').val(id);
       }
+      
+		$('#UserInfobtn').click(function(){
+			$('#UserEdit').show();
+			$('#UserInfo').hide();
+		});
+		$('#UserCancelbtn').click(function(){
+			$('#UserEdit').hide();
+			$('#UserInfo').show();
+		});
+		// ajax 새로고침
+		$('#UserInfoOk').click(function(){
+			$('#UserEdit').hide();
+			$('#UserInfo').show();
+		});
     </script>
 
 </body>
