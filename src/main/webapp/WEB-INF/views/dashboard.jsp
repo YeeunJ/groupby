@@ -2,6 +2,7 @@
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "com.group.by.dto.progressDTO" %>
 <%@ page import = "com.group.by.dto.groupinfoDTO" %>
+<%@ page import = "com.group.by.dto.usersDTO" %>
 <!DOCTYPE html>
 <html>
 <title>TOGETHER</title>
@@ -47,6 +48,7 @@
 
 <body class="w3-theme-l5">
   <% ArrayList<progressDTO> list = (ArrayList<progressDTO>)request.getAttribute("progress"); %>
+  <% usersDTO user = (usersDTO)request.getAttribute("user"); %>
   <!-- Navbar -->
   <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
@@ -60,7 +62,11 @@
           <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
         </div>
       </div>
-      <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Logout</a>
+      <%if(request.getAttribute("user") == null){ %>
+      <a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
+      <%}else{ %>
+      <a href="/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Logout</a>
+      <%} %>
     </div>
   </div>
 
