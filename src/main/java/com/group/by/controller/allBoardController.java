@@ -26,6 +26,8 @@ import com.group.by.dto.groupDTO;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.missionDTO;
 import com.group.by.dto.progressDTO;
+import com.group.by.dto.usersDTO;
+import com.group.by.users.usersDAO;
 import com.group.by.board.allBoard.*;
 
 @RestController
@@ -40,19 +42,32 @@ public class allBoardController {
             HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		int userID = 1;
 		int groupID = 2;
+		String email = "21800412@handong.edu";
 		int cnt = 1;
 		ArrayList<progressDTO> progressInfo;
 		ModelAndView model = new ModelAndView("dashboard");
 		boardDAO bd = new boardDAO();
 		progressInfo = bd.getmyBoardInfo(userID);
 		
+		//전체 그룹 정보 가져오기
 		allBoardDAO ad = new allBoardDAO();
 		ArrayList<groupinfoDTO> allGroupInfo = ad.getGroupInfo(cnt);
 		model.addObject("allgroup", allGroupInfo);
 		
+		//미션 정보 가져오기
+		/*
+		 * 이거 parameter -> groupID에 맞게
+		 */
 		ArrayList<missionDTO> missionInfo = ad.getMissionInfo(groupID);
-		//이거 parameter -> groupID에 맞게
 		model.addObject("mission", missionInfo);
+		
+		//유저 정보 가져오기
+		/*
+		 * paremeter -> email에 맞게
+		 */
+		usersDAO ud = new usersDAO();
+		usersDTO userInfo = ud.getUserInfo(email);
+		model.addObject("user", userInfo);
 		
 		for(progressDTO pd: progressInfo) {
 			System.out.println(pd.toString());

@@ -3,6 +3,7 @@
 <%@ page import = "com.group.by.dto.progressDTO" %>
 <%@ page import = "com.group.by.dto.groupinfoDTO" %>
 <%@ page import = "com.group.by.dto.missionDTO" %>
+<%@ page import = "com.group.by.dto.usersDTO" %>
 <!DOCTYPE html>
 <html>
 <title>TOGETHER</title>
@@ -81,11 +82,12 @@
         <div class="w3-card w3-round w3-white">
           <div class="w3-container">
             <h4 class="w3-center">My Profile</h4>
+            <% usersDTO user = (usersDTO)request.getAttribute("user"); %>
             <p class="w3-center"><img src="https://cdn.imweb.me/upload/S202002259d2c4f16c33cd/92b04bb4b9172.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
             <hr>
-            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Harry Edward</p>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> 0000000@handong.edu / 30</p>
-            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> 안녕하세요!!ㅎㅎ 자기소개자기소개!!</p>
+            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><%= user.getName() %></p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%= user.getEmail() %> / <%= user.getAge() %></p>
+            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <%= user.getIntroduce() %></p>
           </div>
         </div>
         <br>
