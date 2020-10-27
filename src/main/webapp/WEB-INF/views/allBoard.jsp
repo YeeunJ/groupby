@@ -11,16 +11,26 @@
         - 보증금 환불<br> - 30일간 90문제
       </div>-->
     </div>
+    <% ArrayList<missionDTO> mission_list = (ArrayList<missionDTO>)request.getAttribute("mission"); %>
     <p class="explan" id="all_explan">"열심히 알고리즘을 풀어봅시다. ㅎㅎ랄라랄ㄹ라"</p>
     <div class="total_info top">
       <div class="total_info_box all_left">
         <h3 class="all">공통 미션 예시</h3>
         <div style="text-align:center; font-size: 14px;">(현재 총 20개)</div>
         <div class="content">
+        <% 
+       		if(mission_list != null){
+       			for(int i=0; i<mission_list.size(); i++){
+        %>
           <div class="check_all">
             <image class="image_check" src="./images/check.png">
-            <div class="content_check">array 관련 20~30번 문제 풀기</div>
+            <div class="content_check"><%= mission_list.get(i).getName() %></div>
           </div>
+        <%
+       			}
+       		}
+        %>
+        <!--
           <div class="check_all">
             <image class="image_check" src="./images/check.png">
             <div class="content_check">DP 관련 20~30번 문제 풀기</div>
@@ -29,6 +39,7 @@
             <image class="image_check" src="./images/check.png">
             <div class="content_check">피어 리뷰 5개</div>
           </div>
+         -->
         </div>
       </div>
       <div class="total_info_box all_right">
@@ -69,16 +80,17 @@
 
     <div class="total_info join">
       <h3 class="all">Join Info</h3>
-      <form>
+      <form id = "form_join" name="join_group_form" action = "/joinGroup" class="form" role="form" method="post">
       <table>
         <tr>
           <td class="ex">사용할 이름</td>
-          <td class="input"><input type="text" placeholder="사용할 이름을 입력해주세요"/></td>
+          <td class="input"><input type="text" name="name" placeholder="사용할 이름을 입력해주세요"/></td>
         </tr>
         <tr>
           <td class="ex">간단한 소개</td>
-          <td class="input"><textarea placeholder="모임에 간단하게 자기 소개를 해주세요~:)"></textarea></td>
+          <td class="input"><textarea name="introduce" placeholder="모임에 간단하게 자기 소개를 해주세요~:)"></textarea></td>
         </tr>
+        <input id="group_id" name="group_id" style="display:none"></input>
       </table>
       <!--<input style="margin-left: 10px;" type="checkbox" name="info" value="info" checked/>
       모임에 내 정보 공개-->

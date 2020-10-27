@@ -87,5 +87,4 @@ public class usersDTO implements DTO {
 				+ ", image=" + image + ", introduce=" + introduce + ", regDdate=" + regDdate + ", modifyDate="
 				+ modifyDate + ", lastLoginDate=" + lastLoginDate + ", loginCount=" + loginCount + "]";
 	}
-	
 }

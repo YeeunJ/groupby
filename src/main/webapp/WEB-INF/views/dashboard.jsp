@@ -3,6 +3,8 @@
 <%@ page import = "com.group.by.dto.progressDTO" %>
 <%@ page import = "com.group.by.dto.groupinfoDTO" %>
 <%@ page import = "com.group.by.dto.usersDTO" %>
+<%@ page import = "com.group.by.dto.missionDTO" %>
+
 <!DOCTYPE html>
 <html>
 <title>TOGETHER</title>

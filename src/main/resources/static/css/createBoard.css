@@ -2,6 +2,7 @@ h1#title_create{
   margin-bottom: 10px;
   color: #3a4b53;
   font-weight: bold;
+  font-family: 'Do Hyeon', sans-serif;
 }
 h3{
   margin-left: 10px;
@@ -10,6 +11,7 @@ h3{
   margin-top: 15px;
   margin-bottom: 15px;
   margin-left: 0px;
+  font-family: 'Do Hyeon', sans-serif;
 }
 #head{
   margin-bottom: 10px;
@@ -54,7 +56,7 @@ h3{
   border-right: 1px solid #3a4b53;
 }
 .right{
-  width: 100%;
+  width: 49.5%;
   height: 100%;
   display: inline-block;
   float: right;
@@ -67,8 +69,21 @@ h3{
 div.name{
   margin: 10px 0 5px 0;
   color: #3a4b53;
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-family: 'Do Hyeon', sans-serif;
 }
+.labelname {
+  width: 115px;
+  background: #c6d5dc;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 8px;
+  margin-right: 3px;
+  display: inline-block;
+  color: #3a4b53;
+}
+
 .left input{
   width: 234px;
   margin-right: 10px;
@@ -79,11 +94,12 @@ div.name{
 }
 
 .left textarea{
-  width: 93%;
-  height: 50px;
+  width: 65%;
+  height: 60px;
   border: 1px solid rgba(68, 85, 93, 0.3);
   background: #fff !important;
   border-radius: 4px;
+  margin-left: 4px;
 }
 .add input{
   width: 90%;
@@ -103,11 +119,10 @@ div.name{
 .add{
   background:white;
   border-radius: 5px;
-  border: none;
   padding: 10px;
   width: 100%;
   margin-bottom: 10px;
-  box-shadow: 2px 2px #aba69d;
+  /* box-shadow: 2px 2px #aba69d; */
 
 }
 .add input{
@@ -132,10 +147,11 @@ div.name{
   display:none;
 }
 #list{
-  background: rgba(182, 200, 209, 0.78);
+  background: rgba(182, 200, 209, 0.5);
   padding: 13px;
-  height: 490px;
-  overflow:scroll;
+  height: 500px;
+  margin-top: 15px;
+  overflow-y: scroll;
 }
 .hw_title{
   margin: 8px;
@@ -184,6 +200,7 @@ input.date{
    background: #3a4b53;
    border: none;
    border-radius: 3px;
+   font-family: 'Do Hyeon', sans-serif;
 }
 a:link.nostyle { color: black; text-decoration: none;}
 a:visited.nostyle { color: black; text-decoration: none;}

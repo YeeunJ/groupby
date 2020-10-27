@@ -1,19 +1,14 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType = "text/html;charset=utf-8" %>
+<% request.setCharacterEncoding("utf-8");%>
 <%@ page import="com.group.by.board.myBoard.*" %>
 <%@ page import="com.group.by.dto.missionDTO" %>
 <%@ page import="com.group.by.dto.groupinfoDTO" %>
 <%@ page import="java.io.*"%>
 <%@ page import="java.util.*"%>
 
-
-<jsp:useBean id="dao" class="com.group.by.board.myBoard.myBoardDAO" scope="page"></jsp:useBean>
-<jsp:useBean id="dto" class="com.group.by.dto.missionDTO" scope="page"></jsp:useBean>
-<jsp:useBean id="dto_group" class="com.group.by.dto.groupinfoDTO" scope="page"></jsp:useBean>
-
-
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<title>TOGETHER</title>
 		<meta charset="UTF-8">
@@ -44,51 +39,58 @@
 	<!-- seunga script -->
 	<script type="text/javascript">
 		$(document).ready(function(){
-			// checkbox
+
+			$(".deleteMission").click(function() {
+
+				if (confirm("정말 삭제하시겠습니까?") == true){
+					$.ajax({
+						type: "POST",
+						url: "/deleteMission",
+						data: {"missionID":$(this).attr("value")},
+						success: function() {
+							alert('미션이 삭제되었습니다.');
+						}, error: function() {
+							alert('미션 삭제에 실패했습니다.');
+						}
+					});
+					$(this).parent('div.checkEditlist').remove();
+ 				}else{   //취소
+     			return false;
+ 				}
+			});
+
+
 			$("input:checkbox[name=mission]").click(function(){
 				if($(this).is(":checked")==true) {
-					var $box = $(this).parent('div.check');
-
-					alert("미션을 완료했습니다.");
 					$(this).parent( 'div.check' ).css( 'background', '#ccc' );
-					// var $box = $(this).parent('div.check').clone();
-					// $(this).parent('div.check').hide();
-					// $(".checkWrapper").append($box);
-					// $(".checkWrapper").append($(this).parent('div.check'));
-					var missionID =  $(this).attr("value");
-					var userID = 2;
-					dao.missionTrue(userID, missionID);
-
+					$.ajax({
+						type: "POST",
+						url: "/missionTrue",
+						data: {"userID":2, "missionID":$(this).attr("value")},
+						success: function() {
+							alert('미션을 완료했습니다.');
+						}, error: function() {
+							alert('미션 추가에 실패했습니다.');
+						}
+					});
 				}
 				else {
-					alert("풀렸음");
 					$(this).parent( 'div.check' ).css( 'background', 'rgb(250, 250, 250)' );
-					// var index = $(this).parent('div.check').attr("value");
-					// console.log(index);
-					var missionID =  $(this).attr("value");
-					var userID = 2;
-					dao.missionTrue(userID, missionID);
-
-					// $('div.check').eq(index).show();
-					// $(this).parent('div.check').remove();
+					$.ajax({
+						type: "POST",
+						url: "/missionFalse",
+						data: {"userID":2, "missionID":$(this).attr("value")},
+						success: function() {
+							alert('미션 체크 해제.');
+						}, error: function() {
+							alert('미션 추가에 실패했습니다.');
+						}
+					});
 				}
 			});
-			// function checkedBox() {}
-			// 		if($("input:checkbox[name=mission]").is(":checked")==true) {
-			// 			$(this).parent( 'div.check' ).css( 'background', '#ccccccf' );
-			// 		}
-			// }
 
-			/*
-			수정 버튼을 누르면
-			1. 원래의 문제 이름과 문제 내용을 변수에 저장한다.
-			2. 이전에 있던 내용들을 지우고 변수에 담긴 내용을 default값으로 한 input을 담은 내용으로 대체한다.
-			*/
 
-			// textarea enter
-			// var str = $(".textarea").val();
-			// str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
-			// $(".textarea").html(str);
+
 			$('#editbtn').click(function(){
 				$('#EditCheckList').show();
 				$('#CHECKLIST').hide();
@@ -118,7 +120,6 @@
 				$('#GroupEdit').hide();
 				$('#GroupInfo').show();
 			});
-			// ajax 새로고침
 			$('#GroupInfoOk').click(function(){
 				$('#GroupEdit').hide();
 				$('#GroupInfo').show();
@@ -131,7 +132,6 @@
 				$('#AllGroup').hide();
 				$('#ManagePeople').show();
 			});
-			// ajax 처리
 			$('.managefin').click(function(){
 				$('#ManagePeople').hide();
 				$('#AllGroup').show();
@@ -141,19 +141,10 @@
 			var edit = $('.check_edit').click(function(){
 				var idx = edit.index(this);
 				var editlist = $('.checkEditlist').eq(idx);
-				// console.log(editlist);
 				var prob_name = editlist.children('.p_name').text();
 				var prob_cont = editlist.children('.p_cont').text();
 
-				// $('.checkform > #input').val(prob_name);
-				// $('.checkform > #cont').text(prob_cont);
-				//
-				// $('.checkEditlist').eq(idx).after($('.checkform'));
-				// $('.checkEditlist').eq(idx).hide();
-
-				// $(this).hide();
 			});
-			// 미션 디테일 보기
 			var $btn = $('.detailbtn').click(function(){
 				var idx = $btn.index(this);
 				$('.check_detail').eq(idx).slideToggle();
@@ -261,15 +252,14 @@
 
       <!-- Group Info -->
 			<%
-				groupinfoDTO info = dao.GroupInfo(null);
-				dto_group = info;
+				groupinfoDTO info = (groupinfoDTO)request.getAttribute("groupinfo");
 			%>
 
       <div class="w3-card w3-round w3-white w3-hide-small">
         <div class="w3-container">
           <div id="GroupInfo">
     					<div style="margin: 15px 0;">
-    						<span class="title"><%= dto_group.getName() %></span>
+    						<span class="title"><%= info.getName() %></span>
     					</div>
     					<hr>
     					<div style="position: relative; margin-bottom: 15px;">
@@ -289,28 +279,28 @@
     						<span class="bold" style="margin-bottom: 5px;">참가 인원&nbsp;&nbsp;</span><span>15명</span><br>
     						<span class="bold" style="margin-bottom: 0px;">모임 활동 기간&nbsp;&nbsp;</span><span style="margin-bottom:20px; display: inline-block">2020.08.08 ~ 2020.12.31</span><br>
     						<span class="bold">보상 및 조건</span><br>
-    						<span>- 보상: <%= dto_group.getReward() %></span><br>
-    						<span>- 조건: <%= dto_group.getRwCondition() %></span><br>
-    						<span class="group_text">"<%= dto_group.getNotice() %>"</span>
+    						<span>- 보상: <%= info.getReward() %></span><br>
+    						<span>- 조건: <%= info.getRwCondition() %></span><br>
+    						<span class="group_text">"<%= info.getNotice() %>"</span>
     					</div>
     					<span id="GroupInfobtn" class="btn" style="background:rgba(54, 92, 244, 0.6); float:right; margin-bottom: 15px;">수정</span>
           </div>
 					<!-- Group Info Edit -->
 					<div id="GroupEdit" class="w3-row-padding" style="padding:0">
 
-						<form class="" action="updateGroup" method="post">
+						<form class="" action="/updateGroup/<%= (int)request.getAttribute("groupid") %>" method="post" accept-charset="utf-8">
 							<div style="margin: 15px 0;">
-								<input type="text" class="title" name="title" value="<%= dto_group.getName() %>" style>
+								<input type="text" class="title" name="title" value="<%= info.getName() %>" style>
 							</div>
 							<hr>
 							<span class="bold" style="margin-bottom: 0px;">모임 활동 기간&nbsp;&nbsp;</span><br>
-							<input type="date" name="startdate" style="width:45%;" value="<%= dto_group.getStartDate() %>"><span>~</span><input type="date" style="width:45%;" name="enddate" value="<%= dto_group.getEndDate() %>">
+							<input type="date" name="startdate" style="width:45%;" value="<%= info.getStartDate() %>"><span>~</span><input type="date" style="width:45%;" name="enddate" value="<%= info.getEndDate() %>">
 							<%-- <input typeㄹ="text" name="enddate" value="2020.08.08 ~ 2020.12.3"><br> --%>
 							<br /><span class="bold" style="margin-top: 10px;">보상 및 조건</span><br>
-							<textarea name="reward" rows="2" width="100%" class="textarea"><%= dto_group.getReward() %></textarea><br>
-							<textarea name="rewardCD" rows="2" width="100%" class="textarea"><%= dto_group.getRwCondition() %></textarea><br>
+							<textarea name="reward" rows="2" width="100%" class="textarea"><%= info.getReward() %></textarea><br>
+							<textarea name="rewardCD" rows="2" width="100%" class="textarea"><%= info.getRwCondition() %></textarea><br>
 							<span class="bold" style="margin-top: 10px;">모임 소개</span><br>
-							<textarea name="notice" rows="5" style="width:100%;"><%= dto_group.getNotice() %></textarea>
+							<textarea name="notice" rows="5" style="width:100%;"><%= info.getNotice() %></textarea>
 							<button type="submit" name="button" class="btn" id="EditGroupInfo" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0; border:none">완료</button>
 							<span id="GroupCancelbtn" class="btn" style="background:#ccc; float:right; margin: 15px 5px 0 0; padding: 5px 10px;">취소</span>
 						</form>
@@ -334,18 +324,47 @@
 				<hr>
 				<div class="checkWrapper">
 					<%
-						ArrayList<missionDTO> list = dao.MissionList(null);
-						ArrayList<String> mlist = dao.MissionComplete(null);
+						ArrayList<missionDTO> list = (ArrayList<missionDTO>)request.getAttribute("list");
+						ArrayList<String> mlist = (ArrayList<String>)request.getAttribute("mlist");
+						ArrayList<Integer> userlist = (ArrayList<Integer>)request.getAttribute("userlist");
 
-						// System.out.print("list isze: "+mlist.get(1));
+						// System.out.println("id: "+${id});
+						// System.out.print("userlist: "+userlist.get(0)+"//"+userlist.size());
+						if(list.isEmpty()) {
+							%>
+							<div class="check" style="text-align: center; color: #3a4b53;">
+								<p>등록된 미션이 없습니다.</p>
+							</div>
+
+							<%
+						}
+						else {
 						for(int i=0 ; i<list.size() ; i++) {
-							dto = list.get(i);
 							// System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
-					%>
-					<div class="check" value="<%= i %>">
-						<input type="checkbox" name="mission" value="<%= dto.getId() %>">
 
-						<span style="padding-left: 10px;"><%= dto.getName() %></span>
+					%>
+					<%-- <div class="check" value="<%= i %>"> --%>
+						<%-- checked="checked --%>
+						<%
+						int flag=0;
+						for(int j=0 ; j<userlist.size(); j++) {
+							if(userlist.get(j) == list.get(i).getId()){
+								flag=1;
+						%>
+							<div class="check" style="background:#ccc;">
+								<input type="checkbox" name="mission" value="<%= list.get(i).getId() %>" checked="checked">
+						<%
+								break;
+							}
+						}
+						if(flag==0){
+						%>
+						<div class="check">
+							<input type="checkbox" name="mission" value="<%= list.get(i).getId() %>">
+						<%
+						}
+						%>
+						<span style="padding-left: 10px;"><%= list.get(i).getName() %></span>
 						<div style="float:right;">
 							<span class="showfinish"><i class="fa fa-list-alt"></i></span>
 							<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
@@ -354,12 +373,13 @@
 							<%= mlist.get(i) %>완료
 						</div>
 						<div class="check_detail">
-							<p><%= dto.getContent() %></p>
+							<p><%= list.get(i).getContent() %></p>
 						</div>
 					</div>
 
 					<%
 						}
+					}
 					%>
 				</div>
 
@@ -371,7 +391,7 @@
 			  <div id="EditCheckList" class="w3-container w3-card w3-white w3-round w3-margin" style="margin-top: 0 !important;"><br>
 				  <div>
 
-							<form class="" action="missionEdit" method="post">
+							<form class="" action="/missionEdit/<%= (int)request.getAttribute("groupid") %>" method="post">
 								<div style="text-align: right; margin-bottom: 35px;">
 									<h2 style="float:left; line-height:30px; font-weight: bold; color: #3a4b53">CHECKLIST EDIT</h2>
 									<span id="editcancel" class="btn" style="background:#ccc; margin-top: 15px;">취소</span>
@@ -383,25 +403,22 @@
 
 									// System.out.print("list isze: "+list.size());
 									for(int i=0 ; i<list.size() ; i++) {
-										dto = list.get(i);
 								%>
 
-
 								<div class="checkEditlist">
-									<input type="hidden" name="missionID"  value="<%= dto.getId() %>">
-									<input type="text" name="title" value="<%= dto.getName() %>">
-									<div style="float:right;">
-										<span class="btn" style="background:rgba(244, 67, 54, 0.6)">삭제</span>
-									</div>
+									<input type="hidden" name="missionID"  value="<%= list.get(i).getId() %>">
+									<input type="text" name="title" value="<%= list.get(i).getName() %>">
+									<span class="btn deleteMission" value="<%= list.get(i).getId() %>" style="float:right; background:rgba(244, 67, 54, 0.6)">삭제</span>
+
+
 									<div class="p_cont check_detail_edit">
-										<textarea name="content" style="width:100%;"><%= dto.getContent() %></textarea>
+										<textarea name="content" style="width:100%;"><%= list.get(i).getContent() %></textarea>
 									</div>
 								</div>
 
 								<%
 									}
 								%>
-
 							</form>
 						</div>
 		      </div>

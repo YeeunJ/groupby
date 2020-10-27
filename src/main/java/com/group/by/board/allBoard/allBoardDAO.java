@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.group.by.dbconnection.connection;
 import com.group.by.dto.groupinfoDTO;
+import com.group.by.dto.missionDTO;
 
 public class allBoardDAO {
 	private Connection conn = connection.getInstance().getConnection();
@@ -19,7 +20,7 @@ public class allBoardDAO {
 	
 	public ArrayList<groupinfoDTO> getGroupInfo(int cnt) throws SQLException {
 		ArrayList<groupinfoDTO> allgroupdatas = new ArrayList<groupinfoDTO>();
-		
+		//여기 부분에서 페이지에 맞게 cnt 가져와야함
 		sql_all = "SELECT * FROM `group_info` order by regDate limit ?, 10;";
 		query = new StringBuffer();
 		query.append(sql_all);
@@ -34,7 +35,8 @@ public class allBoardDAO {
 			allgroupdata.setId(rs.getInt("id"));
 			allgroupdata.setName(rs.getString("name"));
 			allgroupdata.setManager(rs.getInt("manager"));
-			allgroupdata.setVisible((rs.getBoolean("visible")));
+			allgroupdata.setVisible(rs.getBoolean("visible"));
+			allgroupdata.setCnt((rs.getInt("cnt")));
 			
 			allgroupdata.setLink((rs.getString("link")));
 			allgroupdata.setReward((rs.getString("reward")));
@@ -52,18 +54,17 @@ public class allBoardDAO {
 		}
 		return allgroupdatas;
 	}
-	public int joinGroup(groupinfoDTO groupInfo) throws SQLException {
+	public int joinGroup(int userID, String nickname, String introduce, int groupId) throws SQLException {
 		sql = "INSERT INTO participation (userID, groupID, name, state, introduce) values (?, ?, ?, ?, ?);";
-		
-		if(groupInfo.getId() != 0) {
+		if(groupId != 0) {
 			query = new StringBuffer();
 			query.append(sql);
 			pstmt = conn.prepareStatement(query.toString());
-			pstmt.setInt(1, 1);
-			pstmt.setInt(2, groupInfo.getId());
-			pstmt.setString(3, "지정한 이름");
+			pstmt.setInt(1, userID);
+			pstmt.setInt(2, groupId);
+			pstmt.setString(3, nickname);
 			pstmt.setInt(4, 1);
-			pstmt.setString(5, "소개");
+			pstmt.setString(5, introduce);
 			pstmt.executeUpdate();
 		}else {
 			return 0;
@@ -111,7 +112,6 @@ public class allBoardDAO {
 			groupInfo.setId(rs.getInt("id"));
 		}
 		System.out.println(groupInfo.getId());
-		System.out.println("hello");
 		if(groupInfo.getId() != 0) {
 			query = new StringBuffer();
 			query.append(sql2);
@@ -124,5 +124,25 @@ public class allBoardDAO {
 		}
 		
 		return 1;
+	}
+	public ArrayList<missionDTO> getMissionInfo(int groupID) throws SQLException {
+		ArrayList<missionDTO> missiondatas = new ArrayList<missionDTO>();
+		sql= "SELECT * from mission where groupID=?;";
+		query = new StringBuffer();
+		query.append(sql);
+		pstmt = conn.prepareStatement(query.toString());
+		pstmt.setInt(1, groupID);
+		rs = pstmt.executeQuery();
+		int count = 0;
+		while(rs.next()) {
+			missionDTO missiondata = new missionDTO();
+			
+			missiondata.setName(rs.getNString("name"));
+			
+			missiondatas.add(missiondata);
+			count++;
+			if(count==5) break;
+		}
+		return missiondatas;
 	}
 }
