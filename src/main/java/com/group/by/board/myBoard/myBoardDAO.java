@@ -214,13 +214,19 @@ public class myBoardDAO {
 			ex.setId(rs.getInt("id"));
 			ex.setName(rs.getString("name"));
 			ex.setManager(rs.getInt("manager"));
-			ex.setVisible(rs.getBoolean("visible"));
 			ex.setLink(rs.getString("link"));
 			ex.setReward(rs.getString("reward"));
 			ex.setRwCondition(rs.getString("rwCondition"));
 			ex.setIntroduce(rs.getString("introduce"));
 			ex.setNotice(rs.getString("notice"));
-			ex.setCreateYN(rs.getBoolean("createYN"));
+			if(rs.getInt("createYN") == 1)
+				ex.setCreateYN(true);
+			else
+				ex.setCreateYN(false);
+			if(rs.getInt("visible") == 1)
+				ex.setCreateYN(true);
+			else
+				ex.setCreateYN(false);
 			ex.setRegDate(rs.getDate("regDate"));
 			ex.setStartDate(rs.getDate("startDate"));
 			ex.setEndDate(rs.getDate("endDate"));
