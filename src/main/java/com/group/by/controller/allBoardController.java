@@ -97,7 +97,7 @@ public class allBoardController {
 	@RequestMapping(value="/joinGroup", method=RequestMethod.POST)
 	public ModelAndView joinGroup(groupinfoDTO groupInfo, HttpServletRequest request) throws ClassNotFoundException, SQLException, UnsupportedEncodingException {
 		
-		ModelAndView model = new ModelAndView("allBoard");
+		ModelAndView model = new ModelAndView("allBoard2");
 		myBoardDAO dao = new myBoardDAO();
 		allBoardDAO alldao = new allBoardDAO();
 		/*

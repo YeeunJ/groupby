@@ -202,7 +202,7 @@
                       <p><%= all_list.get(i).getIntroduce() %></p>
                       <div style="width:0; height:0; font-size:0px;">
                     	<div><%= all_list.get(i).getName() %></div>
-                    	<div>15</div>
+                    	<div><%= all_list.get(i).getCnt() %></div>
                     	<div><%= all_list.get(i).getStartDate() %></div>
                     	<div><%= all_list.get(i).getEndDate() %></div>
                     	<div><%= all_list.get(i).getRwCondition() %></div>
