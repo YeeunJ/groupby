@@ -1,6 +1,6 @@
 package com.group.by.dto;
 
-public class progressDTO {
+public class progressDTO implements DTO{
 	private String name;
 	private int id;
 	private int allMission;
