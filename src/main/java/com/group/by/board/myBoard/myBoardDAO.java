@@ -32,7 +32,7 @@ public class myBoardDAO {
 	       ArrayList<progressDTO> groupData = new ArrayList<progressDTO>();
 	       
 	       sql1 = "select u.id, u.name, count(*) as allMission from mission_info as mission join users as u on u.id = mission.userID where mission.group_info = ? group by u.id;";
-	       sql2 = "select u.id, u.name, count(*) as completeMission from mission_info as mission join users as u on u.id = mission.userID where mission.group_info = ? and mission.complete = 1 group by u.id ORDER BY completeMission;";
+	       sql2 = "select u.id, u.name, count(*) as completeMission from mission_info as mission join users as u on u.id = mission.userID where mission.group_info = ? and mission.complete = 1 group by u.id ORDER BY completeMISSION desc;";
 	       query1 = new StringBuffer();
 	        query2 = new StringBuffer();
 	        query1.append(sql1);
@@ -49,12 +49,10 @@ public class myBoardDAO {
 	           data.setName(rs1.getString("name"));
 	           
 	           data.setAllMission(rs1.getInt("allMission"));
-	           if(rs2.getInt("id") == rs1.getInt("id")) {
+	           
 	              data.setCompleteMission(rs2.getInt("completeMission"));
 	              rs2.next();
-	           }
-	           else
-	              data.setCompleteMission(0);
+	           
 	           groupData.add(data);
 	           System.out.println("Groupdatais " + groupData);
 	        }
