@@ -15,8 +15,11 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel='stylesheet' href='/css/index.css?d'>
+<link rel='stylesheet' href='/css/index.css?qwe'>
+<link rel="stylesheet" href="/css/createBoard.css?asd">
+<link rel="stylesheet" href="/css/allBoard.css?asdfgh">
 
 <!-- heeju -->
 <% ArrayList<groupinfoDTO> all_list = (ArrayList<groupinfoDTO>)request.getAttribute("allgroup"); %>
@@ -31,8 +34,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script type="text/javascript" src="/js/allBoard.js"></script>
 <script type="text/javascript" src="/js/createBoard.js?d"></script>
-<link rel="stylesheet" href="/css/createBoard.css?">
-<link rel="stylesheet" href="/css/allBoard.css?dd">
+
 
 <style>
   html,
@@ -114,7 +116,7 @@
         <br>
 
         <!-- Interests -->
-        <div class="w3-card w3-round w3-white w3-hide-small">
+        <%-- <div class="w3-card w3-round w3-white w3-hide-small">
           <div class="w3-container">
             <p>Interests</p>
             <p>
@@ -131,7 +133,7 @@
               <span class="w3-tag w3-small w3-theme-l5">Photos</span>
             </p>
           </div>
-        </div>
+        </div> --%>
         <!-- End Left Column -->
       </div>
 
@@ -140,11 +142,11 @@
         <div class="w3-row-padding">
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
-              <div id="myBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px;"><br>
+              <div id="myBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px; overflow: auto;"><br>
                 <div style="text-align: right; margin-bottom: 30px;">
-                  <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53;">MY BOARDS</h2>
+                  <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">MY BOARDS</h2>
                 </div><br>
-                <hr class="w3-clear">
+                <hr class="w3-clear" style="margin: 5px 0 0 0;">
                 <form id="mySearch" class="form-inline search" method="get">
                   <input type="text" class="Tsearch" name="Tsearch" value="" placeholder="제목, 내용으로 검색하세요..">
                   <button type="button" name="button" class="sButton"><i class="fa fa-search fa-fw "></i></button>
@@ -154,7 +156,7 @@
                     <option value="etc">뭐가</option>
                     <option value="etc2">있을까</option>
                   </select>
-                  <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" style="float: right; color: #fff; background: #3a4b53; border: none; border-radius: 4px;">new</button></a>
+                  <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" style="float: right; color: #fff; background: #3a4b53; border: none; border-radius: 4px; float:right; height: 34px;">new</button></a>
                 </form>
                 <%
                 if(list != null){
@@ -162,7 +164,7 @@
                 		%>
                 <div class="check" onclick="location.href='./myBoard/<%= list.get(i).getId()%>'">
                   <div class="contentLeft2">
-                    <h4 style="font-weight: 700;"> <%= list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
+                    <h4 style="font-size: 22px; font-weight: 700; font-family: 'Do Hyeon', sans-serif;"> <%= list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                     <div id="progressbar_tot">
 
                       <div style="width: <%= list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() *100 %>%;">
@@ -184,11 +186,11 @@
                 }
                 %>
               </div>
-                <div id="allBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px;"><br>
+                <div id="allBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px; overflow: auto;"><br>
                   <div style="text-align: right; margin-bottom: 30px;">
-                    <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53;">ALL BOARDS</h2>
+                    <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">ALL BOARDS</h2>
                   </div><br>
-                  <hr class="w3-clear">
+                  <hr class="w3-clear" style="margin: 5px 0 0 0;">
                   <form id="mySearch" class="form-inline search" method="get">
                     <input type="text" class="Tsearch" name="Tsearch" value="" placeholder="제목, 내용으로 검색하세요..">
                     <button type="button" name="button" class="sButton"><i class="fa fa-search fa-fw "></i></button>
@@ -206,12 +208,12 @@
                   <a class="a-no-style" href="#group_join" rel="modal:open">
                     <div class="check" onclick="changeSpecific(this)">
                       <div class="contentLeft2">
-                        <h4 style="font-weight: 700;"><%= all_list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
+                        <h4 style="font-weight: 700; font-size: 22px; font-family: 'Do Hyeon', sans-serif;"><%= all_list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
                       </div>
                       <div class="contentRight">
                         <%= all_list.get(i).getRegDate() %>
                       </div>
-                      <p><%= all_list.get(i).getIntroduce() %></p>
+                      <p style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><%= all_list.get(i).getIntroduce() %></p>
                       <div style="width:0; height:0; font-size:0px;">
                     	<div><%= all_list.get(i).getName() %></div>
                     	<div><%= all_list.get(i).getCnt() %></div>
@@ -278,11 +280,11 @@
         document.getElementById("myBoard").style.display = "none";
         document.getElementById("allBoard").style.display = "block";
       }
-      
+
       function changeSpecific(obj){
     	  var title= obj.children[3].children[0].innerHTML;
     	  var num= obj.children[3].children[1].innerHTML;
-    	  var start=obj.children[3].children[2].innerHTML;	 
+    	  var start=obj.children[3].children[2].innerHTML;
     	  var end =obj.children[3].children[3].innerHTML;
     	  var rwc = obj.children[3].children[4].innerHTML;
     	  var rw = obj.children[3].children[5].innerHTML;
