@@ -1,10 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType = "text/html;charset=utf-8" %>
+<% request.setCharacterEncoding("utf-8");%>
 <%@ page import="com.group.by.board.myBoard.*" %>
 <%@ page import="com.group.by.dto.missionDTO" %>
 <%@ page import="com.group.by.dto.groupinfoDTO" %>
 <%@ page import="java.io.*"%>
 <%@ page import="java.util.*"%>
-
 
 <!DOCTYPE html>
 <html>
@@ -287,7 +288,7 @@
 					<!-- Group Info Edit -->
 					<div id="GroupEdit" class="w3-row-padding" style="padding:0">
 
-						<form class="" action="/updateGroup/<%= (int)request.getAttribute("groupid") %>" method="post">
+						<form class="" action="/updateGroup/<%= (int)request.getAttribute("groupid") %>" method="post" accept-charset="utf-8">
 							<div style="margin: 15px 0;">
 								<input type="text" class="title" name="title" value="<%= info.getName() %>" style>
 							</div>

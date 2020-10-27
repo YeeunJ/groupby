@@ -25,7 +25,7 @@ import com.group.by.board.myBoard.*;
 @RestController
 public class myBoardController {
 	myBoardDAO dao = new myBoardDAO();
-	
+
 	
 	@RequestMapping("/myBoard/{id}")
 	public ModelAndView my(@PathVariable("id") int id) throws SQLException {        
@@ -63,7 +63,7 @@ public class myBoardController {
 	
 	@RequestMapping("/missionTrue")
 	public void missionTrue(HttpServletRequest request) throws UnsupportedEncodingException { 
-		
+		request.setCharacterEncoding("UTF-8");
 		myBoardDAO dao = new myBoardDAO();
 		int userID = Integer.parseInt(request.getParameter("userID"));
 		int missionID = Integer.parseInt(request.getParameter("missionID"));
@@ -80,7 +80,7 @@ public class myBoardController {
 	
 	@RequestMapping("/missionFalse")
 	public void missionFalse(HttpServletRequest request) throws UnsupportedEncodingException { 
-		
+		request.setCharacterEncoding("UTF-8");
 		myBoardDAO dao = new myBoardDAO();
 		int userID = Integer.parseInt(request.getParameter("userID"));
 		int missionID = Integer.parseInt(request.getParameter("missionID"));
@@ -94,12 +94,13 @@ public class myBoardController {
 	}
 	
 	
-	@RequestMapping("/mymissionAdd/{id}")
+	@RequestMapping(value= "/mymissionAdd/{id}", produces = "application/text; charset=utf8")
+
 	public ModelAndView myupload(@PathVariable("id") int id, HttpServletRequest request) throws UnsupportedEncodingException {        
 		ModelAndView model = new ModelAndView("myBoard");
 		myBoardDAO dao = new myBoardDAO();
 		
-		request.setCharacterEncoding("UTF-8");
+		//request.setCharacterEncoding("UTF-8");
 	    String [] name = request.getParameterValues("title");
 	    String [] content = request.getParameterValues("description");
 
@@ -119,8 +120,10 @@ public class myBoardController {
 	
 	
 	@RequestMapping("/missionEdit/{id}")
-	public ModelAndView missionEdit(@PathVariable("id") int id, HttpServletRequest request) {  
+	public ModelAndView missionEdit(@PathVariable("id") int id, HttpServletRequest request) throws UnsupportedEncodingException {  
 		myBoardDAO dao = new myBoardDAO();
+		
+		request.setCharacterEncoding("UTF-8");
 		
 		String [] missionID = request.getParameterValues("missionID");
 	    String [] title = request.getParameterValues("title");
@@ -138,7 +141,12 @@ public class myBoardController {
 	public ModelAndView updateGroup(@PathVariable("id") int id, HttpServletRequest req) {
 
 		myBoardDAO dao = new myBoardDAO();
-		
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String title = req.getParameter("title");
 		String startdate = req.getParameter("startdate");
 		String enddate = req.getParameter("enddate");
