@@ -44,7 +44,7 @@ public class usersDAO {
 	    pstmt.setInt(1, id);
 	    pstmt.executeUpdate();
 	}
-	public void getUserInfo(usersDTO updateData) throws ClassNotFoundException, SQLException {
+	public void setUserInfo(usersDTO updateData) throws ClassNotFoundException, SQLException {
 		sql = "UPDATE users SET email = ?, name = ?, age = ?, introduce = ?, modifyDate = now() WHERE id = ?;";
 	    query = new StringBuffer();
 	    query.append(sql);

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 //import org.springframework.security.core.Authentication;
@@ -17,11 +18,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.group.by.board.boardDAO;
 import com.group.by.board.allBoard.allBoardDAO;
 import com.group.by.board.myBoard.myBoardDAO;
+import com.group.by.config.auth.CustomOAuth2UserService;
 import com.group.by.dto.groupDTO;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.missionDTO;
@@ -37,51 +40,60 @@ public class allBoardController {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
+	
 	@RequestMapping("/")
 	public ModelAndView home(@ModelAttribute groupDTO groupDTO,
-            HttpServletRequest request) throws ClassNotFoundException, SQLException {
+            HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
+		CustomOAuth2UserService.makeSession(request.getSession());
 		int userID = 1;
 		int groupID = 2;
-		String email = "21800412@handong.edu";
 		int cnt = 1;
 		ArrayList<progressDTO> progressInfo;
 		ModelAndView model = new ModelAndView("dashboard");
 		boardDAO bd = new boardDAO();
 		progressInfo = bd.getmyBoardInfo(userID);
-		
-		//전체 그룹 정보 가져오기
 		allBoardDAO ad = new allBoardDAO();
 		ArrayList<groupinfoDTO> allGroupInfo = ad.getGroupInfo(cnt);
 		model.addObject("allgroup", allGroupInfo);
 		
-		//미션 정보 가져오기
-		/*
-		 * 이거 parameter -> groupID에 맞게
-		 */
 		ArrayList<missionDTO> missionInfo = ad.getMissionInfo(groupID);
 		model.addObject("mission", missionInfo);
-		
-		//유저 정보 가져오기
-		/*
-		 * paremeter -> email에 맞게
-		 */
-		usersDAO ud = new usersDAO();
-		usersDTO userInfo = ud.getUserInfo(email);
-		model.addObject("user", userInfo);
 		
 		for(progressDTO pd: progressInfo) {
 			System.out.println(pd.toString());
 		}
 		model.addObject("progress", progressInfo);
-		
+		usersDTO user = (usersDTO) session.getAttribute("user");
+		if(user != null) {
+			System.out.println("okok session!!--------------------------------------");
+			System.out.println(user.toString());
+			model.addObject("user", user);
+		}else {
+			user = new usersDTO();
+			user.setEmail("hello");
+			model.addObject("user", user);
+		}
 		return model;
 	}
-	
+	@RequestMapping(value="/login/oauth2/code/google")
+	public ModelAndView loginRedirection (HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
+		return new ModelAndView("redirect:/");
+	}
+	@RequestMapping(value="/w3images/forest.jpg")
+	public ModelAndView loginRedirection2 (HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
+		return new ModelAndView("redirect:/");
+	}
+	@RequestMapping(value="/logoutDetail", method=RequestMethod.POST)
+	public ModelAndView logoutDetail (HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
+		session.removeAttribute("user");
+		return new ModelAndView("redirect:/");
+	}
 	@RequestMapping(value="/createGroup", method=RequestMethod.POST)
 	public ModelAndView createGroup(groupinfoDTO groupInfo, HttpServletRequest request) throws ClassNotFoundException, SQLException, UnsupportedEncodingException {
 		int userID = 1;
 		groupInfo.setManager(userID);
 		System.out.println(groupInfo.toString());
+		System.out.println("hello");
 		
 		
 		ModelAndView model = new ModelAndView("myBoard");
