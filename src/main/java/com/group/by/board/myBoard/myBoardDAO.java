@@ -10,17 +10,58 @@ import java.sql.SQLException;
 import com.group.by.dbconnection.connection;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.missionDTO;
+import com.group.by.dto.progressDTO;
 
 
 public class myBoardDAO {
 	Connection conn = connection.getInstance().getConnection();
 	protected PreparedStatement pstmt;
+	protected PreparedStatement pstmt1;
+	protected PreparedStatement pstmt2;
 	protected ResultSet rs;
+	protected ResultSet rs1;
+	protected ResultSet rs2;
 	protected String sql;
+	protected String sql1;
+	protected String sql2;
 	private StringBuffer query;
+	private StringBuffer query1;
+	private StringBuffer query2;
 	protected Boolean result = false;
 	
-	
+	public ArrayList<progressDTO> getRightsideInfo(int groupID) throws ClassNotFoundException, SQLException{
+	    ArrayList<progressDTO> groupData = new ArrayList<progressDTO>();
+	    
+	    sql1 = "select u.id, u.name, count(*) as allMission from mission_info as mission join users as u on u.id = mission.userID where mission.group_info = ? group by u.id;";
+	    sql2 = "select u.id, u.name, count(*) as completeMission from mission_info as mission join users as u on u.id = mission.userID where mission.group_info = ? and mission.complete = 1 group by u.id;";
+	    query1 = new StringBuffer();
+	     query2 = new StringBuffer();
+	     query1.append(sql1);
+	     query2.append(sql2);
+	     pstmt1 = conn.prepareStatement(query1.toString());
+	     pstmt2 = conn.prepareStatement(query2.toString());
+	     pstmt1.setInt(1, groupID);
+	     pstmt2.setInt(1, groupID);
+	     rs1 = pstmt1.executeQuery();
+	     rs2 = pstmt2.executeQuery();
+	     rs2.next();
+	     while(rs1.next()) {   
+	        progressDTO data = new progressDTO();
+	        data.setName(rs1.getString("name"));
+	        
+	        data.setAllMission(rs1.getInt("allMission"));
+	        if(rs2.getInt("id") == rs1.getInt("id")) {
+	           data.setCompleteMission(rs2.getInt("completeMission"));
+	           rs2.next();
+	        }
+	        else
+	           data.setCompleteMission(0);
+	        groupData.add(data);
+	        System.out.println("Groupdatais " + groupData);
+	     }
+	     
+	    return groupData;
+	 }
 	public void missonTrue(int userID, int missionID) throws SQLException {
 		
 		sql=("UPDATE mission_info SET check=1 WHERE userID=? AND missionID=?");
@@ -313,6 +354,9 @@ public class myBoardDAO {
 		
 		
 	}
+	
+	
 }
 	
+
 	

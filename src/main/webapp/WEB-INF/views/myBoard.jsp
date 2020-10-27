@@ -2,6 +2,7 @@
 <%@ page import="com.group.by.board.myBoard.*" %>
 <%@ page import="com.group.by.dto.missionDTO" %>
 <%@ page import="com.group.by.dto.groupinfoDTO" %>
+<%@ page import="com.group.by.dto.progressDTO" %>
 <%@ page import="java.io.*"%>
 <%@ page import="java.util.*"%>
 
@@ -9,7 +10,7 @@
 <jsp:useBean id="dao" class="com.group.by.board.myBoard.myBoardDAO" scope="page"></jsp:useBean>
 <jsp:useBean id="dto" class="com.group.by.dto.missionDTO" scope="page"></jsp:useBean>
 <jsp:useBean id="dto_group" class="com.group.by.dto.groupinfoDTO" scope="page"></jsp:useBean>
-
+<jsp:useBean id="progress" class="com.group.by.dto.progressDTO" scope="page"></jsp:useBean>
 
 <!DOCTYPE html>
 <html>
@@ -418,85 +419,29 @@
 			<div id="AllGroup" class="w3-container">
 				<p style="font-size: 25px; font-weight: bold; color: #3a4b53; margin: 0 0 10px 0; display: inline-block; margin-bottom: 15px;">전체 진행률</p>
 				<span class="member_setting"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer; float: right; margin-top: 8px;"></i></span>
-
-				<div class="eachcontent">
-					<div style="float:left; width:7%;">
-						<span>1</span>
-					</div>
-					<div style="float:left; width: 93%;">
-						<span style="float:right">45/100</span>
-						<span>강다니엘</span><br>
-						<div id="progressbar_tot">
-						  <div style="width: 93%;"><p class="prog_text_tot" >93%</p></div>
-						</div>
-					</div>
-				</div>
-				<hr>
-				<div class="eachcontent">
-					<div style="float:left; width:7%;">
-						<span>2</span>
-					</div>
-					<div style="float:left; width: 93%;">
-						<span style="float:right">45/100</span>
-						<span>박지훈</span><br>
-						<div id="progressbar_tot">
-						  <div style="width: 87%;"><p class="prog_text_tot" >87%</p></div>
-						</div>
-					</div>
-				</div>
-				<hr>
-				<div class="eachcontent">
-					<div style="float:left; width:7%;">
-						<span>3</span>
-					</div>
-					<div style="float:left; width: 93%;">
-						<span style="float:right">45/100</span>
-						<span>이대휘</span><br>
-						<div id="progressbar_tot">
-						  <div style="width: 73%;"><p class="prog_text_tot" >73%</p></div>
-						</div>
-					</div>
-				</div>
-				<hr>
-				<div class="eachcontent">
-					<div style="float:left; width:7%;">
-						<span>4</span>
-					</div>
-					<div style="float:left; width: 93%;">
-						<span style="float:right">90/100</span>
-						<span>배진영</span><br>
-						<div id="progressbar_tot">
-						  <div style="width: 67%;"><p class="prog_text_tot" >67%</p></div>
-						</div>
-					</div>
-				</div>
-				<hr>
-					<div class="eachcontent">
-						<div style="float:left; width:7%;">
-							<span>5</span>
-						</div>
-						<div style="float:left; width: 93%;">
-							<span style="float:right">90/100</span>
-							<span>황민현</span><br>
-							<div id="progressbar_tot">
-							  <div style="width: 63%;"><p class="prog_text_tot" >63%</p></div>
-							</div>
-						</div>
-					</div>
-				<hr>
-
-					<div class="eachcontent">
-						<div style="float:left; width:7%;">
-							<span>6</span>
-						</div>
-						<div style="float:left; width: 93%;">
-							<span style="float:right">90/100</span>
-							<span>옹성우</span><br>
-							<div id="progressbar_tot">
-							  <div style="width: 43%;"><p class="prog_text_tot" >43%</p></div>
-							</div>
-						</div>
-					</div>
+				<% ArrayList<progressDTO> _list = dao.getRightsideInfo(2); %>
+				<%
+            		if(list != null){
+                    for(int i=0; i<_list.size(); i++){
+                %>
+                     <div class="eachcontent">
+                     <div style="float:left; width:7%;">
+                        <span><%= i+1 %></span>
+                     </div>
+                     <div style="float:left; width: 93%;">
+                        <span style="float:right"><%= _list.get(i).getCompleteMission() %>/<%= _list.get(i).getAllMission() %></span>
+                        <span><%= _list.get(i).getName() %></span><br>
+                        <div id="progressbar_tot">
+                             <div style="width: <%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%;"><p class="prog_text_tot" ><%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%</p></div>
+                        </div>
+                     </div>
+                  </div>
+                  <hr>
+                      <%
+                   }
+                }
+            %>
+				
 			</div>
 
 			<!-- 참가자 관리 -->
@@ -516,71 +461,27 @@
 					</div>
 				</div>
 				<hr>
-				<div class="eachcontent">
-					<div style="float:left; width:7%;">
-						<span>2</span>
-					</div>
-					<div style="float:left; width: 93%;">
-						<!-- <span style="float:right">45/100</span> -->
-						<span>박지훈</span><span class="exitbtn" >강퇴</span><br>
-						<div id="progressbar_tot">
-						  <div style="width: 87%;"><p class="prog_text_tot" >87%</p></div>
-						</div>
-					</div>
-				</div>
-				<hr>
-				<div class="eachcontent">
-					<div style="float:left; width:7%;">
-						<span>3</span>
-					</div>
-					<div style="float:left; width: 93%;">
-						<!-- <span style="float:right">45/100</span> -->
-						<span>이대휘</span><span class="exitbtn" >강퇴</span><br>
-						<div id="progressbar_tot">
-						  <div style="width: 73%;"><p class="prog_text_tot" >73%</p></div>
-						</div>
-					</div>
-				</div>
-				<hr>
-				<div class="eachcontent">
-					<div style="float:left; width:7%;">
-						<span>4</span>
-					</div>
-					<div style="float:left; width: 93%;">
-						<!-- <span style="float:right">90/100</span> -->
-						<span>배진영</span><span class="exitbtn" >강퇴</span><br>
-						<div id="progressbar_tot">
-						  <div style="width: 67%;"><p class="prog_text_tot" >67%</p></div>
-						</div>
-					</div>
-				</div>
-				<hr>
-					<div class="eachcontent">
-						<div style="float:left; width:7%;">
-							<span>5</span>
-						</div>
-						<div style="float:left; width: 93%;">
-							<!-- <span style="float:right">90/100</span> -->
-							<span>황민현</span><span class="exitbtn" >강퇴</span><br>
-							<div id="progressbar_tot">
-							  <div style="width: 63%;"><p class="prog_text_tot" >63%</p></div>
-							</div>
-						</div>
-					</div>
-				<hr>
-
-					<div class="eachcontent">
-						<div style="float:left; width:7%;">
-							<span>6</span>
-						</div>
-						<div style="float:left; width: 93%;">
-							<!-- <span style="float:right">90/100</span> -->
-							<span>옹성우</span><span class="exitbtn" >강퇴</span><br>
-							<div id="progressbar_tot">
-							  <div style="width: 43%;"><p class="prog_text_tot" >43%</p></div>
-							</div>
-						</div>
-					</div>
+				<%
+            		if(list != null){
+                    for(int i=0; i<_list.size(); i++){
+                %>
+                     <div class="eachcontent">
+                     <div style="float:left; width:7%;">
+                        <span><%= i+1 %></span>
+                     </div>
+                     <div style="float:left; width: 93%;">
+                        <span style="float:right"><%= _list.get(i).getCompleteMission() %>/<%= _list.get(i).getAllMission() %></span>
+                        <span><%= _list.get(i).getName() %></span><br>
+                        <div id="progressbar_tot">
+                             <div style="width: <%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%;"><p class="prog_text_tot" ><%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%</p></div>
+                        </div>
+                     </div>
+                  </div>
+                  <hr>
+                      <%
+                   }
+                }
+            %>
 			</div>
 		</div>
 		<br>
