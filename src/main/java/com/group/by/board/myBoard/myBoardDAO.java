@@ -22,13 +22,14 @@ public class myBoardDAO {
 	
 	public void missionDelete(int missionID) throws SQLException {
 		
-		sql=("UPDATE mission SET isDelete=? WHERE missionID=?");
+//		System.out.println("DeleteController");
+		sql=("UPDATE mission SET isDelete=? WHERE id=?");
 		query = new StringBuffer();
 		query.append(sql);
 		pstmt = conn.prepareStatement(query.toString());
 		pstmt.setInt(1, 1);
 		pstmt.setInt(2, missionID);
-		
+		pstmt.executeUpdate();
 	}
 	
 	
@@ -199,14 +200,13 @@ public class myBoardDAO {
 	}
 	
 	
-	public groupinfoDTO GroupInfo(groupinfoDTO dto) throws SQLException {
+	public groupinfoDTO GroupInfo(int id) throws SQLException {
 		groupinfoDTO ex = new groupinfoDTO();
-		int gid = 2;
 		sql = (" SELECT * FROM group_info WHERE id=?;");
 		query = new StringBuffer();
 		query.append(sql);
 		pstmt = conn.prepareStatement(query.toString());
-		pstmt.setInt(1, gid);
+		pstmt.setInt(1, id);
 		rs = pstmt.executeQuery();
 		
 		
@@ -232,7 +232,7 @@ public class myBoardDAO {
 	}
 	
 	
-	public ArrayList<Integer> missionList() throws SQLException {
+	public ArrayList<Integer> completeYN() throws SQLException {
 		
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		
@@ -254,8 +254,7 @@ public class myBoardDAO {
 				
 				int num = rs.getInt("missionID");
 				list.add(num);
-				System.out.print(num+" /// ");
-			
+
 		    	
 			}while(rs.next());
 			
@@ -265,12 +264,12 @@ public class myBoardDAO {
 	}
 	
 	
-	public ArrayList<String> MissionComplete(groupinfoDTO dto) throws SQLException {
+	public ArrayList<String> MissionComplete(int gid) throws SQLException {
 
 		ArrayList<String> Comp = null;
 		
 //		int gid = dto.getId();
-		int gid = 2;
+
 		
 		sql = (" SELECT * FROM mission where groupID = ?");
 		query = new StringBuffer();
@@ -301,9 +300,7 @@ public class myBoardDAO {
 				
 				if(rs2.next()) {
 					do {
-						result += rs2.getString("name") + " ";
-						System.out.print("Complete: "+result);
-						
+						result += rs2.getString("name") + " ";						
 					}while(rs2.next());
 				}
 				Comp.add(result);
@@ -315,16 +312,15 @@ public class myBoardDAO {
 
 		return Comp;
 	}
-	
+
+
+
 	// 미션 리스트 가져오기, 미션 수행한 사람 불러오기
-	public ArrayList<missionDTO> MissionList(groupinfoDTO dto) throws SQLException {
+	public ArrayList<missionDTO> MissionList(int gid) throws SQLException {
 		
 		
-		ArrayList<missionDTO> list = null;
-		ArrayList<String> Comp = null;
-		
-//		int gid = dto.getId();
-		int gid = 2;
+		ArrayList<missionDTO> list = new ArrayList<missionDTO>();
+
 		
 		sql = (" SELECT * FROM mission where groupID = ? AND isDelete=?");
 		query = new StringBuffer();
@@ -334,12 +330,11 @@ public class myBoardDAO {
 		pstmt.setInt(2, 0);
 		rs = pstmt.executeQuery();
 		
+		
+		
 		if(rs.next()) {
-			
 			list = new ArrayList<missionDTO>();
-			Comp = new ArrayList<String>();
 			
-
 			do {
 				missionDTO Mdto = new missionDTO();
 				
@@ -356,13 +351,13 @@ public class myBoardDAO {
 		    	
 			}while(rs.next());
 			
-	    }
-		
-		
+	    } 
 		return list;
 		
 		
 	}
+
+
 }
 	
 	
