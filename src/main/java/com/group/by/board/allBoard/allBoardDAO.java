@@ -133,13 +133,15 @@ public class allBoardDAO {
 		pstmt = conn.prepareStatement(query.toString());
 		pstmt.setInt(1, groupID);
 		rs = pstmt.executeQuery();
+		int count = 0;
 		while(rs.next()) {
 			missionDTO missiondata = new missionDTO();
 			
 			missiondata.setName(rs.getNString("name"));
 			
 			missiondatas.add(missiondata);
-			
+			count++;
+			if(count==5) break;
 		}
 		return missiondatas;
 	}

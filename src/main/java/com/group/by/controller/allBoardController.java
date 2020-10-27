@@ -24,6 +24,7 @@ import com.group.by.board.allBoard.allBoardDAO;
 import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.dto.groupDTO;
 import com.group.by.dto.groupinfoDTO;
+import com.group.by.dto.missionDTO;
 import com.group.by.dto.progressDTO;
 import com.group.by.board.allBoard.*;
 
@@ -38,6 +39,7 @@ public class allBoardController {
 	public ModelAndView home(@ModelAttribute groupDTO groupDTO,
             HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		int userID = 1;
+		int groupID = 2;
 		int cnt = 1;
 		ArrayList<progressDTO> progressInfo;
 		ModelAndView model = new ModelAndView("dashboard");
@@ -47,6 +49,10 @@ public class allBoardController {
 		allBoardDAO ad = new allBoardDAO();
 		ArrayList<groupinfoDTO> allGroupInfo = ad.getGroupInfo(cnt);
 		model.addObject("allgroup", allGroupInfo);
+		
+		ArrayList<missionDTO> missionInfo = ad.getMissionInfo(groupID);
+		//이거 parameter -> groupID에 맞게
+		model.addObject("mission", missionInfo);
 		
 		for(progressDTO pd: progressInfo) {
 			System.out.println(pd.toString());
@@ -97,7 +103,6 @@ public class allBoardController {
 	public ModelAndView joinGroup(groupinfoDTO groupInfo, HttpServletRequest request) throws ClassNotFoundException, SQLException, UnsupportedEncodingException {
 		
 		int userID = 1;
-		System.out.println("hellohello~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		String name = request.getParameterValues("name")[0];
 		String introduce = request.getParameterValues("introduce")[0];
 		int groupId = Integer.parseInt(request.getParameterValues("group_id")[0]);
@@ -106,7 +111,6 @@ public class allBoardController {
 		allBoardDAO alldao = new allBoardDAO();
 		
 		int result = alldao.joinGroup(userID, name, introduce, groupId);
-		System.out.println("---------------->" + result);
 		return new ModelAndView("redirect:/");
 	}
 }

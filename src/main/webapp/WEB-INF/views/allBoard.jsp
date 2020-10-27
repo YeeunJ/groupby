@@ -11,16 +11,26 @@
         - 보증금 환불<br> - 30일간 90문제
       </div>-->
     </div>
+    <% ArrayList<missionDTO> mission_list = (ArrayList<missionDTO>)request.getAttribute("mission"); %>
     <p class="explan" id="all_explan">"열심히 알고리즘을 풀어봅시다. ㅎㅎ랄라랄ㄹ라"</p>
     <div class="total_info top">
       <div class="total_info_box all_left">
         <h3 class="all">공통 미션 예시</h3>
         <div style="text-align:center; font-size: 14px;">(현재 총 20개)</div>
         <div class="content">
+        <% 
+       		if(mission_list != null){
+       			for(int i=0; i<mission_list.size(); i++){
+        %>
           <div class="check_all">
             <image class="image_check" src="./images/check.png">
-            <div class="content_check">array 관련 20~30번 문제 풀기</div>
+            <div class="content_check"><%= mission_list.get(i).getName() %></div>
           </div>
+        <%
+       			}
+       		}
+        %>
+        <!--
           <div class="check_all">
             <image class="image_check" src="./images/check.png">
             <div class="content_check">DP 관련 20~30번 문제 풀기</div>
@@ -29,6 +39,7 @@
             <image class="image_check" src="./images/check.png">
             <div class="content_check">피어 리뷰 5개</div>
           </div>
+         -->
         </div>
       </div>
       <div class="total_info_box all_right">

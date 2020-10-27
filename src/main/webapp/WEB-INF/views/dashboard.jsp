@@ -2,6 +2,7 @@
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "com.group.by.dto.progressDTO" %>
 <%@ page import = "com.group.by.dto.groupinfoDTO" %>
+<%@ page import = "com.group.by.dto.missionDTO" %>
 <!DOCTYPE html>
 <html>
 <title>TOGETHER</title>
@@ -185,8 +186,6 @@
                     </select>
                   </form>
                    <%
-                  	System.out.println("hello?");
-                  	System.out.println(all_list);
                 	if(all_list != null){
                 	for(int i=0; i<all_list.size(); i++){
                 		%>
