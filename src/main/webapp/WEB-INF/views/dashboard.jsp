@@ -57,14 +57,6 @@
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
       <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
       <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>TOGETHER</a>
-      <div class="w3-dropdown-hover w3-hide-small">
-        <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
-        <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-          <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-          <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-          <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
-        </div>
-      </div>
       <%if(request.getAttribute("user") == null){ %>
       <a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
       <%}else{ %>
@@ -95,8 +87,8 @@
             <hr>
             <span id="UserInfobtn" class="btn" style="background:rgba(54, 92, 244, 0.6); float:right; margin-bottom: 15px; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">수정</span>
             <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><%= user.getName() %></p>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%= user.getEmail() %> / <%= user.getAge() %></p>
-            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <%= user.getIntroduce() %></p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%= user.getEmail() %> <%if(user.getAge() != 0){%>/ <%= user.getAge() %><%} %></p>
+            <p><i class="fa fa-commenting-o fa-fw w3-margin-right w3-text-theme"></i> <%if(user.getIntroduce()!= null){%><%=user.getIntroduce()%> <%}else{%>자기소개 해주세요~:) <%}%></p>
           </div>
           <div class="w3-container" id="UserEdit" style="display:none;">
             <h4 class="w3-center">My Profile</h4>
@@ -104,7 +96,7 @@
             <hr>
             <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%= user.getName() %>"/></p>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><span><input style="height: 25px;" value="<%= user.getEmail() %>"/></span></p>
-            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%= user.getIntroduce() %>"/></p>
+            <p><i class="fa fa-commenting-o fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%if(user.getIntroduce()!= null){%><%=user.getIntroduce()%> <%}else{%>자기소개 해주세요~:) <%}%>"/></p>
             <!--<button type="submit" name="button" class="btn" id="EditUserInfo" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 5px 0 0; border:none; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">완료</button>-->
             <span id="EditUserInfo" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 0px 5px 20px 0; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">완료</span>
             <span id="UserCancelbtn" class="btn" style="background:#ccc; float:right; margin: 0px 5px 20px 0; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">취소</span>
@@ -205,9 +197,9 @@
                     <button type="button" name="button" class="sButton"><i class="fa fa-search fa-fw "></i></button>
                     <select class="category" name="category" class="form-control">
                       <option value="allCategory">all category</option>
-                      <option value="study">study</option>
-                      <option value="etc">뭐가</option>
-                      <option value="etc2">있을까</option>
+                      <option value="study">학술</option>
+                      <option value="hobby">취미</option>
+                      <option value="etc">etc</option>
                     </select>
                   </form>
                    <%
@@ -244,8 +236,9 @@
             </div>
           </div>
         </div>
+        
           <!-- Right Column -->
-          <div class="w3-col m2">
+         <!--  <div class="w3-col m2">
             <div class="w3-card w3-round w3-white w3-center">
               <div class="w3-container">
                 <p>여기에 달력 넣을 예정!!:</p>
@@ -256,7 +249,7 @@
               </div>
             </div>
             <br>
-          </div>
+          </div>-->
             <!-- End Right Column -->
 
           <!-- End Grid -->
