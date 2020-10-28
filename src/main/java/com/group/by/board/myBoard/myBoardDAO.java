@@ -60,7 +60,28 @@ public class myBoardDAO {
 	        
 	       return groupData;
 	    }
-
+	   
+	   public void waitAssign(int userID, int groupID) throws SQLException {
+		   sql=("UPDATE participation SET state=1 WHERE userID=? AND groupID=?");
+		   query = new StringBuffer();
+			query.append(sql);
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setInt(1, userID);
+			pstmt.setInt(2, groupID);
+			pstmt.executeUpdate();
+	   }
+	   
+	   
+	   public void waitReject(int userID, int groupID) throws SQLException {
+		   sql=("UPDATE participation SET state=-1 WHERE userID=? AND groupID=?");
+		   query = new StringBuffer();
+			query.append(sql);
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setInt(1, userID);
+			pstmt.setInt(2, groupID);
+			pstmt.executeUpdate();
+	   }
+	   
 	
 	public ArrayList<participationDTO> waitStudent(int gid) throws SQLException {
 		ArrayList<participationDTO> list = new ArrayList<participationDTO>();

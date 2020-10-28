@@ -4,6 +4,7 @@
 <%@ page import="com.group.by.board.myBoard.*" %>
 <%@ page import="com.group.by.dto.missionDTO" %>
 <%@ page import="com.group.by.dto.groupinfoDTO" %>
+<%@ page import="com.group.by.dto.progressDTO" %>
 <%@ page import="com.group.by.dto.participationDTO" %>
 <%@ page import="java.io.*"%>
 <%@ page import="java.util.*"%>
@@ -42,6 +43,50 @@
 	<!-- seunga script -->
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			$("#waitAssign").click(function() {
+				console.log($(this).attr("value"));
+				console.log($(this).parent( 'div' ).attr("value"));
+
+				if (confirm("대기 신청을 수락하시겠습니까?") == true){
+					$.ajax({
+						type: "POST",
+						url: "/waitAssign",
+						data: {"userID":$(this).attr("value"), "groupID": $(this).parent( 'div' ).attr("value")},
+						success: function() {
+							alert('대기 신청이 수락되었습니다.');
+						}, error: function() {
+							alert('취소했습니다.');
+						}
+					});
+					$(this).parent('div').remove();
+ 				}else{   //취소
+     			return false;
+ 				}
+			});
+			
+			$("#waitReject").click(function() {
+				console.log("in Reject: "+ $(this).attr("value"));
+				console.log($(this).parent( 'div' ).attr("value"));
+				console.log($(this).parent( 'div' ).attr("value"));
+
+				if (confirm("대기 신청을 거절하시겠습니까?") == true){
+					$.ajax({
+						type: "POST",
+						url: "/waitReject",
+						data: {"userID":$(this).attr("value"), "groupID": $(this).parent( 'div' ).attr("value")},
+						success: function() {
+							alert('대기 신청을 거절했습니다.');
+						}, error: function() {
+							alert('취소했습니다.');
+						}
+					});
+					$(this).parent('div').remove();
+ 				}else{   //취소
+     			return false;
+ 				}
+			});
+			
 
 			$(".deleteMission").click(function() {
 
@@ -56,7 +101,7 @@
 							alert('미션 삭제에 실패했습니다.');
 						}
 					});
-					$(this).parent('div.checkEditlist').remove();
+					$(this).parent('div').remove();
  				}else{   //취소
      			return false;
  				}
@@ -190,9 +235,13 @@
 			// System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
 
 	%>
-		<p class="w3-bar-item"><%= plist.get(i).getName() %></p>
-		<button name="button" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 0; border:none">수락</button>
-		<button name="button" class="exitbtn" style="float:right; margin: 15px 0; border:none">거절</button>
+		<div class="w3-bar-item" value="<%= plist.get(i).getGroupID() %>" style="border-bottom: 1px solid #bdbdbd;">
+			<p style="display: inline-block; margin: 8px;"><%= plist.get(i).getName() %></p>
+			<button id="waitAssign" value="<%= plist.get(i).getUserID() %>" name="button" class="btn" style="padding: 3px 6px; background:rgba(76, 175, 80, 0.6); float:right; margin: 8px 0; border:none">수락</button>
+			<button id="waitReject" value="<%= plist.get(i).getUserID() %>" name="button" class="exitbtn" style="float:right; margin: 8px 5px 15px 0; border:none">거절</button>
+		</div>
+	
+		
 	<% 
 			}
 		}
@@ -246,9 +295,9 @@
       <br>
 
       <!-- Group Info -->
-			<%
-				groupinfoDTO info = (groupinfoDTO)request.getAttribute("groupinfo");
-			%>
+		<%
+			groupinfoDTO info = (groupinfoDTO)request.getAttribute("groupinfo");
+		%>
 
       <div class="w3-card w3-round w3-white w3-hide-small">
         <div class="w3-container">
@@ -309,123 +358,174 @@
     <!-- Middle Column -->
     <div class="w3-col m7">
 	  <!-- CHECKLIST -->
-      <div id="CHECKLIST" class="w3-container w3-card w3-white w3-round w3-margin" style="margin-top:0!important;"><br>
-				<div style="text-align: right; margin-bottom: 30px;">
-					<h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">CHECKLIST</h2>
-					<a class="a-no-style" href="#group_make_my" rel="modal:open"><button type="button" style="color: #fff; background: #3a4b53; border: none; border-radius: 4px; font-family: 'Do Hyeon', sans-serif;">과제 추가</button></a>
-					<%-- <button type="button" name="button" style="font-size: 13px; padding: 4px 20px; border:none; margin: 6px 10px 0 0;">과제 추가</button> --%>
-					<span id="editbtn"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer"></i></span>
-				</div>
-				<hr>
-				<div class="checkWrapper">
-					<%
-						ArrayList<missionDTO> list = (ArrayList<missionDTO>)request.getAttribute("list");
-						ArrayList<String> mlist = (ArrayList<String>)request.getAttribute("mlist");
-						ArrayList<Integer> userlist = (ArrayList<Integer>)request.getAttribute("userlist");
+				<div id="CHECKLIST"
+					class="w3-container w3-card w3-white w3-round w3-margin"
+					style="margin-top: 0 !important;">
+					<br>
+					<div style="text-align: right; margin-bottom: 30px;">
+						<h2
+							style="float: left; line-height: 25px; font-weight: bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">CHECKLIST</h2>
+						<a class="a-no-style" href="#group_make_my" rel="modal:open"><button
+								type="button"
+								style="color: #fff; background: #3a4b53; border: none; border-radius: 4px; font-family: 'Do Hyeon', sans-serif;">과제
+								추가</button></a>
+						<%-- <button type="button" name="button" style="font-size: 13px; padding: 4px 20px; border:none; margin: 6px 10px 0 0;">과제 추가</button> --%>
+						<span id="editbtn"><i class="fa fa-cog" aria-hidden="true"
+							style="font-size: 20px; color: #6c757d; cursor: pointer"></i></span>
+					</div>
+					<hr>
+					<div class="checkWrapper">
+						<%
+							ArrayList<missionDTO> list = (ArrayList<missionDTO>) request.getAttribute("list");
+						ArrayList<String> mlist = (ArrayList<String>) request.getAttribute("mlist");
+						ArrayList<Integer> userlist = (ArrayList<Integer>) request.getAttribute("userlist");
 
 						// System.out.println("id: "+${id});
 						// System.out.print("userlist: "+userlist.get(0)+"//"+userlist.size());
-						if(list.isEmpty()) {
+						if (list.isEmpty()) {
+						%>
+						<div class="check" style="text-align: center; color: #3a4b53;">
+							<p>등록된 미션이 없습니다.</p>
+						</div>
+
+						<%
+							} else {
+						for (int i = 0; i < list.size(); i++) {
+							// System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
+						%>
+						<%-- <div class="check" value="<%= i %>"> --%>
+						<%-- checked="checked --%>
+						<%
+							int flag = 0;
+						for (int j = 0; j < userlist.size(); j++) {
+							if (userlist.get(j) == list.get(i).getId()) {
+								flag = 1;
+						%>
+						<div class="check" style="background: #ccc;">
+							<input type="checkbox" name="mission"
+								value="<%=list.get(i).getId()%>" checked="checked">
+							<%
+								break;
+							}
+							}
+							if (flag == 0) {
 							%>
-							<div class="check" style="text-align: center; color: #3a4b53;">
-								<p>등록된 미션이 없습니다.</p>
+							<div class="check">
+								<input type="checkbox" name="mission"
+									value="<%=list.get(i).getId()%>">
+								<%
+									}
+								%>
+								<span style="padding-left: 10px;"><%=list.get(i).getName()%></span>
+								<div style="float: right;">
+									<span class="showfinish"><i class="fa fa-list-alt"></i></span>
+									<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
+								</div>
+								<div class="check_finish">
+									<%=mlist.get(i)%>완료
+								</div>
+								<div class="check_detail">
+									<p><%=list.get(i).getContent()%></p>
+								</div>
 							</div>
 
 							<%
 						}
-						else {
-						for(int i=0 ; i<list.size() ; i++) {
-							// System.out.println("in jsp: "+ dto.getId() + dto.getContent()+dto.getGroupID());
-
+					}
 					%>
-					<%-- <div class="check" value="<%= i %>"> --%>
-						<%-- checked="checked --%>
-						<%
-						int flag=0;
-						for(int j=0 ; j<userlist.size(); j++) {
-							if(userlist.get(j) == list.get(i).getId()){
-								flag=1;
-						%>
-							<div class="check" style="background:#ccc;">
-								<input type="checkbox" name="mission" value="<%= list.get(i).getId() %>" checked="checked">
-						<%
-								break;
-							}
-						}
-						if(flag==0){
-						%>
-						<div class="check">
-							<input type="checkbox" name="mission" value="<%= list.get(i).getId() %>">
-						<%
-						}
-						%>
-						<span style="padding-left: 10px;"><%= list.get(i).getName() %></span>
-						<div style="float:right;">
-							<span class="showfinish"><i class="fa fa-list-alt"></i></span>
-							<span class="detailbtn"><i class="fa fa-angle-down"></i></span>
 						</div>
-						<div class="check_finish">
-							<%= mlist.get(i) %>완료
-						</div>
-						<div class="check_detail">
-							<p><%= list.get(i).getContent() %></p>
+
+
+					</div>
+
+
+		<!-- edit checklist -->
+		<div id="EditCheckList"
+			class="w3-container w3-card w3-white w3-round w3-margin"
+			style="margin-top: 0 !important;">
+			<br>
+			<div>
+
+				<form class=""
+					action="/missionEdit/<%= (int)request.getAttribute("groupid") %>"
+					method="post">
+					<div style="text-align: right; margin-bottom: 35px;">
+						<h2
+							style="float: left; line-height: 30px; font-weight: bold; color: #3a4b53">CHECKLIST
+							EDIT</h2>
+						<span id="editcancel" class="btn"
+							style="background: #ccc; margin-top: 15px;">취소</span> <input
+							id="editfin" type="submit" class="check_edit btn"
+							style="background: rgba(76, 175, 80, 0.6); border: none; margin-top: 13px;"
+							name="" value="완료">
+					</div>
+					<hr>
+
+					<%
+
+						// System.out.print("list isze: "+list.size());
+						for(int i=0 ; i<list.size() ; i++) {
+					%>
+
+					<div class="checkEditlist">
+						<input type="hidden" name="missionID"
+							value="<%= list.get(i).getId() %>"> <input type="text"
+							name="title" value="<%= list.get(i).getName() %>"> <span
+							class="btn deleteMission" value="<%= list.get(i).getId() %>"
+							style="float: right; background: rgba(244, 67, 54, 0.6)">삭제</span>
+
+
+						<div class="p_cont check_detail_edit">
+							<textarea name="content" style="width: 100%;"><%= list.get(i).getContent() %></textarea>
 						</div>
 					</div>
 
 					<%
 						}
-					}
 					%>
-				</div>
+				</form>
+			</div>
+		</div>
+		<div class="w3-card w3-round w3-white w3-center allpeople">
+			<div id="AllGroup" class="w3-container">
+					<p style="font-size: 25px; font-weight: bold; color: #3a4b53; margin: 0 0 10px 0; display: inline-block; margin-bottom: 15px; font-family: 'Do Hyeon', sans-serif;">전체 진행률</p>
+					<span class="member_setting"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer; float: right; margin-top: 8px;"></i></span>
+	 				<%ArrayList<progressDTO> _list = (ArrayList<progressDTO>)request.getAttribute("_list"); %>
+	            	<%
+	                  if(_list != null){
+	                    for(int i=0; i<_list.size(); i++){
+	                %>
+	                     <div class="eachcontent">
+	                     <div style="float:left; width:7%;">
+	                        <span><%= i+1 %></span>
+	                     </div>
+	                     <div style="float:left; width: 93%;">
+	                        <span style="float:right"><%= _list.get(i).getCompleteMission() %>/<%= _list.get(i).getAllMission() %></span>
+	                        <span><%= _list.get(i).getName() %></span><br>
+	                        <div id="progressbar_tot">
+	                             <div style="width: <%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%;"><p class="prog_text_tot" ><%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%</p></div>
+	                        </div>
+	                     </div>
+	                  </div>
+	                  <hr>
+	                      <%
+	                   }
+	                }
+	            %>
+	            
+	         </div>
+			</div>		
+		
+	</div>
 
 
-				</div>
 
-
-				<!-- edit checklist -->
-			  <div id="EditCheckList" class="w3-container w3-card w3-white w3-round w3-margin" style="margin-top: 0 !important;"><br>
-				  <div>
-
-							<form class="" action="/missionEdit/<%= (int)request.getAttribute("groupid") %>" method="post">
-								<div style="text-align: right; margin-bottom: 35px;">
-									<h2 style="float:left; line-height:30px; font-weight: bold; color: #3a4b53">CHECKLIST EDIT</h2>
-									<span id="editcancel" class="btn" style="background:#ccc; margin-top: 15px;">취소</span>
-									<input id="editfin" type="submit" class="check_edit btn" style="background:rgba(76, 175, 80, 0.6); border: none; margin-top: 13px;" name="" value="완료">
-								</div>
-								<hr>
-
-								<%
-
-									// System.out.print("list isze: "+list.size());
-									for(int i=0 ; i<list.size() ; i++) {
-								%>
-
-								<div class="checkEditlist">
-									<input type="hidden" name="missionID"  value="<%= list.get(i).getId() %>">
-									<input type="text" name="title" value="<%= list.get(i).getName() %>">
-									<span class="btn deleteMission" value="<%= list.get(i).getId() %>" style="float:right; background:rgba(244, 67, 54, 0.6)">삭제</span>
-
-
-									<div class="p_cont check_detail_edit">
-										<textarea name="content" style="width:100%;"><%= list.get(i).getContent() %></textarea>
-									</div>
-								</div>
-
-								<%
-									}
-								%>
-							</form>
-						</div>
-		      </div>
-      </div>
-
-
-    <!-- End Middle Column -->
+				<!-- End Middle Column -->
 
 
 	<!-- Right Column -->
 	<div class="w3-col m2">
-		<div class="w3-card w3-round w3-white w3-center allpeople">
+		<%-- <div class="w3-card w3-round w3-white w3-center allpeople">
 			<!-- 전체 참가자 -->
 			<div id="AllGroup" class="w3-container">
 				<p style="font-size: 25px; font-weight: bold; color: #3a4b53; margin: 0 0 10px 0; display: inline-block; margin-bottom: 15px; font-family: 'Do Hyeon', sans-serif;">전체 진행률</p>
@@ -453,7 +553,7 @@
                 }
             %>
             
-         </div>
+         </div> --%>
 
 			</div>
 			

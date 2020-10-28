@@ -50,6 +50,7 @@ public class myBoardController {
 		ArrayList<missionDTO> list = dao.MissionList(id);
 		ArrayList<String> mlist = dao.MissionComplete(id);
 		ArrayList<Integer> userlist = dao.completeYN();
+		
 		model.addObject("plist", plist);
 		model.addObject("groupid", id);
 		model.addObject("list", list);
@@ -72,6 +73,38 @@ public class myBoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@RequestMapping("/waitAssign")
+	public void waitAssign(HttpServletRequest request) throws UnsupportedEncodingException { 
+		request.setCharacterEncoding("UTF-8");
+		
+		System.out.println(request.getParameter("userID") + request.getParameter("groupID"));
+		
+		int userID = Integer.parseInt(request.getParameter("userID"));
+		int groupID = Integer.parseInt(request.getParameter("groupID"));
+		
+		try {
+			dao.waitAssign(userID, groupID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	@RequestMapping("/waitReject")
+	public void waitReject(HttpServletRequest request) throws UnsupportedEncodingException { 
+		request.setCharacterEncoding("UTF-8");
+		
+		int userID = Integer.parseInt(request.getParameter("userID"));
+		int groupID = Integer.parseInt(request.getParameter("groupID"));
+		
+		try {
+			dao.waitReject(userID, groupID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	@RequestMapping("/missionTrue")
