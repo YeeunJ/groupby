@@ -1,5 +1,6 @@
 package com.group.by.board.myBoard;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
@@ -261,7 +262,7 @@ public class myBoardDAO {
 		
 	}
 	// 미션 추가
-	public int missionAdd(String name, String cont, Date start, Date end)  {
+	public int missionAdd(String name, String cont, Date start, Date end) throws UnsupportedEncodingException  {
 		int cnt = 0;
 		int gid = 2;
 		
@@ -278,7 +279,7 @@ public class myBoardDAO {
 			pstmt.setString(3, cont);
 			pstmt.setDate(4, null);
 			pstmt.setDate(5, null);
-			
+			System.out.println(name);
 			cnt = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -306,6 +307,7 @@ public class myBoardDAO {
 			ex.setId(rs.getInt("id"));
 			ex.setName(rs.getString("name"));
 			ex.setManager(rs.getInt("manager"));
+			ex.setCategory(rs.getInt("category"));
 			ex.setLink(rs.getString("link"));
 			ex.setReward(rs.getString("reward"));
 			ex.setRwCondition(rs.getString("rwCondition"));
@@ -454,6 +456,7 @@ public class myBoardDAO {
 		
 		
 	}
-
+	
+	
 
 }

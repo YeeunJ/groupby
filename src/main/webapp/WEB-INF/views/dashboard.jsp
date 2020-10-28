@@ -57,16 +57,9 @@
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
       <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
       <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>TOGETHER</a>
-      <div class="w3-dropdown-hover w3-hide-small">
-        <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
-        <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-          <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-          <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-          <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
-        </div>
-      </div>
+      <%if(request.getAttribute("user") == null){ %>
       <a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
-      <%if(request.getAttribute("user") == null){ %><%}else{ %>
+      <%}else{ %>
       <a href="/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Logout</a>
       <%} %>
       <a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
@@ -78,7 +71,7 @@
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">My Boards</a>
+    <%if(request.getAttribute("user") == null){ %><a href="#" class="w3-bar-item w3-button w3-padding-large">My Boards</a><%} %>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">All Boards</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
   </div>
@@ -86,19 +79,20 @@
   <!-- Page Container -->
   <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
     <!-- The Grid -->
-    <div class="w3-row">
+    <div class="w3-row" style="width: 90%; margin: 0 auto;">
       <!-- Left Column -->
       <div class="w3-col m3">
         <!-- Profile -->
         <div class="w3-card w3-round w3-white">
+        <%if(request.getAttribute("user") != null){ %>
           <div class="w3-container" id="UserInfo">
             <h4 class="w3-center">My Profile</h4>
             <p class="w3-center"><img src="https://cdn.imweb.me/upload/S202002259d2c4f16c33cd/92b04bb4b9172.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
             <hr>
             <span id="UserInfobtn" class="btn" style="background:rgba(54, 92, 244, 0.6); float:right; margin-bottom: 15px; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">수정</span>
             <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><%= user.getName() %></p>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%= user.getEmail() %> / <%= user.getAge() %></p>
-            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <%= user.getIntroduce() %></p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%= user.getEmail() %> <%if(user.getAge() != 0){%>/ <%= user.getAge() %><%} %></p>
+            <p><i class="fa fa-commenting-o fa-fw w3-margin-right w3-text-theme"></i> <%if(user.getIntroduce()!= null){%><%=user.getIntroduce()%> <%}else{%>자기소개 해주세요~:) <%}%></p>
           </div>
           <div class="w3-container" id="UserEdit" style="display:none;">
             <h4 class="w3-center">My Profile</h4>
@@ -106,11 +100,16 @@
             <hr>
             <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%= user.getName() %>"/></p>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><span><input style="height: 25px;" value="<%= user.getEmail() %>"/></span></p>
-            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%= user.getIntroduce() %>"/></p>
+            <p><i class="fa fa-commenting-o fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%if(user.getIntroduce()!= null){%><%=user.getIntroduce()%> <%}else{%>자기소개 해주세요~:) <%}%>"/></p>
             <!--<button type="submit" name="button" class="btn" id="EditUserInfo" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 15px 5px 0 0; border:none; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">완료</button>-->
             <span id="EditUserInfo" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 0px 5px 20px 0; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">완료</span>
             <span id="UserCancelbtn" class="btn" style="background:#ccc; float:right; margin: 0px 5px 20px 0; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">취소</span>
           </div>
+          <%} else{%>
+          
+          	<div></div>
+          
+          <%} %>
         </div>
         <br>
 
@@ -146,10 +145,11 @@
       </div>
 
       <!-- Middle Column -->
-      <div class="w3-col m7">
+      <div class="w3-col m9">
         <div class="w3-row-padding">
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
+            <%if(request.getAttribute("user") != null){ %>
               <div id="myBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px; overflow: auto;"><br>
                 <div style="text-align: right; margin-bottom: 30px;">
                   <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">MY BOARDS</h2>
@@ -160,9 +160,9 @@
                   <button type="button" name="button" class="sButton"><i class="fa fa-search fa-fw "></i></button>
                   <select class="category" name="category" class="form-control">
                     <option value="allCategory">all category</option>
-                    <option value="study">study</option>
-                    <option value="etc">뭐가</option>
-                    <option value="etc2">있을까</option>
+                     <option value="study">학술</option>
+                     <option value="hobby">취미</option>
+                     <option value="etc">etc</option>
                   </select>
                   <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" style="float: right; color: #fff; background: #3a4b53; border: none; border-radius: 4px; float:right; height: 34px;">new</button></a>
                 </form>
@@ -194,6 +194,7 @@
                 }
                 %>
               </div>
+              <%} %>
                 <div id="allBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px; overflow: auto;"><br>
                   <div style="text-align: right; margin-bottom: 30px;">
                     <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">ALL BOARDS</h2>
@@ -204,9 +205,9 @@
                     <button type="button" name="button" class="sButton"><i class="fa fa-search fa-fw "></i></button>
                     <select class="category" name="category" class="form-control">
                       <option value="allCategory">all category</option>
-                      <option value="study">study</option>
-                      <option value="etc">뭐가</option>
-                      <option value="etc2">있을까</option>
+                      <option value="study">학술</option>
+                      <option value="hobby">취미</option>
+                      <option value="etc">etc</option>
                     </select>
                   </form>
                    <%
@@ -243,8 +244,9 @@
             </div>
           </div>
         </div>
+        
           <!-- Right Column -->
-          <div class="w3-col m2">
+         <!--  <div class="w3-col m2">
             <div class="w3-card w3-round w3-white w3-center">
               <div class="w3-container">
                 <p>여기에 달력 넣을 예정!!:</p>
@@ -255,7 +257,7 @@
               </div>
             </div>
             <br>
-          </div>
+          </div>-->
             <!-- End Right Column -->
 
           <!-- End Grid -->
@@ -294,40 +296,50 @@
 			document.getElementById("allBoard").style.display = "block";
 		}
 
-		function changeSpecific(obj) {
-			var title = obj.children[3].children[0].innerHTML;
-			var num = obj.children[3].children[1].innerHTML;
-			var start = obj.children[3].children[2].innerHTML;
-			var end = obj.children[3].children[3].innerHTML;
-			var rwc = obj.children[3].children[4].innerHTML;
-			var rw = obj.children[3].children[5].innerHTML;
-			var explan = obj.children[3].children[6].innerHTML;
-			var id = obj.children[3].children[7].innerHTML;
-			if (title == "null")
-				title = "없음";
-			if (num == "null")
-				num = "0";
-			if (start == "null")
-				start = "없음";
-			if (end == "null")
-				end = "없음";
-			if (rwc == "null")
-				rwc = "없음";
-			if (rw == "null")
-				rw = "없음";
-			if (explan == "null")
-				explan = "없음";
-			document.getElementById('all_title').innerHTML = title;
-			document.getElementById('all_num').innerHTML = num;
-			document.getElementById('all_start').innerHTML = start;
-			document.getElementById('all_end').innerHTML = end;
-			document.getElementById('all_rwc').innerHTML = rwc;
-			document.getElementById('all_rw').innerHTML = rw;
-			document.getElementById('all_explan').innerHTML = "\" " + explan
-					+ " \"";
-			$('#group_id').val(id);
-		}
-	</script>
+
+      function changeSpecific(obj){
+    	  var title= obj.children[3].children[0].innerHTML;
+    	  var num= obj.children[3].children[1].innerHTML;
+    	  var start=obj.children[3].children[2].innerHTML;
+    	  var end =obj.children[3].children[3].innerHTML;
+    	  var rwc = obj.children[3].children[4].innerHTML;
+    	  var rw = obj.children[3].children[5].innerHTML;
+    	  var explan = obj.children[3].children[6].innerHTML;
+    	  var id = obj.children[3].children[7].innerHTML;
+    	  if(title == "null") title="없음";
+    	  if(num == "null") num="0";
+    	  if(start == "null") start = "없음";
+    	  if(end == "null") end = "없음";
+    	  if(rwc == "null") rwc = "없음";
+    	  if(rw == "null") rw = "없음";
+    	  if(explan == "null") explan = "없음";
+    	  document.getElementById('all_title').innerHTML= title;
+    	  document.getElementById('all_num').innerHTML= num;
+    	  document.getElementById('all_start').innerHTML= start;
+    	  document.getElementById('all_end').innerHTML= end;
+    	  document.getElementById('all_rwc').innerHTML= rwc;
+    	  document.getElementById('all_rw').innerHTML = rw;
+    	  document.getElementById('all_explan').innerHTML="\" "+explan+" \"";
+    	  $('#group_id').val(id);
+      }
+      
+		$('#UserInfobtn').click(function(){
+			$('#UserEdit').show();
+			$('#UserInfo').hide();
+		});
+		$('#UserCancelbtn').click(function(){
+			$('#UserEdit').hide();
+			$('#UserInfo').show();
+		});
+		// ajax 새로고침
+		$('#UserInfoOk').click(function(){
+			$('#UserEdit').hide();
+			$('#UserInfo').show();
+		});
+		<%if(request.getAttribute("user") == null){ %>
+		document.getElementById("allBoard").style.display = "block";
+		<%} %>
+    </script>
 
 </body>
 

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +31,7 @@ public class myBoardController {
 
 	
 	@RequestMapping("/myBoard/{id}")
-	public ModelAndView my(@PathVariable("id") int id) throws SQLException {        
+	public ModelAndView my(@PathVariable("id") int id, HttpServletRequest request, HttpSession session) throws SQLException {        
 		ModelAndView model = new ModelAndView("myBoard");
 		
 		ArrayList<progressDTO> _list = null;
@@ -57,6 +58,7 @@ public class myBoardController {
 		model.addObject("mlist", mlist);
 		model.addObject("userlist", userlist);
 		model.addObject("_list", _list);
+		
 		return model;
 	}
 	
@@ -146,10 +148,9 @@ public class myBoardController {
 		ModelAndView model = new ModelAndView("myBoard");
 		myBoardDAO dao = new myBoardDAO();
 		
-		//request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 	    String [] name = request.getParameterValues("title");
 	    String [] content = request.getParameterValues("description");
-
 	    Date start = null;
 	    Date end = null;
 

@@ -38,35 +38,15 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
        usersDTO user = OAuthAttributes.
                of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
-       //email로 찾는거 -> 없으면 Insert
-       user.setEmail((String)oAuth2User.getAttributes().get("email"));
-       user.setName((String) oAuth2User.getAttributes().get("name"));
+       
        usersDAO ud = new usersDAO();
        try {
-		user = ud.getUserInfo(user.getEmail());
-       } catch (ClassNotFoundException | SQLException e) {
-		// TODO 실패하는 경우 -> Insert
-		e.printStackTrace();
-       }
-       System.out.println("----------------------------   ----   "+ oAuth2User.getAttributes().get("name")+oAuth2User.getAttributes().get("email"));
-       System.out.println(user.toString());
-       if(user.getEmail()==null) {
-			try {
-				ud.addUserInfo(user.getEmail(), user.getName());
-				System.out.println("히히히히히");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				user = ud.getUserInfo(oAuth2User.getAttributes().get("email").toString());
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-       }
-       System.out.println("------>"+user.getEmail()+" &&&& "+ user.getIntroduce());
-       System.out.println("hello");
+			user = ud.getUserInfo(user.getEmail(), user.getName());
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       System.out.println("check————————————————————");
        System.out.println(user.toString());
        httpSession.setAttribute("user", user);
 

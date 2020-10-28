@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType = "text/html;charset=utf-8" %>
 <% request.setCharacterEncoding("utf-8");%>
@@ -269,7 +270,7 @@
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
   <!-- The Grid -->
-  <div class="w3-row">
+  <div class="w3-row" style="width: 90%; margin: 0 auto;">
     <!-- Left Column -->
     <div class="w3-col m3">
       <!-- Profile -->
@@ -356,7 +357,7 @@
     </div>
 
     <!-- Middle Column -->
-    <div class="w3-col m7">
+    <div class="w3-col m9">
 	  <!-- CHECKLIST -->
 				<div id="CHECKLIST"
 					class="w3-container w3-card w3-white w3-round w3-margin"
