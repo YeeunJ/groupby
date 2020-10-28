@@ -89,15 +89,16 @@
             <h4 class="w3-center">My Profile</h4>
             <p class="w3-center"><img src="https://cdn.imweb.me/upload/S202002259d2c4f16c33cd/92b04bb4b9172.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
             <hr>
-            <span id="UserInfobtn" class="btn" style="background:rgba(54, 92, 244, 0.6); float:right; margin-bottom: 15px; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">수정</span>
+            <span id="UserInfobtn" class="btn" style="background:rgb(158 158 158 / 0.6); float:right; margin-bottom: 15px; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">수정</span>
             <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><%= user.getName() %></p>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%= user.getEmail() %> <%if(user.getAge() != 0){%>/ <%= user.getAge() %><%} %></p>
             <p><i class="fa fa-commenting-o fa-fw w3-margin-right w3-text-theme"></i> <%if(user.getIntroduce()!= null){%><%=user.getIntroduce()%> <%}else{%>자기소개 해주세요~:) <%}%></p>
           </div>
           <div class="w3-container" id="UserEdit" style="display:none;">
             <h4 class="w3-center">My Profile</h4>
-            <p class="w3-center"><img src="https://cdn.imweb.me/upload/S202002259d2c4f16c33cd/92b04bb4b9172.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+            <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
             <hr>
+           <!--  https://cdn.imweb.me/upload/S202002259d2c4f16c33cd/92b04bb4b9172.jpg -->
             <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%= user.getName() %>"/></p>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i><span><input style="height: 25px;" value="<%= user.getEmail() %>"/></span></p>
             <p><i class="fa fa-commenting-o fa-fw w3-margin-right w3-text-theme"></i><input style="height: 25px;" value="<%if(user.getIntroduce()!= null){%><%=user.getIntroduce()%> <%}else{%>자기소개 해주세요~:) <%}%>"/></p>
@@ -107,7 +108,10 @@
           </div>
           <%} else{%>
           
-          	<div></div>
+          	<div class="w3-card w3-round w3-white" style="padding:15px 10px; height:230px; text-align: center;">
+          		<p style="margin-top: 65px; color: #6f6f6f; ">로그인이 필요한 서비스입니다.</p>
+          		<span><a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white loginbtn" title="My Account">TOGETHER 로그인</a></span>
+          	</div>
           
           <%} %>
         </div>
@@ -116,8 +120,11 @@
         <!-- Accordion -->
         <div class="w3-card w3-round">
           <div class="w3-white">
+          <%if(request.getAttribute("user") != null){ %>
             <button class="w3-button w3-block w3-theme-l1 w3-left-align" onclick="myBoard()"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Boards</button>
-            <button class="w3-button w3-block w3-theme-l1 w3-left-align" onclick="allBoard()"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> All Boards</button>
+           <% } %> 
+          	<button class="w3-button w3-block w3-theme-l1 w3-left-align" onclick="allBoard()"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> All Boards</button>
+            
           </div>
         </div>
         <br>
@@ -209,6 +216,7 @@
                       <option value="hobby">취미</option>
                       <option value="etc">etc</option>
                     </select>
+                    <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" style="float: right; color: #fff; background: #3a4b53; border: none; border-radius: 4px; float:right; height: 34px;">new</button></a>
                   </form>
                    <%
                 	if(all_list != null){

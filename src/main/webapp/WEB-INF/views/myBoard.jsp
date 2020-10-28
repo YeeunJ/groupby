@@ -273,27 +273,13 @@
   <div class="w3-row" style="width: 90%; margin: 0 auto;">
     <!-- Left Column -->
     <div class="w3-col m3">
-      <!-- Profile -->
-      <div class="w3-card w3-round w3-white">
-        <div class="w3-container">
-         <h4 class="w3-center">My Profile</h4>
-         <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
-        </div>
-      </div>
-      <br>
-
-      <!-- Accordion -->
-
-			<div class="w3-card w3-round">
-				<div class="w3-white">
-					<button style="height:38px;" class="w3-button w3-block w3-theme-l1 w3-left-align" onclick="location.href='/'"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>My Groups</button>
-					<button style="height:38px;" class="w3-button w3-block w3-theme-l1 w3-left-align" onclick=""><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> All Boards</button>
-				</div>
+    	<div class="w3-card w3-round">
+			<div class="w3-white">
+				<button style="height:38px; background: #394c53 important!;" class="w3-button w3-block w3-theme-l1 w3-left-align" onclick="location.href='/'"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>이전으로</button>
 			</div>
-      <br>
+		</div>	
+		<br/>
+	
 
       <!-- Group Info -->
 		<%
@@ -352,7 +338,39 @@
 		      </div>
         </div>
       </div>
+      
       <br>
+
+      <div class="w3-card w3-round w3-white w3-center allpeople">
+			<div id="AllGroup" class="w3-container">
+					<p style="font-size: 25px; font-weight: bold; color: #3a4b53; margin: 0 0 10px 0; display: inline-block; margin-bottom: 15px; font-family: 'Do Hyeon', sans-serif;">전체 진행률</p>
+					<span class="member_setting"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer; float: right; margin-top: 8px;"></i></span>
+	 				<%ArrayList<progressDTO> _list = (ArrayList<progressDTO>)request.getAttribute("_list"); %>
+	            	<%
+	                  if(_list != null){
+	                    for(int i=0; i<_list.size(); i++){
+	                %>
+	                     <div class="eachcontent">
+	                     <div style="float:left; width:7%;">
+	                        <span><%= i+1 %></span>
+	                     </div>
+	                     <div style="float:left; width: 93%;">
+	                        <span style="float:right"><%= _list.get(i).getCompleteMission() %>/<%= _list.get(i).getAllMission() %></span>
+	                        <span><%= _list.get(i).getName() %></span><br>
+	                        <div id="progressbar_tot">
+	                             <div style="width: <%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%;"><p class="prog_text_tot" ><%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%</p></div>
+	                        </div>
+	                     </div>
+	                  </div>
+	                  <hr>
+	                      <%
+	                   }
+	                }
+	            %>
+	            
+	         </div>
+			</div>
+			
     <!-- End Left Column -->
     </div>
 
@@ -402,7 +420,7 @@
 							if (userlist.get(j) == list.get(i).getId()) {
 								flag = 1;
 						%>
-						<div class="check" style="background: #ccc;">
+						<div class="check" style="background: #ccc9;">
 							<input type="checkbox" name="mission"
 								value="<%=list.get(i).getId()%>" checked="checked">
 							<%
@@ -487,35 +505,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="w3-card w3-round w3-white w3-center allpeople">
-			<div id="AllGroup" class="w3-container">
-					<p style="font-size: 25px; font-weight: bold; color: #3a4b53; margin: 0 0 10px 0; display: inline-block; margin-bottom: 15px; font-family: 'Do Hyeon', sans-serif;">전체 진행률</p>
-					<span class="member_setting"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer; float: right; margin-top: 8px;"></i></span>
-	 				<%ArrayList<progressDTO> _list = (ArrayList<progressDTO>)request.getAttribute("_list"); %>
-	            	<%
-	                  if(_list != null){
-	                    for(int i=0; i<_list.size(); i++){
-	                %>
-	                     <div class="eachcontent">
-	                     <div style="float:left; width:7%;">
-	                        <span><%= i+1 %></span>
-	                     </div>
-	                     <div style="float:left; width: 93%;">
-	                        <span style="float:right"><%= _list.get(i).getCompleteMission() %>/<%= _list.get(i).getAllMission() %></span>
-	                        <span><%= _list.get(i).getName() %></span><br>
-	                        <div id="progressbar_tot">
-	                             <div style="width: <%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%;"><p class="prog_text_tot" ><%= _list.get(i).getCompleteMission()*1.0 / _list.get(i).getAllMission() *100 %>%</p></div>
-	                        </div>
-	                     </div>
-	                  </div>
-	                  <hr>
-	                      <%
-	                   }
-	                }
-	            %>
-	            
-	         </div>
-			</div>		
+		
 		
 	</div>
 

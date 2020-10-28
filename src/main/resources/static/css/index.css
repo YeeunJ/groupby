@@ -111,3 +111,14 @@
 .w3-block{
 	height: 40px;
 }
+.loginbtn {
+	float: none !important;
+	background: #4d626f;
+	color: white;
+	width:200px;
+	border-radius: 5px;
+}
+.loginbtn:hover {
+	background: #7d97a5 !important;
+	color: black;
+}
