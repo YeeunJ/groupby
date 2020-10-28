@@ -250,11 +250,17 @@
       <p class="w3-bar-item">최승아</p>
       <p class="w3-bar-item">신희주</p>
       <p class="w3-bar-item">정예은</p> -->
+      
     </div>
   </div>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
     <!-- <img src="/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar"> -->
   </a>
+  <%if(request.getAttribute("user") == null){ %>
+      <a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
+      <%}else{ %>
+      <a href="/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Logout</a>
+      <%} %>
  </div>
 </div>
 
