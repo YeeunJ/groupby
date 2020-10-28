@@ -34,7 +34,7 @@
   		<div id = "appInfo">
   			<div id = "title">투 게 더</div>
   				<%@ include file="/WEB-INF/views/createBoard.jsp" %>
-	            <%@ include file="/WEB-INF/views/allBoard.jsp" %>
+	            <%@ include file= "/WEB-INF/views/allBoard.jsp" %>
   			<div id = "userInfo">
   				<div id = "profile">
     				  <div id="profileImg"><img src="/images/back.jpg" id = "myImg"/></div>

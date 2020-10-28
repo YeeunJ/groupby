@@ -1,4 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList" %>
+<%@ page import = "com.group.by.dto.missionDTO" %>
 
   <div id="group_join" class="modal">
     <h1 class="all" id="all_title">알고리즘 캠프</h1>

@@ -65,8 +65,9 @@
           <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
         </div>
       </div>
+      <%if(request.getAttribute("user") == null){ %>
       <a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
-      <%if(request.getAttribute("user") == null){ %><%}else{ %>
+      <%}else{ %>
       <a href="/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Logout</a>
       <%} %>
     </div>
@@ -74,7 +75,7 @@
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">My Boards</a>
+    <%if(request.getAttribute("user") == null){ %><a href="#" class="w3-bar-item w3-button w3-padding-large">My Boards</a><%} %>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">All Boards</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
   </div>
@@ -87,6 +88,7 @@
       <div class="w3-col m3">
         <!-- Profile -->
         <div class="w3-card w3-round w3-white">
+        <%if(request.getAttribute("user") != null){ %>
           <div class="w3-container" id="UserInfo">
             <h4 class="w3-center">My Profile</h4>
             <p class="w3-center"><img src="https://cdn.imweb.me/upload/S202002259d2c4f16c33cd/92b04bb4b9172.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
@@ -107,6 +109,7 @@
             <span id="EditUserInfo" class="btn" style="background:rgba(76, 175, 80, 0.6); float:right; margin: 0px 5px 20px 0; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">완료</span>
             <span id="UserCancelbtn" class="btn" style="background:#ccc; float:right; margin: 0px 5px 20px 0; cursor: pointer; font-size: 13px; padding: 3px 10px; border-radius: 8px; color: white;">취소</span>
           </div>
+          <%} %>
         </div>
         <br>
 
@@ -146,6 +149,7 @@
         <div class="w3-row-padding">
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
+            <%if(request.getAttribute("user") != null){ %>
               <div id="myBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px; overflow: auto;"><br>
                 <div style="text-align: right; margin-bottom: 30px;">
                   <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">MY BOARDS</h2>
@@ -190,6 +194,7 @@
                 }
                 %>
               </div>
+              <%} %>
                 <div id="allBoard" class="w3-container w3-padding" style="padding-top:0!important;height: 800px; overflow: auto;"><br>
                   <div style="text-align: right; margin-bottom: 30px;">
                     <h2 style="float:left; line-height:25px; font-weight:bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">ALL BOARDS</h2>
@@ -324,6 +329,9 @@
 			$('#UserEdit').hide();
 			$('#UserInfo').show();
 		});
+		<%if(request.getAttribute("user") == null){ %>
+		document.getElementById("allBoard").style.display = "block";
+		<%} %>
     </script>
 
 </body>
