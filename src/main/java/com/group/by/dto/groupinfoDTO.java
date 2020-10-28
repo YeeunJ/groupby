@@ -19,6 +19,8 @@ public class groupinfoDTO implements DTO {
 	Date endDate;
 	int maxNum;
 	int cnt;
+	int category;
+	
 	public int getId() {
 		return id;
 	}
@@ -115,6 +117,14 @@ public class groupinfoDTO implements DTO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
+	}
+	
 	@Override
 	public String toString() {
 		return "groupinfoDTO [id=" + id + ", name=" + name + ", manager=" + manager + ", visible=" + visible + ", link="

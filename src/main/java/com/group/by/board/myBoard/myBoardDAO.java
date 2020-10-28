@@ -257,6 +257,7 @@ public class myBoardDAO {
 			ex.setId(rs.getInt("id"));
 			ex.setName(rs.getString("name"));
 			ex.setManager(rs.getInt("manager"));
+			ex.setCategory(rs.getInt("category"));
 			ex.setLink(rs.getString("link"));
 			ex.setReward(rs.getString("reward"));
 			ex.setRwCondition(rs.getString("rwCondition"));
