@@ -78,9 +78,9 @@ public class allBoardController {
 	public ModelAndView loginRedirection2 (HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
 		return new ModelAndView("redirect:/");
 	}
-	@RequestMapping(value="/logoutDetail", method=RequestMethod.POST)
+	@RequestMapping(value="/logoutDetail", method=RequestMethod.GET)
 	public ModelAndView logoutDetail (HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
-		session.removeAttribute("user");
+		session.setAttribute("user", null);
 		return new ModelAndView("redirect:/");
 	}
 	@RequestMapping(value="/createGroup", method=RequestMethod.POST)
