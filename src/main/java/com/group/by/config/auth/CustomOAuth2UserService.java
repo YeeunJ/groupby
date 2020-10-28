@@ -12,6 +12,8 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -37,7 +39,14 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
        usersDTO user = OAuthAttributes.
                of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
        
-       System.out.println("hello");
+       usersDAO ud = new usersDAO();
+       try {
+			user = ud.getUserInfo(user.getEmail(), user.getName());
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       System.out.println("check----------------------------------------");
        System.out.println(user.toString());
        httpSession.setAttribute("user", user);
 

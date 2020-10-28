@@ -16,7 +16,7 @@ public class usersDAO {
 	protected String sql;
 	protected Boolean result = false;
 	
-	public usersDTO getUserInfo(String email) throws ClassNotFoundException, SQLException {
+	public usersDTO getUserInfo(String email, String name) throws ClassNotFoundException, SQLException {
 		usersDTO userData = new usersDTO();
 		sql = "select * from users where email = ?";
 	    query = new StringBuffer();
@@ -26,10 +26,14 @@ public class usersDAO {
 	    rs = pstmt.executeQuery();
 	    if(rs.next()) {
 	    	userData.setId(rs.getInt("id"));;
-	    	userData.setEmail(rs.getString("email"));
-	    	userData.setName(rs.getString("name"));
+	    	userData.setEmail(email);
+	    	userData.setName(name);
 	    	userData.setAge(rs.getInt("age"));;
 	    	userData.setIntroduce(rs.getString("introduce"));
+	    }else {
+	    	userData.setEmail(email);
+	    	userData.setName(name);
+	    	insertUserInfo(userData);
 	    }
 	    updateLogin(userData.getId());
 		return userData;
@@ -54,6 +58,16 @@ public class usersDAO {
 	    pstmt.setInt(3, updateData.getAge());
 	    pstmt.setString(4, updateData.getIntroduce());
 	    pstmt.setInt(5, updateData.getId());
+	    pstmt.executeUpdate();
+	}
+	public void insertUserInfo(usersDTO insertData) throws ClassNotFoundException, SQLException {
+		sql = "INSERT INTO users (email, name)"
+				+ "VALUES (?, ?)";
+	    query = new StringBuffer();
+	    query.append(sql);
+	    pstmt = conn.prepareStatement(query.toString());
+	    pstmt.setString(1, insertData.getEmail());
+	    pstmt.setString(2, insertData.getName());
 	    pstmt.executeUpdate();
 	}
 }
