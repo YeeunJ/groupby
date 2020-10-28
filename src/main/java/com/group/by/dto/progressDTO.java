@@ -5,6 +5,8 @@ public class progressDTO implements DTO{
 	private int id;
 	private int allMission;
 	private int completeMission;
+	private int manager;
+	private int category;
 	
 	public String getName() {
 		return name;
@@ -29,6 +31,18 @@ public class progressDTO implements DTO{
 	}
 	public void setCompleteMission(int completeMission) {
 		this.completeMission = completeMission;
+	}
+	public int getManager() {
+		return manager;
+	}
+	public void setManager(int manager) {
+		this.manager = manager;
+	}
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
 	}
 	
 	@Override

@@ -21,6 +21,7 @@ import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.dto.missionDTO;
 import com.group.by.dto.participationDTO;
 import com.group.by.dto.progressDTO;
+import com.group.by.dto.usersDTO;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.board.myBoard.*;
 
@@ -34,6 +35,12 @@ public class myBoardController {
 	public ModelAndView my(@PathVariable("id") int id, HttpServletRequest request, HttpSession session) throws SQLException {        
 		ModelAndView model = new ModelAndView("myBoard");
 		
+		usersDTO user = (usersDTO) session.getAttribute("user");
+		if(user != null) {
+			System.out.println("okok session!!--------------------------------------");
+			System.out.println(user.toString());
+			model.addObject("user", user);
+		}
 		ArrayList<progressDTO> _list = null;
 		groupinfoDTO info = dao.GroupInfo(id);
 		model.addObject("groupinfo", info);

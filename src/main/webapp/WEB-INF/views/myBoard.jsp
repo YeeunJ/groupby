@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType = "text/html;charset=utf-8" %>
 <% request.setCharacterEncoding("utf-8");%>
@@ -7,9 +6,10 @@
 <%@ page import="com.group.by.dto.groupinfoDTO" %>
 <%@ page import="com.group.by.dto.progressDTO" %>
 <%@ page import="com.group.by.dto.participationDTO" %>
+<%@ page import = "com.group.by.dto.usersDTO" %>
 <%@ page import="java.io.*"%>
 <%@ page import="java.util.*"%>
-
+<% usersDTO user = (usersDTO)request.getAttribute("user"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -216,7 +216,7 @@
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>TOGETHER</a>
+  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>TOGETHER</a>
   <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-padding-large" title="Notifications" style="height:50px;"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
 	<div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
@@ -344,7 +344,7 @@
       <div class="w3-card w3-round w3-white w3-center allpeople">
 			<div id="AllGroup" class="w3-container">
 					<p style="font-size: 25px; font-weight: bold; color: #3a4b53; margin: 0 0 10px 0; display: inline-block; margin-bottom: 15px; font-family: 'Do Hyeon', sans-serif;">전체 진행률</p>
-					<span class="member_setting"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer; float: right; margin-top: 8px;"></i></span>
+					<%if(info.getManager() == user.getId()) { %><span class="member_setting"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer; float: right; margin-top: 8px;"></i></span><%} %>
 	 				<%ArrayList<progressDTO> _list = (ArrayList<progressDTO>)request.getAttribute("_list"); %>
 	            	<%
 	                  if(_list != null){
@@ -373,7 +373,6 @@
 			
     <!-- End Left Column -->
     </div>
-
     <!-- Middle Column -->
     <div class="w3-col m9">
 	  <!-- CHECKLIST -->
@@ -384,13 +383,14 @@
 					<div style="text-align: right; margin-bottom: 30px;">
 						<h2
 							style="float: left; line-height: 25px; font-weight: bold; color: #3a4b53; font-family: 'Do Hyeon', sans-serif;">CHECKLIST</h2>
+						<%if(info.getManager() == user.getId()) { %>
 						<a class="a-no-style" href="#group_make_my" rel="modal:open"><button
 								type="button"
 								style="color: #fff; background: #3a4b53; border: none; border-radius: 4px; font-family: 'Do Hyeon', sans-serif;">과제
 								추가</button></a>
 						<%-- <button type="button" name="button" style="font-size: 13px; padding: 4px 20px; border:none; margin: 6px 10px 0 0;">과제 추가</button> --%>
 						<span id="editbtn"><i class="fa fa-cog" aria-hidden="true"
-							style="font-size: 20px; color: #6c757d; cursor: pointer"></i></span>
+							style="font-size: 20px; color: #6c757d; cursor: pointer"></i></span><%} %>
 					</div>
 					<hr>
 					<div class="checkWrapper">
@@ -552,7 +552,7 @@
 			
 			<div id="ManagePeople" class="w3-container">
 				<p style="font-size: 25px; font-weight: bold; color: #3a4b53; margin: 0 0 10px 0; display: inline-block; margin-bottom: 15px;">참가자 관리</p>
-				<span class="managefin"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer; float: right; margin-top: 8px;"></i></span>
+				<%if(info.getManager() == user.getId()) { %><span class="managefin"><i class="fa fa-cog" aria-hidden="true" style="font-size:20px; color: #6c757d; cursor: pointer; float: right; margin-top: 8px;"></i></span><%} %>
 				<!-- 
 				<div class="eachcontent">
 					<div style="float:left; width:7%;">

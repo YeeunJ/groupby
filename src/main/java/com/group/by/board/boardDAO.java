@@ -20,11 +20,11 @@ public class boardDAO {
 	public ArrayList<progressDTO> getmyBoardInfo(int userID) throws ClassNotFoundException, SQLException {
 		ArrayList<progressDTO> groupData = new ArrayList<progressDTO>();
 		
-		sql1 = "select gi.id as id, gi.name as name, count(*) as allMission " + 
+		sql1 = "select gi.id as id, gi.name as name, gi.manager as manager, gi.category as category, count(*) as allMission " + 
 				"from mission_info as info right join group_info as gi on gi.id = info.group_info " + 
 				"group by gi.id " + 
 				"having gi.id in (select g.id from group_info as g join participation as p on p.groupID = g.id where p.userID = ?);";
-		sql2 = "select gi.id as id, gi.name as name, count(*) as completeMission " + 
+		sql2 = "select gi.id as id, gi.name as name, gi.manager as manager, gi.category as category, count(*) as completeMission " + 
 				"from mission_info as info right join group_info as gi on gi.id = info.group_info " + 
 				"where info.complete = 1 " + 
 				"group by gi.id " + 
@@ -47,6 +47,8 @@ public class boardDAO {
 	    	data.setId(rs1.getInt("id"));
 	    	data.setName(rs1.getString("name"));
 	    	data.setAllMission(rs1.getInt("allMission"));
+	    	data.setManager(rs1.getInt("manager"));
+	    	data.setCategory(rs1.getInt("category"));
 	    	System.out.println(rs2);
 	    	if( rs2.getInt("id") == rs1.getInt("id")) {
 	    		data.setCompleteMission(rs2.getInt("completeMission"));

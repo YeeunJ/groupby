@@ -56,14 +56,10 @@
   <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
       <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-      <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>TOGETHER</a>
+      <a href="/" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>TOGETHER</a>
       <%if(request.getAttribute("user") == null){ %>
       <a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
       <%}else{ %>
-      <a href="/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Logout</a>
-      <%} %>
-      <a href="/oauth2/authorization/google" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Login</a>
-      <%if(request.getAttribute("user") == null){ %><%}else{ %>
       <a href="/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">Logout</a>
       <%} %>
     </div>
@@ -167,8 +163,9 @@
                   <button type="button" name="button" class="sButton"><i class="fa fa-search fa-fw "></i></button>
                   <select class="category" name="category" class="form-control">
                     <option value="allCategory">all category</option>
-                     <option value="study">학술</option>
-                     <option value="hobby">취미</option>
+                     <option value="study"><i class="fa fa-book"></i>학술</option>
+                     <option value="hobby"><i class="fa fa-futbol-o"></i>취미</option>
+                     <option value="hobby"><i class="fa fa-cogs"></i>관리자</option>
                      <option value="etc">etc</option>
                   </select>
                   <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" style="float: right; color: #fff; background: #3a4b53; border: none; border-radius: 4px; float:right; height: 34px;">new</button></a>
@@ -177,9 +174,9 @@
                 if(list != null){
                 	for(int i=0; i<list.size(); i++){
                 		%>
-                <div class="check" onclick="location.href='./myBoard/<%= list.get(i).getId()%>'">
+                <div class="check" onclick="location.href='./myBoard/<%= list.get(i).getId()%>'" <%if(list.get(i).getManager() == user.getId()) { %>style= "background-color: #b1cdd67d;" <%} %>>
                   <div class="contentLeft2">
-                    <h4 style="font-size: 22px; font-weight: 700; font-family: 'Do Hyeon', sans-serif;"> <%= list.get(i).getName() %> <i class="fa fa-book"></i> <i class="fa fa-cogs"></i></h4>
+                    <h4 style="font-size: 22px; font-weight: 700; font-family: 'Do Hyeon', sans-serif;"> <%= list.get(i).getName() %> <%if(list.get(i).getCategory() == 1) { %><i class="fa fa-book"></i><%}else if(list.get(i).getCategory() == 2){ %><i class="fa fa-futbol-o"></i> <%} %><%if(list.get(i).getManager() == user.getId()) { %><i class="fa fa-cogs"></i><%} %></h4>
                     <div id="progressbar_tot">
 
                       <div style="width: <%= list.get(i).getCompleteMission()*1.0 / list.get(i).getAllMission() *100 %>%;">
