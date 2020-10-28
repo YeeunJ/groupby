@@ -25,7 +25,6 @@ import com.group.by.board.boardDAO;
 import com.group.by.board.allBoard.allBoardDAO;
 import com.group.by.board.myBoard.myBoardDAO;
 import com.group.by.config.auth.CustomOAuth2UserService;
-import com.group.by.dto.groupDTO;
 import com.group.by.dto.groupinfoDTO;
 import com.group.by.dto.missionDTO;
 import com.group.by.dto.progressDTO;
@@ -42,7 +41,7 @@ public class allBoardController {
 	}
 	
 	@RequestMapping("/")
-	public ModelAndView home(@ModelAttribute groupDTO groupDTO,
+	public ModelAndView home(@ModelAttribute groupinfoDTO groupDTO,
             HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException {
 		CustomOAuth2UserService.makeSession(request.getSession());
 		int userID = 1;

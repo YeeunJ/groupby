@@ -152,9 +152,9 @@
                   <button type="button" name="button" class="sButton"><i class="fa fa-search fa-fw "></i></button>
                   <select class="category" name="category" class="form-control">
                     <option value="allCategory">all category</option>
-                    <option value="study">study</option>
-                    <option value="etc">뭐가</option>
-                    <option value="etc2">있을까</option>
+                     <option value="study">학술</option>
+                     <option value="hobby">취미</option>
+                     <option value="etc">etc</option>
                   </select>
                   <a class="a-no-style" href="#group_make" rel="modal:open"><button type="button" style="float: right; color: #fff; background: #3a4b53; border: none; border-radius: 4px; float:right; height: 34px;">new</button></a>
                 </form>
